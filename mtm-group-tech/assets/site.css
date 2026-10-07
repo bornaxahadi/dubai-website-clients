@@ -263,3 +263,11 @@ footer{padding-block:56px 40px}
 .trust span{font-size:.84rem;opacity:.8}
 @media (max-width:900px){.trust{grid-template-columns:1fr 1fr}}
 @media (max-width:480px){.trust{grid-template-columns:1fr}}
+
+/* ---- MT logo (v5) ---- */
+.logo-mark{background:none;width:44px;height:44px;border-radius:0}
+.logo-mark svg{width:44px;height:44px;display:block}
+.logo-mark .gear>g{transform-origin:0 0;animation:gear-spin 7s linear infinite}
+.logo:hover .logo-mark .gear>g{animation-duration:1.4s}
+@keyframes gear-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.logo-mark .gear>g{animation:none}}
