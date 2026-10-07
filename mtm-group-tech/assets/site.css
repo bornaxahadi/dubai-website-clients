@@ -315,3 +315,17 @@ h2::after{content:"";display:block;width:64px;height:6px;margin-top:14px;backgro
 @keyframes ic-orbit{to{transform:rotate(360deg)}}
 .trust .ti{background:rgba(255,255,255,.08)}
 .trust .ic-svg .ln{stroke:#fff}
+
+/* ---- engineering icon set (v8): heavier line, more subjects ---- */
+.ic-svg .ln{stroke-width:2.1}
+.strip ul{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.strip li{min-width:0}
+@media (max-width:760px){.strip ul{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:no-preference){
+  .ic-svg .spin{transform-box:fill-box;transform-origin:center;animation:ic-orbit 9s linear infinite}
+  .ic-svg .jitter{animation:ic-jitter .9s ease-in-out infinite}
+  .ic-svg .swing{transform-box:view-box;transform-origin:24px 19px;animation:ic-swing 2.6s ease-in-out infinite}
+  .ic-svg .scan-sm{animation:ic-blink 2.4s ease-in-out infinite}
+}
+@keyframes ic-jitter{0%,100%{transform:translateX(0)}50%{transform:translateX(1.5px)}}
+@keyframes ic-swing{0%,100%{transform:rotate(-40deg)}50%{transform:rotate(25deg)}}
