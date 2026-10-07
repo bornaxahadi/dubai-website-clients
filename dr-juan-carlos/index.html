@@ -474,6 +474,35 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .dv-note b{color:#CDBA7B}
 @media (max-width:1000px){.dv-tab{--k:.42}.dv-ph{--k:.5}}
 @media (max-width:700px){.dv-tab{display:none}.dv-ph{--k:.66}}
+/* gift app phone */
+.cart{position:static}
+.gift{margin-top:6px;border-top:1px dashed var(--line);padding-top:18px;display:grid;gap:14px;justify-items:center;text-align:center}
+.gift .gtag{display:inline-flex;gap:8px;align-items:center;background:linear-gradient(120deg,#6C1C37,#B45A69);color:#fff;border-radius:999px;padding:7px 14px;font:800 .72rem var(--head);letter-spacing:.08em;text-transform:uppercase;box-shadow:0 10px 20px -10px rgb(108 28 55 / .6)}
+.gift h4{font-size:1.05rem}.gift p{font-size:.82rem;color:var(--soft);max-width:34ch}
+.gphone{width:250px;height:510px;background:#1b0c12;border-radius:42px;padding:10px;box-shadow:0 40px 60px -30px rgb(60 10 30 / .6),inset 0 0 0 2px #3a2029;position:relative;animation:gfloat 6s ease-in-out infinite}
+@keyframes gfloat{50%{transform:translateY(-8px) rotate(-1deg)}}
+.gphone::before{content:"";position:absolute;top:17px;left:50%;translate:-50% 0;width:70px;height:20px;border-radius:20px;background:#000;z-index:3}
+.gapp{height:100%;border-radius:33px;overflow-y:auto;overflow-x:hidden;background:#f7f1ec;color:#2b1119;text-align:left;padding:44px 14px 18px;display:grid;gap:12px;align-content:start;scrollbar-width:none;font-size:12px}
+.gapp::-webkit-scrollbar{display:none}
+.gapp .ghd{display:flex;justify-content:space-between;align-items:center}
+.gapp .ghd b{font:800 15px var(--head);font-stretch:118%}
+.gapp .ghd span{width:28px;height:28px;border-radius:50%;background:#6C1C37;color:#EDE6DE;display:grid;place-items:center;font-weight:800;font-size:11px}
+.gapp .seg{display:flex;gap:6px}.gapp .seg i{font-style:normal;padding:5px 10px;border-radius:999px;background:#fff;border:1px solid #eadcd6;font-weight:700;font-size:10px}.gapp .seg i.on{background:#6C1C37;color:#fff;border-color:#6C1C37}
+.gcard{background:#fff;border-radius:18px;padding:12px;box-shadow:0 6px 16px -10px rgb(0 0 0 / .2)}
+.gcard small{color:#6e5a60;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.06em}
+.gbig{display:flex;align-items:baseline;gap:8px}.gbig b{font:800 24px var(--head);font-stretch:118%}.gbig em{font-style:normal;color:#2f8a57;font-weight:800;font-size:11px}
+.gchart{width:100%;height:70px;display:block;margin-top:6px}
+.gchart path.l{fill:none;stroke:#B45A69;stroke-width:2.5;stroke-dasharray:400;stroke-dashoffset:400;animation:gdraw 2.4s ease forwards infinite alternate}
+@keyframes gdraw{to{stroke-dashoffset:0}}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g2 .gcard b{display:block;font:800 18px var(--head);font-stretch:118%}
+.grow{display:grid;grid-template-columns:22px 1fr 34px;gap:6px;align-items:center;margin-top:7px;font-weight:600}
+.grow .bar{height:6px;border-radius:6px;background:#f1e3e5;overflow:hidden}.grow .bar i{display:block;height:100%;background:linear-gradient(90deg,#6C1C37,#B45A69);border-radius:6px}
+.gsoc{display:flex;justify-content:space-between;align-items:center;margin-top:7px;font-weight:700}
+.gsoc span{display:flex;gap:8px;align-items:center}.gsoc span i{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;color:#fff;font-style:normal;font-size:10px}
+.gsoc em{font-style:normal;color:#2f8a57;font-size:10px}
+.gtask{display:flex;gap:8px;align-items:center;margin-top:7px}.gtask i{width:16px;height:16px;border-radius:5px;border:2px solid #B45A69;flex:none;font-style:normal;font-size:9px;display:grid;place-items:center;color:#fff}.gtask i.d{background:#B45A69}
+.gscroll{font-size:10px;color:#6e5a60;text-align:center}
 </style>
 </head>
 <body>
@@ -778,6 +807,37 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
       <p class="note" id="cartNote"></p>
       <button class="btn gold" type="submit">Order now on WhatsApp</button>
       <p class="note">You'll get a confirmation and timeline before any payment.</p>
+      <div class="gift">
+        <span class="gtag">🎁 Our gift to you</span>
+        <h4>Your own website and social media tracking app</h4>
+        <p>A custom app made for your clinic. See visitors, countries, bookings and social media growth, and manage your website from your phone. Free with your order.</p>
+        <div class="gphone" aria-label="Preview of the tracking app"><div class="gapp">
+          <div class="ghd"><div><small style="color:#6e5a60;font-weight:700">Good morning</small><br><b>Dr. Juan Carlos</b></div><span>JC</span></div>
+          <div class="seg"><i>Today</i><i class="on">7 days</i><i>30 days</i></div>
+          <div class="gcard"><small>Website visitors</small><div class="gbig"><b>4,812</b><em>▲ 18%</em></div>
+            <svg class="gchart" viewBox="0 0 200 70" preserveAspectRatio="none"><defs><linearGradient id="gg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#E6C5CA"/><stop offset="1" stop-color="#E6C5CA" stop-opacity="0"/></linearGradient></defs><path d="M0 55 C20 50 30 58 50 44 S80 30 100 38 S135 18 150 24 S180 8 200 12 L200 70 L0 70Z" fill="url(#gg)"/><path class="l" d="M0 55 C20 50 30 58 50 44 S80 30 100 38 S135 18 150 24 S180 8 200 12"/></svg></div>
+          <div class="g2"><div class="gcard"><small>WhatsApp leads</small><b>126</b></div><div class="gcard"><small>Bookings</small><b>38</b></div></div>
+          <div class="gcard"><small>Visitors by country</small>
+            <div class="grow"><span>🇦🇪</span><div class="bar"><i style="width:72%"></i></div><b>72%</b></div>
+            <div class="grow"><span>🇸🇦</span><div class="bar"><i style="width:11%"></i></div><b>11%</b></div>
+            <div class="grow"><span>🇬🇧</span><div class="bar"><i style="width:7%"></i></div><b>7%</b></div>
+            <div class="grow"><span>🇷🇺</span><div class="bar"><i style="width:5%"></i></div><b>5%</b></div></div>
+          <div class="gcard"><small>Social media</small>
+            <div class="gsoc"><span><i style="background:linear-gradient(45deg,#f09433,#dc2743,#bc1888)">IG</i>Instagram</span><em>+412 followers</em></div>
+            <div class="gsoc"><span><i style="background:#000">TT</i>TikTok</span><em>+1.2k views</em></div>
+            <div class="gsoc"><span><i style="background:#1877f2">f</i>Facebook</span><em>+96 likes</em></div></div>
+          <div class="gcard"><small>Google ranking</small>
+            <div class="gsoc"><span>"liposuction Dubai"</span><em>#4 ▲3</em></div>
+            <div class="gsoc"><span>"VASER Dubai"</span><em>#2 ▲1</em></div>
+            <div class="gsoc"><span>"tummy tuck Dubai"</span><em>#6 ▲5</em></div></div>
+          <div class="gcard"><small>Website manager</small>
+            <div class="gtask"><i class="d">✓</i>New blog post published</div>
+            <div class="gtask"><i class="d">✓</i>Before and after photos updated</div>
+            <div class="gtask"><i></i>Approve new Instagram post</div></div>
+          <p class="gscroll">Sample data for preview</p>
+        </div></div>
+        <p class="gscroll">Scroll inside the phone ↑</p>
+      </div>
     </div>
   </form>
 </div></section>
