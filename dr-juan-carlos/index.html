@@ -16,7 +16,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Physician","name":"Dr. Juan Carlos Barrera Rojas","medicalSpecialty":"PlasticSurgery","telephone":"+971561149568","url":"https://plasticsurgeonindubai.com/","image":"https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png","address":{"@type":"PostalAddress","streetAddress":"Gargash Hospital, Umm Suqeim Street, Umm Al Sheif","addressLocality":"Dubai","addressCountry":"AE"},"memberOf":["American Society for Aesthetic Plastic Surgery","Emirates Plastic Surgery Society","ISAPS"]}
 </script>
-<script>try{const t=localStorage.getItem('jc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}document.documentElement.classList.add('js')</script>
+<script>try{const t=localStorage.getItem('jc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}document.documentElement.classList.add('js');if(/[?&]embed/.test(location.search))document.documentElement.classList.add('embed')</script>
 <style>
 /* Layout: rounded sheet on warm ground (refs), hero card over portrait, photo bento, then pitch + order. Light/dark via tokens. */
 :root{
@@ -454,6 +454,26 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .post p{font-size:.86rem;color:var(--soft)}
 .post .more{font-size:.8rem;font-weight:700;color:var(--clay)}
 @media (max-width:860px){.bgrid{grid-template-columns:1fr 1fr}}@media (max-width:520px){.bgrid{grid-template-columns:1fr}}
+/* devices preview */
+.embed #intro,.embed .samplebar,.embed .float,.embed #devices,.embed #compare,.embed #order{display:none!important}
+.devices{background:linear-gradient(160deg,#EDE6DE 0%,#f3e4e6 55%,#E6C5CA 100%);padding-block:clamp(56px,8vw,96px);overflow:hidden}
+[data-theme=dark] .devices{background:linear-gradient(160deg,#170910,#2a0f1c 60%,#3d0f20)}
+.dv-head{display:grid;gap:12px;text-align:center;justify-items:center;margin-bottom:clamp(28px,5vw,56px)}
+.dv-head p{color:var(--soft);max-width:60ch}
+.dv-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.dv-tags span{border:2px solid #B45A69;color:var(--ink);border-radius:999px;padding:7px 14px;font:700 .78rem var(--head);background:rgb(255 255 255 / .4)}
+.dv-stage{display:flex;align-items:flex-end;justify-content:center;gap:clamp(18px,4vw,56px)}
+.dv-tab{--w:1024;--h:720;--k:.58;width:calc(var(--w)*var(--k)*1px + 36px);height:calc(var(--h)*var(--k)*1px + 36px);background:#1b0c12;border-radius:34px;padding:18px;box-shadow:0 50px 80px -40px rgb(60 10 30 / .55),inset 0 0 0 2px #3a2029;position:relative;flex:none}
+.dv-ph{--w:390;--h:800;--k:.62;width:calc(var(--w)*var(--k)*1px + 22px);height:calc(var(--h)*var(--k)*1px + 22px);background:#1b0c12;border-radius:46px;padding:11px;box-shadow:0 50px 80px -40px rgb(60 10 30 / .6),inset 0 0 0 2px #3a2029;position:relative;flex:none;margin-bottom:-10px}
+.dv-ph::before{content:"";position:absolute;top:18px;left:50%;translate:-50% 0;width:78px;height:22px;border-radius:20px;background:#000;z-index:2}
+.dv-scr{width:100%;height:100%;overflow:hidden;border-radius:18px;background:#fff;position:relative}
+.dv-ph .dv-scr{border-radius:36px;padding-top:36px;background:#faf6f2}
+.dv-scr iframe{border:0;width:calc(var(--w)*1px);height:calc(var(--h)*1px);transform:scale(var(--k));transform-origin:0 0;display:block}
+.dv-cap{text-align:center;font:700 .75rem var(--head);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-top:14px}
+.dv-note{margin:clamp(28px,4vw,44px) auto 0;max-width:640px;text-align:center;background:#6C1C37;color:#EDE6DE;border-radius:24px;padding:18px 24px;font-size:.95rem}
+.dv-note b{color:#CDBA7B}
+@media (max-width:1000px){.dv-tab{--k:.42}.dv-ph{--k:.5}}
+@media (max-width:700px){.dv-tab{display:none}.dv-ph{--k:.66}}
 </style>
 </head>
 <body>
@@ -479,7 +499,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
     <li class="dd"><a href="#procedures" aria-haspopup="true">Available Treatments <i>▾</i></a>
       <div class="mega"><div><h5>Face</h5><a href="#procedures" data-proc="Facelift">Face lift</a><a href="#procedures" data-proc="Facial Surgery">Rhinoplasty</a><a href="#procedures" data-proc="Facial Surgery">Eyelid surgery / Blepharoplasty</a></div><div><h5>Breast</h5><a href="#procedures" data-proc="Breast Surgery">Breast augmentation</a><a href="#procedures" data-proc="Breast Surgery">Breast lift surgery</a><a href="#procedures" data-proc="Breast Surgery">Breast reduction</a><a href="#procedures" data-proc="Gynecomastia">Gynecomastia</a></div><div><h5>Body</h5><a href="#procedures" data-proc="VASER Liposuction">Liposuction for fat removal</a><a href="#procedures" data-proc="Tummy Tuck">Tummy tuck</a><a href="#procedures" data-proc="Post-bariatric Body Contouring">Body lift</a><a href="#procedures" data-proc="Post-bariatric Body Contouring">Body contouring</a><a href="#procedures" data-proc="Buttock Augmentation">Buttock lift / enlargement</a><a href="#procedures" data-proc="Post-bariatric Body Contouring">Post bariatric surgery</a><a href="#procedures" data-proc="Post-bariatric Body Contouring">Thigh lift</a><a href="#procedures" data-proc="Not sure yet">Calf lift</a></div></div></li>
     <li class="dd"><a href="#results" aria-haspopup="true">Media <i>▾</i></a>
-      <div class="drop"><a href="#results">Before – After</a><a href="#blogs">Blogs</a><a href="#media">Photos</a></div></li>
+      <div class="drop"><a href="#results">Before – After</a><a href="#blogs">Blogs</a></div></li>
     <li><a href="#book">Contact</a></li>
   </ul>
   <div class="navr">
@@ -611,16 +631,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 </section>
 
 
-<section id="media" class="in" style="padding-top:0">
-  <div class="head rv"><div><span class="kicker">Media</span><h2>Inside the <em>practice</em></h2></div><p>Photos from Dr. Juan Carlos's practice and his work. Follow him on Instagram for patient stories and updates.</p></div>
-  <div class="mgrid">
-    <figure class="rv m1 ph-fallback"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png" alt="Dr. Juan Carlos portrait" loading="lazy" onerror="this.remove()"></figure>
-    <figure class="rv ph-fallback"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/bannertttt-1-1.png" alt="Dr. Juan Carlos at work" loading="lazy" onerror="this.remove()"></figure>
-    <figure class="rv ph-fallback"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Group-652-1022x1024.png" alt="Precision cosmetic surgery" loading="lazy" onerror="this.remove()"></figure>
-    <figure class="rv ph-fallback"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Rectangle-181-1.png" alt="Patient care" loading="lazy" onerror="this.remove()"></figure>
-    <a class="rv insta" href="https://www.instagram.com/dr.juancarlos/" target="_blank" rel="noopener"><span>◎</span><b>@dr.juancarlos</b><small>Follow on Instagram ↗</small></a>
-  </div>
-</section>
+
 <section class="in" style="padding-top:0">
   <div class="head rv"><div><span class="kicker">Your journey</span><h2>From first message <em>to recovery</em></h2></div><p>What happens at each stage, so there are no surprises.</p></div>
   <div class="steps rv">
@@ -673,6 +684,20 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 </div>
 
 <!-- ===== Pitch ===== -->
+<section class="devices" id="devices"><div class="in">
+  <div class="dv-head rv">
+    <span class="kicker">Works on every screen</span>
+    <h2>Fully responsive on <em>mobile, tablet and desktop</em></h2>
+    <p>Most patients will find Dr. Juan Carlos on their phone. This site adapts to any screen and can be saved to the home screen like an app. Scroll inside the devices below to try it.</p>
+    <div class="dv-tags"><span>📱 Mobile web</span><span>⬇ Installable web app</span><span>▭ Tablet</span><span>🖥 Desktop</span></div>
+  </div>
+  <div class="dv-stage rv">
+    <div><div class="dv-tab"><div class="dv-scr"><iframe src="./?embed=1" title="Website preview on a tablet" loading="lazy"></iframe></div></div><div class="dv-cap">Tablet</div></div>
+    <div><div class="dv-ph"><div class="dv-scr"><iframe src="./?embed=1" title="Website preview on a phone" loading="lazy"></iframe></div></div><div class="dv-cap">iPhone</div></div>
+  </div>
+  <p class="dv-note rv">What you see is <b>about 30% of the full website</b>, built as a preview for you. Once you order, we complete every page, treatment and detail.</p>
+</div></section>
+
 <section class="pitch" id="compare"><div class="in">
   <span class="kicker rv">Why a new website</span>
   <h2 class="rv" style="margin-top:10px">Your current site <em>vs</em> this one</h2>
@@ -761,7 +786,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
   <div class="fgrid">
     <div><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Carlos-Logo-1.png" alt="Dr. Juan Carlos" onerror="this.remove()"><p>Plastic and cosmetic surgery in Dubai by Dr. Juan Carlos Barrera Rojas, with more than 30 years of experience.</p></div>
     <div><h4>Procedures</h4><a href="#procedures">VASER Liposuction</a><a href="#procedures">Tummy Tuck</a><a href="#procedures">Breast Surgery</a><a href="#procedures">Face and Nose</a></div>
-    <div><h4>Clinic</h4><a href="#top">Home</a><a href="#about">About Doctor</a><a href="#media">Media</a><a href="#results">Before and after</a><a href="#faq">FAQ</a><a href="#book">Book a consultation</a></div>
+    <div><h4>Clinic</h4><a href="#top">Home</a><a href="#about">About Doctor</a><a href="#blogs">Blogs</a><a href="#results">Before and after</a><a href="#faq">FAQ</a><a href="#book">Book a consultation</a></div>
     <div><h4>Contact</h4><span>+971 56 114 9568</span><a href="https://maps.google.com/?q=Gargash+Hospital+Dubai" target="_blank" rel="noopener">Gargash Hospital, Umm Suqeim St, Dubai</a><a href="https://www.instagram.com/dr.juancarlos/" target="_blank" rel="noopener">Instagram</a></div>
   </div>
   <div class="fbot"><span>Sample website concept for Dr. Juan Carlos. © 2026</span><span>Designed and developed by <b>Borna Ahadi</b></span></div>
