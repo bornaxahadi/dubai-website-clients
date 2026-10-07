@@ -527,6 +527,28 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .oreq{display:grid;gap:6px;font-size:.8rem;font-weight:700;color:var(--ink)}.oreq textarea{width:100%;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--sheet);color:var(--ink);font:inherit;font-size:.88rem;font-weight:400;resize:vertical}.oreq small{justify-self:end;color:var(--soft);font-weight:600}.oreq small.over{color:#c0392b}
 .ofile{display:block;cursor:pointer}.ofile input{position:absolute;opacity:0;width:1px;height:1px}.ofile span{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;justify-content:center;border:2px dashed #B45A69;border-radius:14px;padding:12px;font-weight:700;font-size:.85rem;color:#6C1C37;background:var(--tint)}.ofile span small{font-weight:500;color:var(--soft)}.ofile:focus-within span{outline:2px solid #B45A69}
 .oflist{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:.78rem;color:var(--soft)}.oflist li{display:flex;justify-content:space-between;gap:8px}
+.bkx{position:relative}
+.bk-steps{display:flex;gap:6px;margin-bottom:6px}.bk-steps span{flex:1;text-align:center;font:700 .7rem var(--head);letter-spacing:.04em;padding:8px 4px;border-radius:999px;background:var(--card);color:var(--soft);border:1.5px solid var(--line)}.bk-steps span.on{background:#6C1C37;color:#fff;border-color:#6C1C37}
+.bk-pane{display:none;gap:14px}.bk-pane.on{display:grid;animation:paneIn .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes paneIn{from{opacity:0;transform:translateX(16px)}}
+.bk-nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.cal{background:var(--card);border-radius:20px;padding:14px;border:1.5px solid var(--line)}
+.cal-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.cal-h b{font:800 1rem var(--head);font-stretch:118%}
+.cal-h button{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:var(--sheet);color:var(--ink);font-size:1.1rem;cursor:pointer}
+.cal-w,.cal-d{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.cal-w span{font-size:.68rem;font-weight:700;color:var(--soft);padding:4px 0}
+.cal-d button{aspect-ratio:1;border:0;border-radius:12px;background:transparent;color:var(--ink);font:600 .85rem inherit;cursor:pointer;transition:background .2s,transform .2s}
+.cal-d button:hover:not(:disabled){background:var(--tint);transform:scale(1.08)}
+.cal-d button:disabled{color:var(--line);cursor:not-allowed;text-decoration:line-through}
+.cal-d button.sel{background:#6C1C37;color:#fff}
+.cal-d button.few::after{content:"";display:block;width:4px;height:4px;border-radius:50%;background:#CDBA7B;margin:2px auto 0}
+.slots{display:flex;flex-wrap:wrap;gap:8px}.slots .hint{font-size:.82rem;color:var(--soft);margin:0}
+.slots button{padding:9px 14px;border-radius:999px;border:1.5px solid #B45A69;background:var(--card);color:var(--ink);font:700 .8rem inherit;cursor:pointer;transition:.2s}
+.slots button:hover{background:var(--tint)}.slots button.sel{background:#B45A69;color:#fff}.slots button:disabled{border-color:var(--line);color:var(--soft);text-decoration:line-through;cursor:not-allowed;background:transparent}
+.bk-sum{background:var(--card);border-radius:14px;padding:12px 14px;font-size:.85rem;margin:0;border-left:4px solid #B45A69}
+.bk-done{text-align:center;justify-items:center}.bk-done .tick{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#6C1C37,#B45A69);color:#fff;display:grid;place-items:center;font-size:1.8rem;animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(0)}}
+.bk-done p{color:var(--soft)}.bk-done .demo{color:var(--soft);font-size:.72rem;max-width:44ch}
 </style>
 </head>
 <body>
@@ -721,21 +743,40 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
   <div class="info">
     <span class="kicker">Book a consultation</span>
     <h2>Talk to <em>Dr. Juan Carlos</em></h2>
-    <p>Fill in the form and it opens a WhatsApp message to the clinic with your details already written.</p>
+    <p>Pick a treatment, a day and a free time. You get a booking reference instantly and can send it to the clinic on WhatsApp.</p>
     <div class="contact-line"><i>✆</i><span>+971 56 114 9568 · phone and WhatsApp</span></div>
     <div class="contact-line"><i>⌖</i><a href="https://maps.google.com/?q=Gargash+Hospital+Dubai" target="_blank" rel="noopener">Gargash Hospital, Umm Suqeim St, Dubai</a></div>
     <div class="contact-line"><i>◎</i><a href="https://www.instagram.com/dr.juancarlos/" target="_blank" rel="noopener">@dr.juancarlos on Instagram</a></div>
   </div>
-  <form class="bk" id="bookForm">
-    <div class="row2">
-      <label for="b-name">Your name<input id="b-name" required placeholder="Full name"></label>
-      <label for="b-phone">Phone<input id="b-phone" required placeholder="+971"></label>
+  <form class="bk bkx" id="bookForm" novalidate>
+    <div class="bk-steps" aria-hidden="true"><span class="on">1 Treatment</span><span>2 Date and time</span><span>3 Your details</span></div>
+    <div class="bk-pane on" data-step="1">
+      <label for="b-proc">Which treatment are you interested in?<select id="b-proc"><option>VASER Liposuction</option><option>Tummy Tuck</option><option>Breast Surgery</option><option>Post-bariatric Body Contouring</option><option>Facial Surgery</option><option>Rhinoplasty</option><option>Buttock Augmentation</option><option>Double Chin Liposuction</option><option>Botox and Fillers</option><option>Not sure yet</option></select></label>
+      <div class="pills bk-type"><label><input type="radio" name="bt" value="In clinic" checked> In clinic</label><label><input type="radio" name="bt" value="Video call"> Video call</label></div>
+      <button class="btn" type="button" data-go="2">Choose a date →</button>
     </div>
-    <label for="b-proc">Procedure<select id="b-proc"><option>VASER Liposuction</option><option>Tummy Tuck</option><option>Breast Surgery</option><option>Post-bariatric Body Contouring</option><option>Facial Surgery</option><option>Buttock Augmentation</option><option>Double Chin Liposuction</option><option>Botox and Fillers</option><option>Not sure yet</option></select></label>
-    <div><span style="font-size:.8rem;font-weight:700;color:var(--soft)">Preferred time</span>
-      <div class="pills" style="margin-top:6px"><label><input type="radio" name="t" value="Morning" checked> Morning</label><label><input type="radio" name="t" value="Afternoon"> Afternoon</label><label><input type="radio" name="t" value="Evening"> Evening</label></div></div>
-    <label for="b-note">Anything we should know? (optional)<textarea id="b-note" rows="2"></textarea></label>
-    <button class="btn" type="submit">Send on WhatsApp</button>
+    <div class="bk-pane" data-step="2">
+      <div class="cal"><div class="cal-h"><button type="button" id="calPrev" aria-label="Previous month">‹</button><b id="calTitle"></b><button type="button" id="calNext" aria-label="Next month">›</button></div>
+        <div class="cal-w"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span></div><div class="cal-d" id="calDays"></div></div>
+      <div class="slots" id="slots"><p class="hint">Pick a day to see free times. Closed on Fridays.</p></div>
+      <div class="bk-nav"><button class="btn light" type="button" data-go="1">← Back</button><button class="btn" type="button" data-go="3" id="toDetails" disabled>Your details →</button></div>
+    </div>
+    <div class="bk-pane" data-step="3">
+      <div class="row2">
+        <label for="b-name">Your name<input id="b-name" required placeholder="Full name" autocomplete="name"></label>
+        <label for="b-phone">Phone<input id="b-phone" required placeholder="+971" type="tel" autocomplete="tel"></label>
+      </div>
+      <label for="b-note">Anything we should know? (optional)<textarea id="b-note" rows="2"></textarea></label>
+      <p class="bk-sum" id="bkSum"></p>
+      <div class="bk-nav"><button class="btn light" type="button" data-go="2">← Back</button><button class="btn" type="submit">Confirm booking</button></div>
+    </div>
+    <div class="bk-pane bk-done" data-step="4">
+      <div class="tick">✓</div>
+      <h3>Request received</h3>
+      <p id="bkDone"></p>
+      <div class="bk-nav"><a class="btn" id="bkWa" target="_blank" rel="noopener">Send to the clinic on WhatsApp</a><a class="btn light" id="bkIcs" download="consultation.ics">Add to calendar</a></div>
+      <small class="demo">Demo booking system: on the live site, bookings will go straight into the clinic's calendar with SMS and email reminders.</small>
+    </div>
   </form>
 </div>
 
@@ -926,10 +967,35 @@ document.getElementById('next').onclick=()=>{stop();step(1)};document.getElement
 let timer=matchMedia('(prefers-reduced-motion: reduce)').matches?null:setInterval(()=>step(1),3200);const stop=()=>{clearInterval(timer);timer=null};
 ['pointerdown','wheel','touchstart'].forEach(e=>track.addEventListener(e,stop,{passive:true}));
 
-document.querySelectorAll('[data-proc]').forEach(t=>t.addEventListener('click',()=>{document.getElementById('b-proc').value=t.dataset.proc}));
-document.getElementById('bookForm').addEventListener('submit',e=>{e.preventDefault();const v=id=>document.getElementById(id).value.trim();
-  const msg=`Hello Dr. Juan Carlos, I would like to book a consultation.\nName: ${v('b-name')}\nPhone: ${v('b-phone')}\nProcedure: ${v('b-proc')}\nPreferred time: ${document.querySelector('input[name=t]:checked').value}${v('b-note')?'\nNote: '+v('b-note'):''}`;
-  window.open('https://wa.me/971561149568?text='+encodeURIComponent(msg),'_blank')});
+document.querySelectorAll('[data-proc]').forEach(t=>t.addEventListener('click',()=>{const sel=document.getElementById('b-proc'),v=t.dataset.proc;if(![...sel.options].some(o=>o.value===v))sel.add(new Option(v,v),0);sel.value=v}));
+/* demo booking system */
+(()=>{const f=document.getElementById('bookForm'),$=id=>document.getElementById(id);let step=1,day=null,slot=null,view=new Date();view.setDate(1);
+  const today=new Date();today.setHours(0,0,0,0);const maxD=new Date(today);maxD.setDate(maxD.getDate()+60);
+  const go=n=>{step=n;f.querySelectorAll('.bk-pane').forEach(p=>p.classList.toggle('on',+p.dataset.step===n));f.querySelectorAll('.bk-steps span').forEach((s,i)=>s.classList.toggle('on',i<Math.min(n,3)));
+    if(n===3)$('bkSum').textContent=`${$('b-proc').value} · ${f.querySelector('input[name=bt]:checked').value} · ${day.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})} at ${slot}`};
+  f.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)go(+g.dataset.go)});
+  const seed=d=>{let x=d.getFullYear()*372+d.getMonth()*31+d.getDate();return()=>((x=(x*9301+49297)%233280)/233280)};
+  const SL=['09:00','09:45','10:30','11:15','12:00','14:00','14:45','15:30','16:15','17:00','17:45'];
+  const freeSlots=d=>{const r=seed(d);return SL.map(t=>({t,free:r()>.38}))};
+  function cal(){const y=view.getFullYear(),m=view.getMonth();$('calTitle').textContent=view.toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+    const first=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate();let h='';for(let i=0;i<first;i++)h+='<span></span>';
+    for(let d=1;d<=n;d++){const dt=new Date(y,m,d),off=dt<=today||dt>maxD||dt.getDay()===5,fs=off?0:freeSlots(dt).filter(s=>s.free).length;
+      h+=`<button type="button" data-d="${d}" ${off||!fs?'disabled':''} class="${fs&&fs<4?'few':''}${day&&+day===+dt?' sel':''}">${d}</button>`}
+    $('calDays').innerHTML=h;$('calPrev').disabled=y===today.getFullYear()&&m===today.getMonth();$('calNext').disabled=new Date(y,m+1,1)>maxD}
+  $('calPrev').onclick=()=>{view.setMonth(view.getMonth()-1);cal()};$('calNext').onclick=()=>{view.setMonth(view.getMonth()+1);cal()};
+  $('calDays').addEventListener('click',e=>{const b=e.target.closest('button[data-d]');if(!b)return;day=new Date(view.getFullYear(),view.getMonth(),+b.dataset.d);slot=null;$('toDetails').disabled=true;cal();
+    $('slots').innerHTML=freeSlots(day).map(s=>`<button type="button" ${s.free?'':'disabled'}>${s.t}</button>`).join('')});
+  $('slots').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;$('slots').querySelectorAll('button').forEach(x=>x.classList.toggle('sel',x===b));slot=b.textContent;$('toDetails').disabled=false});
+  cal();
+  f.addEventListener('submit',e=>{e.preventDefault();const name=$('b-name').value.trim(),phone=$('b-phone').value.trim();if(!name||!phone){(name?$('b-phone'):$('b-name')).focus();return}
+    const ref='JC-'+Math.random().toString(36).slice(2,7).toUpperCase(),when=day.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' at '+slot,type=f.querySelector('input[name=bt]:checked').value,note=$('b-note').value.trim();
+    $('bkDone').innerHTML=`Thank you ${name.replace(/[<>&]/g,'')}. Your ${type.toLowerCase()} consultation for <b>${$('b-proc').value}</b> is requested for <b>${when}</b>.<br>Booking reference <b>${ref}</b>`;
+    const msg=`Hello Dr. Juan Carlos, I booked a consultation on your website.\nRef: ${ref}\nName: ${name}\nPhone: ${phone}\nTreatment: ${$('b-proc').value}\nType: ${type}\nWhen: ${when}${note?'\nNote: '+note:''}`;
+    $('bkWa').href='https://wa.me/971561149568?text='+encodeURIComponent(msg);
+    const [hh,mm]=slot.split(':'),st=new Date(day);st.setHours(+hh,+mm);const en=new Date(st.getTime()+45*6e4),z=d=>d.toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
+    $('bkIcs').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//JC//Booking//EN\r\nBEGIN:VEVENT\r\nUID:${ref}@drjuancarlos\r\nDTSTAMP:${z(new Date())}\r\nDTSTART:${z(st)}\r\nDTEND:${z(en)}\r\nSUMMARY:Consultation with Dr. Juan Carlos (${$('b-proc').value})\r\nLOCATION:Gargash Hospital, Umm Suqeim St, Dubai\r\nEND:VEVENT\r\nEND:VCALENDAR`);
+    go(4)});
+})();
 
 let bill='m';const seo=document.getElementById('seo');
 document.querySelectorAll('.toggle button').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();bill=b.dataset.bill;
