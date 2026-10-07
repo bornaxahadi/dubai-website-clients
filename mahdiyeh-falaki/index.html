@@ -17,9 +17,6 @@
   --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
   --r-lg:26px; --r:16px; --r-sm:10px;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#121211; --surface:#1C1B1A; --ink:#F0EEEA; --muted:#A6A29B; --line:#2D2C29;
-  --gold:#D3A866; --gold-2:#E2C08A; --gold-soft:#2C251A; --dark:#0B0B0A; --on-dark:#F0EEEA; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#121211; --surface:#1C1B1A; --ink:#F0EEEA; --muted:#A6A29B; --line:#2D2C29;
   --gold:#D3A866; --gold-2:#E2C08A; --gold-soft:#2C251A; --dark:#0B0B0A; --on-dark:#F0EEEA; color-scheme:dark}
@@ -58,9 +55,19 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-b
 .menu{display:none;gap:26px;list-style:none;margin:0;padding:0}
 .menu a{text-decoration:none;font-size:14px;font-weight:600;color:var(--muted)}
 .menu a:hover,.menu a[aria-current="page"]{color:var(--ink)}
-.langs{display:flex;background:var(--bg);border-radius:99px;padding:3px}
-.langs button{border:0;background:transparent;padding:5px 10px;border-radius:99px;font-size:12.5px;cursor:pointer;color:var(--muted);white-space:nowrap}
-.langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.langs{display:flex;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:3px;transition:border-color .2s,box-shadow .2s}
+.langs:hover{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.langs .globe{width:15px;height:15px;margin-inline:6px 2px;color:var(--gold);flex:none}
+.langs button{border:0;background:transparent;padding:5px 10px;border-radius:99px;font-size:12.5px;cursor:pointer;color:var(--muted);white-space:nowrap;transition:transform .18s,color .18s,background .18s}
+.langs button:hover{color:var(--gold);transform:translateY(-2px)}
+.langs button:active{transform:scale(.92)}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);transform:none}
+.langs.hint{animation:langPulse 1.6s ease-out 1s 3}
+.langs.hint .globe{animation:globeSpin 1.6s ease-in-out 1s 3}
+@keyframes langPulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 55%,transparent)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@keyframes globeSpin{0%,100%{transform:rotate(0)}40%{transform:rotate(-20deg)}70%{transform:rotate(12deg)}}
+@media (max-width:420px){.langs .globe{display:none}}
+@media (prefers-reduced-motion:reduce){.langs.hint,.langs.hint .globe{animation:none}}
 .bar .btn-gold{display:none;padding:.7em 1.2em}
 .tabsnav{display:flex;gap:4px;overflow-x:auto;margin-top:8px}
 .tabsnav a{text-decoration:none;font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:99px;color:var(--muted);white-space:nowrap}
@@ -118,7 +125,6 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-b
 .tbtn svg,.sico svg{width:17px;height:17px}
 .tbtn .moon{display:none}
 :root[data-theme="dark"] .tbtn .moon{display:block}:root[data-theme="dark"] .tbtn .sun{display:none}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tbtn .moon{display:block}:root:not([data-theme="light"]) .tbtn .sun{display:none}}
 .bar .sico{display:none}@media (min-width:600px){.bar .sico{display:inline-grid}}
 .socials{display:flex;gap:8px;margin-top:14px}
 .areas{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -382,7 +388,13 @@ function skyline(){
   return s+"</svg>";
 }
 
-let L="en"; try{const s=localStorage.getItem("mf-lang");if(s&&T[s])L=s}catch(e){}
+let L="en", SAVED_L=false; try{const s=localStorage.getItem("mf-lang");if(s&&T[s]){L=s;SAVED_L=true}}catch(e){}
+if(!SAVED_L){
+  // Static site, no IP lookup: browser language or an Iran/Afghanistan/Tajikistan time zone marks a Persian-speaking visitor
+  let tz=""; try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){}
+  const langs=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||""]).map(x=>String(x).toLowerCase());
+  if(/^(fa|prs)\b/.test(langs[0]||"")||["Asia/Tehran","Asia/Kabul","Asia/Dushanbe"].includes(tz))L="fa";
+}
 const t=(k,v={})=>(T[L][k]??T.en[k]??k).replace(/\{(\w+)\}/g,(_,x)=>v[x]??"");
 const wa=msg=>"https://wa.me/"+WA_NUM+"?text="+encodeURIComponent(msg);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -499,11 +511,13 @@ const cta=()=>`<div class="cta"><div><h2>${t("band_t")}</h2><p>${t("band_d")}</p
 
 const credList=()=>`<div class="dl"><div><span>${t("reg")}</span><b>${t("regv")}</b></div><div><span>${t("brn")}</span><b class="num">${BROKER.brn}</b></div><div><span>${t("office")}</span><b>${BROKER.office[L]}</b></div><div><span>${t("prog")}</span><b>${t("progv")}</b></div><div><span>${t("services")}</span><b>${t("servicesv")}</b></div></div>`;
 const socials=()=>`<div class="socials"><a class="sico" href="${IG}" target="_blank" rel="noopener" aria-label="Instagram @mahdiyeh_falaki">${IG_ICON}</a><a class="sico" href="${wa(t("wa_general"))}" target="_blank" rel="noopener" aria-label="WhatsApp">${WA_ICON}</a><a class="sico" href="${TEL}" aria-label="${t("call")}">${PHONE_ICON}</a></div>`;
+const GLOBE='<svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5s-1.3 6.7-3.9 9.5c-2.6-2.8-3.9-6-3.9-9.5s1.3-6.7 3.9-9.5Z"/></svg>';
+if(!SAVED_L)document.getElementById("langs").classList.add("hint");
 let TH=null; try{TH=localStorage.getItem("mf-theme")}catch(e){}
 const applyTheme=()=>{if(TH)document.documentElement.dataset.theme=TH;else delete document.documentElement.dataset.theme};
 applyTheme();
 document.getElementById("theme").addEventListener("click",()=>{
-  const dark=TH?TH==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+  const dark=TH==="dark";
   TH=dark?"light":"dark"; applyTheme(); try{localStorage.setItem("mf-theme",TH)}catch(e){}});
 function route(){const h=location.hash.slice(1);return PAGES[h]?h:"home"}
 let last=null;
@@ -513,7 +527,7 @@ function render(){
   const nav=["home","properties","offplan","about","contact"].map(k=>`<a href="#${k}" ${r===k?'aria-current="page"':""}>${t(k)}</a>`);
   document.getElementById("menu").innerHTML=nav.map(a=>`<li>${a}</li>`).join("");
   document.getElementById("tabsnav").innerHTML=nav.join("");
-  document.getElementById("langs").innerHTML=[["en","EN"],["fa","فا"],["ar","ع"]].map(([k,l])=>`<button type="button" data-lang="${k}" aria-pressed="${L===k}" lang="${k}">${l}</button>`).join("");
+  document.getElementById("langs").innerHTML=GLOBE+[["en","EN"],["fa","فا"],["ar","ع"]].map(([k,l])=>`<button type="button" data-lang="${k}" aria-pressed="${L===k}" lang="${k}">${l}</button>`).join("");
   document.getElementById("head-cta").textContent=t("contact");
   document.getElementById("ig-head").innerHTML=IG_ICON; const tb=document.getElementById("theme"); tb.setAttribute("aria-label",t("theme")); tb.title=t("theme");
   document.getElementById("actionbar").innerHTML=`<a class="btn btn-wa" href="${wa(t("wa_general"))}" target="_blank" rel="noopener">${WA_ICON}${t("whatsapp")}</a><a class="btn btn-line" href="${TEL}">${PHONE_ICON}${t("call")}</a>`;
