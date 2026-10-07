@@ -612,6 +612,14 @@ form.bk.bkx{box-shadow:0 24px 60px -30px rgba(108,28,55,.35);border:1.5px solid 
 .post .pt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(108,28,55,0) 35%,rgba(108,28,55,.72)),linear-gradient(140deg,rgba(180,90,105,.22),rgba(205,186,123,.12));mix-blend-mode:normal}
 .post .pt em{position:relative;z-index:1;font-style:normal;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:#6C1C37;letter-spacing:.12em}
 .post:hover .pt img{transform:scale(1.06)}
+
+.s30{display:flex;gap:clamp(16px,3vw,32px);align-items:center;padding:clamp(18px,3vw,30px);margin-bottom:clamp(28px,4vw,44px);border-radius:24px;background:rgba(255,255,255,.07);border:1.5px solid rgba(205,186,123,.55);color:#fff}
+.s30-ring{flex:none;width:clamp(86px,10vw,112px);aspect-ratio:1;border-radius:50%;display:grid;place-content:center;text-align:center;background:conic-gradient(#CDBA7B 0 30%,rgba(255,255,255,.14) 30% 100%);position:relative}
+.s30-ring::before{content:"";position:absolute;inset:8px;border-radius:50%;background:#6C1C37}
+.s30-ring b,.s30-ring small{position:relative}.s30-ring b{font:800 clamp(1.4rem,2.6vw,1.9rem)/1 var(--head);color:#CDBA7B}.s30-ring small{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#dcc3c8}
+.s30 h3{font-size:clamp(1.1rem,2vw,1.4rem);color:#fff;margin-bottom:6px}.s30 p{color:#e9d6da;font-size:.95rem;max-width:70ch}.s30 strong{color:#CDBA7B}
+.s30 ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:12px 0 0}.s30 li{font-size:.76rem;font-weight:600;padding:5px 12px;border-radius:999px;background:rgba(205,186,123,.16);color:#f3e6c4}.s30 li::before{content:"✓ ";color:#CDBA7B}
+@media (max-width:600px){.s30{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -903,10 +911,11 @@ form.bk.bkx{box-shadow:0 24px 60px -30px rgba(108,28,55,.35);border:1.5px solid 
     </div>
   </div>
 
-  <div class="ordercta rv"><div><h3>Like what you see?</h3><p>This website can be live on your own domain in about two weeks.</p></div><a class="btn" href="#order">Order this website →</a></div>
+  <div class="ordercta rv"><div><h3>Like what you see?</h3><p>Order today and your full website goes live on your own domain in 3 days.</p></div><a class="btn" href="#order">Order this website →</a></div>
 </div></section>
 
 <section class="order" id="order"><div class="in">
+  <div class="s30 rv"><div class="s30-ring"><b>30%</b><small>sample</small></div><div><h3>This is only a 30% sample of your new website</h3><p>We've redesigned about 30% of your website as a sample, to show you what we can do. After you order, within <strong>3 days</strong> we'll design your complete website with all pages and all functionality, fully responsive and SEO-friendly, and deliver it to you.</p><ul><li>All pages</li><li>Full functionality</li><li>Fully responsive</li><li>SEO-friendly</li><li>Delivered in 3 days</li></ul></div></div>
   <div class="head rv"><div><span class="kicker" style="color:#CDBA7B">Order now</span><h2 style="color:#fff">Choose your package with <em style="color:#CDBA7B">40% off</em></h2><span class="deal">⏳ Limited-time discount</span></div><p style="color:#dcc3c8">Pick what you need. Design, landing page and AI agents are 40% off for a limited time. All prices are in UAE dirhams (AED).</p></div>
   <form class="order-box rv" id="orderForm">
     <div class="pkgs">
