@@ -323,6 +323,60 @@ footer.site{background:#0a0e18;color:#aab1c0;padding-block:48px 28px;font-size:.
 .js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .js .rv.on{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}#intro{display:none}}
+/* v3 layout (pill hero, partners, pill about, dark services, why) */
+.xline{display:block;width:56px;height:3px;border-radius:3px;background:var(--clay)}
+.xhero{display:grid;grid-template-columns:1.1fr .9fr .7fr;gap:clamp(20px,3vw,40px);align-items:center;padding-block:clamp(36px,5vw,64px)}
+.xhero > *{min-width:0}
+.xh-copy{display:grid;gap:18px}
+.xhero h1{font-size:clamp(2.2rem,4.4vw,3.6rem);font-weight:700}
+.xh-copy p{color:var(--soft);max-width:44ch}
+.xh-pill{border-radius:999px;overflow:hidden;aspect-ratio:3/4.3;background:radial-gradient(circle at 50% 30%,#f3e6d9,#cdb3a0);max-width:100%;box-shadow:0 30px 60px -30px rgb(0 0 0 / .35)}
+.xh-pill img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:contrast(1.06) saturate(1.06)}
+.xh-stats{display:grid;gap:14px}
+.bubble{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:16px 22px;text-align:center}
+.bubble b{display:block;font:700 2rem/1.1 var(--head);font-stretch:118%;font-variant-numeric:tabular-nums}
+.bubble span{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+@media (max-width:900px){.xhero{grid-template-columns:1fr 1fr}.xh-copy{grid-column:1/-1}.xh-pill{max-width:340px}}
+@media (max-width:560px){.xhero{grid-template-columns:1fr}.xh-pill{margin-inline:auto;width:80%}}
+.partners{background:var(--card);border-block:1px solid var(--line);padding:22px 16px;text-align:center;display:grid;gap:12px}
+.plist{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(16px,4vw,48px)}
+.plist span{display:inline-flex;align-items:center;gap:8px;font:700 1.05rem var(--head);font-stretch:118%;color:var(--ink);opacity:.8}
+.plist i{font-style:normal;width:28px;height:28px;border-radius:8px;background:#1b2540;color:#fff;display:grid;place-items:center;font-size:.8rem}
+.xabout{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,5vw,64px);align-items:center}
+.xabout > *{min-width:0}
+.xa-txt{display:grid;gap:18px}
+.xa-txt > p{color:var(--soft);max-width:60ch}
+.vm{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.vm h3{font-size:1.1rem;margin-bottom:6px}.vm p{font-size:.9rem;color:var(--soft)}
+.pills3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:center}
+.pills3 figure{margin:0;border-radius:999px;overflow:hidden;aspect-ratio:1/2.4}
+.pills3 figure:nth-child(2){transform:translateY(24px)}
+.pills3 img{width:100%;height:100%;object-fit:cover}
+@media (max-width:860px){.xabout{grid-template-columns:1fr}}@media (max-width:520px){.vm{grid-template-columns:1fr}}
+.services{position:relative;padding-block:clamp(56px,8vw,96px) 40px;color:#fff}
+.sv-bg{position:absolute;inset:0 0 auto 0;height:62%;background:linear-gradient(rgb(20 27 45 / .9),rgb(20 27 45 / .94)),url("https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/21-1-768x752.png") center/cover}
+.services .in{position:relative}
+.sv-head{text-align:center;display:grid;justify-items:center;gap:12px;margin-bottom:40px}
+.sv-head h2 em{color:#e9c49f}.sv-head .kicker{color:#e9c49f}
+.svgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.svc{background:var(--card);color:var(--ink);border-radius:36px;padding:30px 24px;text-align:center;display:grid;justify-items:center;gap:12px;text-decoration:none;box-shadow:0 20px 40px -24px rgb(0 0 0 / .4);transition:transform .35s}
+.svc:hover{transform:translateY(-6px)}
+.svc .ico{width:84px;height:84px;border-radius:50%;overflow:hidden;background:#1b2540;border:4px solid var(--tint)}
+.svc .ico img{width:100%;height:100%;object-fit:cover}
+.svc h3{font-size:1.15rem}.svc p{font-size:.88rem;color:var(--soft)}
+.btn.sm{padding:.6em 1.2em;font-size:.78rem}
+@media (max-width:860px){.svgrid{grid-template-columns:1fr 1fr}}@media (max-width:520px){.svgrid{grid-template-columns:1fr}}
+.why{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,64px);align-items:center}
+.why > *{min-width:0}
+.why-ph{border-radius:36px;overflow:hidden;aspect-ratio:4/5}
+.why-ph img{width:100%;height:100%;object-fit:cover;object-position:top}
+.why-txt{display:grid;gap:18px}.why-txt > p{color:var(--soft);max-width:56ch}
+.bars{display:grid;gap:18px}
+.brow{display:grid;grid-template-columns:1fr auto;gap:8px;font-weight:700;font-size:.92rem}
+.brow b{color:var(--clay)}
+.brow .tr{grid-column:1/-1;height:8px;border-radius:8px;background:var(--line);overflow:hidden}
+.brow .tr i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,#1b2540,var(--clay));transition:width 1.8s cubic-bezier(.2,.7,.2,1)}
+@media (max-width:860px){.why{grid-template-columns:1fr}.why-ph{max-width:420px}}
 </style>
 </head>
 <body>
@@ -348,72 +402,78 @@ footer.site{background:#0a0e18;color:#aab1c0;padding-block:48px 28px;font-size:.
   </div>
 </div></nav>
 
-<header class="hero in" id="top">
-  <div class="hero-card">
-    <div class="hero-copy rv">
-      <span class="chip">📍 Gargash Hospital · Umm Suqeim, Dubai</span>
-      <h1>Body and face surgery, <em>shaped by 30 years</em> of practice</h1>
-      <p>Dr. Juan Carlos Barrera Rojas is a Colombian-trained plastic surgeon who has operated in Dubai for more than 28 years. He plans every procedure around your proportions, not a trend.</p>
-      <div class="cta">
-        <a class="btn" href="https://wa.me/971561149568?text=Hello%20Dr.%20Juan%20Carlos%2C%20I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener">Free consultation on WhatsApp</a>
-        <a class="btn light" href="#procedures">View procedures</a>
-      </div>
-    </div>
-    <div class="portrait">
-      <img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png" alt="Dr. Juan Carlos Barrera Rojas, plastic surgeon in Dubai" onerror="this.onerror=()=>this.remove();this.src='https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/WhatsApp-Image-2022-08-05-at-12.28-1-768x803.png'">
-      <div class="nametag"><b>Dr. Juan Carlos</b>Barrera Rojas · ASAPS member</div>
+<header class="xhero in" id="top">
+  <div class="xh-copy rv">
+    <span class="kicker">Welcome to Dr. Juan Carlos</span>
+    <h1>Body and face surgery, <em>shaped by 30 years</em></h1>
+    <span class="xline"></span>
+    <p>Colombian-trained plastic surgeon at Gargash Hospital, Dubai. Every procedure is planned around your proportions, not a trend.</p>
+    <div class="cta">
+      <a class="btn" href="https://wa.me/971561149568?text=Hello%20Dr.%20Juan%20Carlos%2C%20I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener">✆ Book free consultation</a>
+      <a class="btn light" href="#procedures">Treatments</a>
     </div>
   </div>
-  <div class="stats">
-    <div class="stat rv"><b data-count="30">30</b><span>+ years in plastic surgery</span></div>
-    <div class="stat rv"><b data-count="5000">5,000</b><span>+ surgeries performed</span></div>
-    <div class="stat rv"><b data-count="28">28</b><span>+ years practising in the UAE</span></div>
-    <div class="stat rv"><b>6</b><span>international society memberships</span></div>
+  <div class="xh-pill rv"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png" alt="Dr. Juan Carlos Barrera Rojas, plastic surgeon in Dubai" onerror="this.onerror=()=>this.remove();this.src='https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/WhatsApp-Image-2022-08-05-at-12.28-1-768x803.png'"></div>
+  <div class="xh-stats">
+    <div class="bubble rv"><b data-count="30">30</b><span>+ years of experience</span></div>
+    <div class="bubble rv"><b data-count="5000">5,000</b><span>+ surgeries performed</span></div>
+    <div class="bubble rv"><b data-count="28">28</b><span>+ years in the UAE</span></div>
   </div>
-  <div class="marquee" aria-hidden="true"><div>
-    <span>American Society for Aesthetic Plastic Surgery</span><span>Emirates Plastic Surgery Society</span><span>ISAPS</span><span>Colombian Society of Plastic Surgery</span><span>FILACP</span><span>Gargash Hospital Dubai</span>
-    <span>American Society for Aesthetic Plastic Surgery</span><span>Emirates Plastic Surgery Society</span><span>ISAPS</span><span>Colombian Society of Plastic Surgery</span><span>FILACP</span><span>Gargash Hospital Dubai</span>
-  </div></div>
 </header>
 
-<section id="procedures" class="in">
-  <div class="head rv">
-    <div><span class="kicker">Available treatments</span><h2>What we <em>treat</em></h2></div>
-    <p>Body contouring is the core of Dr. Juan Carlos's practice, alongside breast and facial surgery. Every plan starts with an in-person consultation.</p>
+<div class="partners rv">
+  <span class="kicker">Member of</span>
+  <div class="plist">
+    <span><i>✚</i>ASAPS</span><span><i>✚</i>ISAPS</span><span><i>✚</i>Emirates Plastic Surgery Society</span><span><i>✚</i>FILACP</span><span><i>✚</i>Gargash Hospital</span>
   </div>
-  <div class="bento">
-    <a class="tile tall rv" href="#book" data-proc="VASER Liposuction"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Group-727-4-1-1024x944.png" alt="VASER liposculpture" loading="lazy" onerror="this.remove()">
-      <div><h3>VASER Liposuction</h3><small>Stomach, flanks, arms, thighs, back and chin.</small></div><span class="go">Consult ↗</span></a>
-    <a class="tile rv" href="#book" data-proc="Tummy Tuck"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Mask-group-1-1.png" alt="Tummy tuck" loading="lazy" onerror="this.remove()">
-      <div><h3>Tummy Tuck</h3><small>Flatter abdomen and repaired muscles.</small></div><span class="go">Consult ↗</span></a>
-    <a class="tile rv" href="#book" data-proc="Breast Surgery"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Rectangle-182-1.png" alt="Breast surgery" loading="lazy" onerror="this.remove()">
-      <div><h3>Breast Surgery</h3><small>Augmentation, lift and reduction.</small></div><span class="go">Consult ↗</span></a>
-    <a class="tile tall rv" href="#book" data-proc="Post-bariatric Body Contouring"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Mask-group-5.png" alt="Body contouring after weight loss" loading="lazy" onerror="this.remove()">
-      <div><h3>After weight loss</h3><small>Body lift, arm and thigh lift to remove loose skin.</small></div><span class="go">Consult ↗</span></a>
-    <a class="tile wide rv" href="#book" data-proc="Facial Surgery"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Group-650.png" alt="Rhinoplasty result" loading="lazy" onerror="this.remove()">
-      <div><h3>Face, nose and eyelids</h3><small>Facelift, rhinoplasty, eyelid surgery and otoplasty.</small></div><span class="go">Consult ↗</span></a>
-    <a class="tile wide rv" href="#book" data-proc="Buttock Augmentation"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Rectangle-180-1.png" alt="Buttock contouring" loading="lazy" onerror="this.remove()">
-      <div><h3>Buttock contouring</h3><small>Fat transfer and lift for a balanced shape.</small></div><span class="go">Consult ↗</span></a>
-    <a class="tile wide rv" href="#book" data-proc="Double Chin Liposuction"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Mask-group-2-1.png" alt="Double chin liposuction" loading="lazy" onerror="this.remove()">
-      <div><h3>Double chin and neck</h3><small>A sharper jawline in a short procedure.</small></div><span class="go">Consult ↗</span></a>
-    <a class="tile wide rv" href="#book" data-proc="Botox and Fillers"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Rectangle-183-1.png" alt="Botox and fillers" loading="lazy" onerror="this.remove()">
-      <div><h3>Botox and fillers</h3><small>Non-surgical refresh with no downtime.</small></div><span class="go">Consult ↗</span></a>
+</div>
+
+<section id="about" class="in">
+  <div class="xabout">
+    <div class="xa-txt rv">
+      <span class="kicker">About doctor</span>
+      <h2>Trained in Colombia, <em>trusted in Dubai</em></h2>
+      <span class="xline"></span>
+      <p>Dr. Juan Carlos Barrera Rojas studied and practised plastic surgery across South and North America before moving to the UAE more than 28 years ago. He now operates at Gargash Hospital and is known for body contouring, from VASER liposculpture to full post-bariatric reconstruction.</p>
+      <div class="vm">
+        <div><h3>Vision</h3><p>Natural results that fit each patient's body, achieved safely and with honest advice from the first consultation.</p></div>
+        <div><h3>Mission</h3><p>To combine proven techniques like VASER with careful planning and close aftercare, so every patient knows what to expect.</p></div>
+      </div>
+    </div>
+    <div class="pills3 rv">
+      <figure class="ph-fallback"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/21-1-768x752.png" alt="Dr. Juan Carlos" loading="lazy" onerror="this.remove()"></figure>
+      <figure class="ph-fallback"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Group-727-4-1-1024x944.png" alt="Liposculpture" loading="lazy" onerror="this.remove()"></figure>
+      <figure class="ph-fallback"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Group-652-1022x1024.png" alt="Precision cosmetic surgery" loading="lazy" onerror="this.remove()"></figure>
+    </div>
   </div>
 </section>
 
-<section id="about" class="in" style="padding-top:0">
-  <div class="about">
-    <div class="ph ph-fallback rv"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/21-1-768x752.png" alt="Dr. Juan Carlos in clinic" loading="lazy" onerror="this.remove()"><div class="badge2"><b>5,000+</b>surgeries performed</div></div>
-    <div class="txt rv">
-      <span class="kicker">About the surgeon</span>
-      <h2>Trained in Colombia, <em>trusted in Dubai</em></h2>
-      <p>Dr. Juan Carlos Barrera Rojas studied and practised plastic surgery across South and North America before moving to the UAE. He now operates at Gargash Hospital in Dubai and is known for body contouring, from VASER liposculpture to full post-bariatric reconstruction.</p>
-      <div class="timeline">
-        <div><b>Colombia</b><span>Medical and plastic surgery training</span></div>
-        <div><b>South and North America</b><span>Surgical practice and continued training</span></div>
-        <div><b>United Arab Emirates</b><span>More than 28 years in practice, now at Gargash Hospital</span></div>
-      </div>
-      <div class="chips"><span class="chip">ASAPS</span><span class="chip">Emirates Plastic Surgery Society</span><span class="chip">ISAPS</span><span class="chip">FILACP</span><span class="chip">Colombian Society of Plastic Surgery</span></div>
+<section id="procedures" class="services">
+  <div class="sv-bg" aria-hidden="true"></div>
+  <div class="in">
+    <div class="sv-head rv"><span class="kicker">Available treatments</span><h2>Procedures we <em>specialise in</em></h2><span class="xline"></span></div>
+    <div class="svgrid">
+      <a class="svc rv" href="#book" data-proc="VASER Liposuction"><span class="ico"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Mask-group-1-1.png" alt="" loading="lazy" onerror="this.remove()"></span><h3>VASER Liposuction</h3><p>Ultrasound-assisted fat removal for stomach, flanks, arms, thighs, back and chin.</p><span class="btn sm">Learn more</span></a>
+      <a class="svc rv" href="#book" data-proc="Tummy Tuck"><span class="ico"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Rectangle-180-1.png" alt="" loading="lazy" onerror="this.remove()"></span><h3>Tummy Tuck</h3><p>A flatter abdomen with repaired muscles after pregnancy or weight loss.</p><span class="btn sm">Learn more</span></a>
+      <a class="svc rv" href="#book" data-proc="Breast Surgery"><span class="ico"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Rectangle-182-1.png" alt="" loading="lazy" onerror="this.remove()"></span><h3>Breast Surgery</h3><p>Augmentation, lift and reduction, planned for a natural shape.</p><span class="btn sm">Learn more</span></a>
+      <a class="svc rv" href="#book" data-proc="Facial Surgery"><span class="ico"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Group-650.png" alt="" loading="lazy" onerror="this.remove()"></span><h3>Face and Nose</h3><p>Facelift, rhinoplasty, eyelid surgery and otoplasty.</p><span class="btn sm">Learn more</span></a>
+      <a class="svc rv" href="#book" data-proc="Post-bariatric Body Contouring"><span class="ico"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Mask-group-5.png" alt="" loading="lazy" onerror="this.remove()"></span><h3>After Weight Loss</h3><p>Body lift, arm and thigh lift to remove loose skin.</p><span class="btn sm">Learn more</span></a>
+      <a class="svc rv" href="#book" data-proc="Botox and Fillers"><span class="ico"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Rectangle-183-1.png" alt="" loading="lazy" onerror="this.remove()"></span><h3>Botox and Fillers</h3><p>Non-surgical refresh with no downtime.</p><span class="btn sm">Learn more</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="in why">
+  <div class="why-ph rv ph-fallback"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/bannertttt-1-1.png" alt="Dr. Juan Carlos" loading="lazy" onerror="this.onerror=()=>this.remove();this.src='https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/21-1-768x752.png'"></div>
+  <div class="why-txt rv">
+    <span class="kicker">Why choose us</span>
+    <h2>One surgeon, <em>start to finish</em></h2>
+    <span class="xline"></span>
+    <p>You see Dr. Juan Carlos at the consultation, in the operating room and at every check-up. Nothing is handed off.</p>
+    <div class="bars">
+      <div class="brow"><span>Body contouring experience</span><b>30+ yrs</b><span class="tr"><i data-w="96"></i></span></div>
+      <div class="brow"><span>Surgeries performed</span><b>5,000+</b><span class="tr"><i data-w="92"></i></span></div>
+      <div class="brow"><span>Personal aftercare on WhatsApp</span><b>Direct</b><span class="tr"><i data-w="100"></i></span></div>
     </div>
   </div>
 </section>
