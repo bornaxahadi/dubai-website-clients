@@ -360,3 +360,10 @@ h2::after{content:"";display:block;width:64px;height:6px;margin-top:14px;backgro
 .segs{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0;padding:0}
 .segs span{background:var(--tone);color:var(--navy);font-weight:700;font-size:.85rem;padding:8px 14px;border-radius:999px;letter-spacing:.04em;text-transform:uppercase}
 @media (max-width:760px){.work-grid{grid-template-columns:1fr 1fr;grid-auto-rows:170px}.work-grid figure.tall{grid-column:1/-1;grid-row:span 2}}
+.work-grid figure.wide{grid-column:span 2}
+.segs b{width:100%;color:var(--navy);font-family:Anton,Impact,sans-serif;font-weight:400;font-size:1.25rem;letter-spacing:.04em;text-transform:uppercase}
+@media (max-width:760px){.work-grid figure.wide{grid-column:1/-1}}
+@media (max-width:760px){.work-grid figure:last-child{grid-column:1/-1}}
+.work-grid{grid-auto-rows:200px}
+.work-grid figure.tall{grid-row:span 3}
+@media (max-width:760px){.work-grid figure.tall{grid-row:span 2}.work-grid figure:last-child{grid-column:auto}}
