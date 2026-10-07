@@ -945,12 +945,8 @@ form.bk.bkx{box-shadow:0 24px 60px -30px rgba(108,28,55,.35);border:1.5px solid 
         <span><h4>Custom AI agent maintenance for 1 year <span class="badge">AI</span></h4><p>We keep your custom AI agents trained, updated and running smoothly all year, and adjust them as your clinic and Google change.</p></span>
         <span class="price">600 AED<small>per year</small></span></label>
       <div class="pkg briefpkg">
-        <span><h4>Briefing and consultation <span class="badge">Meet</span></h4><p>Choose how we start your project:</p>
-          <span class="briefs">
-            <label><input type="radio" name="brief" value="0" data-label="Briefing at our office, Downtown Dubai" checked><b>Visit us for a briefing</b><small>Our office in Downtown Dubai · Free</small></label>
-            <label><input type="radio" name="brief" value="600" data-label="We visit you for briefing and consultation"><b>We visit you</b><small>Briefing and consultation at your clinic · 600 AED</small></label>
-          </span></span>
-        <span class="price" id="briefPrice">Free<small>one time</small></span></div>
+        <span><h4>Free online briefing <span class="badge">Included</span></h4><p>We start your project with a video call. No need to visit anyone: we go through your goals, content and design wishes online, free of charge.</p></span>
+        <span class="price">Free<small>included</small></span></div>
       <div class="pkg langpkg">
         <span><h4>Extra languages <span class="badge">🌐</span></h4><p>English is included. Add Arabic for free, then any languages your patients speak. Pick as many as you like:</p>
           <span class="langs" id="langs"><button type="button" data-lang="Arabic">Arabic <i>free</i></button><button type="button" data-lang="Spanish">Spanish</button><button type="button" data-lang="German">German</button><button type="button" data-lang="French">French</button><button type="button" data-lang="Russian">Russian</button><button type="button" data-lang="Turkish">Turkish</button><button type="button" data-lang="Farsi">Farsi</button><button type="button" data-lang="Chinese">Chinese</button><button type="button" data-lang="Hindi">Hindi</button><button type="button" data-lang="Urdu">Urdu</button><button type="button" data-lang="Filipino">Filipino</button><button type="button" data-lang="Bengali">Bengali</button><button type="button" data-lang="Malayalam">Malayalam</button><button type="button" data-lang="Tamil">Tamil</button><button type="button" data-lang="Italian">Italian</button><button type="button" data-lang="Portuguese">Portuguese</button><button type="button" data-lang="Korean">Korean</button><button type="button" data-lang="Japanese">Japanese</button></span>
@@ -1095,12 +1091,11 @@ document.querySelectorAll('.toggle button').forEach(b=>b.addEventListener('click
 const langSel=[];const langCost=k=>k<2?300:k===2?250:150;
 document.getElementById('langs').addEventListener('click',e=>{const b=e.target.closest('button[data-lang]');if(!b)return;const l=b.dataset.lang,i=langSel.indexOf(l);if(i>-1)langSel.splice(i,1);else langSel.push(l);render()});
 function langItems(){let k=0;return langSel.map(l=>({dataset:{name:'Language: '+l,price:l==='Arabic'?0:langCost(k++)}}))}
-function briefItem(){const r=document.querySelector('input[name=brief]:checked');return{dataset:{name:'Briefing: '+r.dataset.label,price:+r.value}}}
 document.querySelectorAll('input[name=brief]').forEach(r=>r.addEventListener('change',()=>render()));
-function render(){const bi=briefItem();document.getElementById('briefPrice').innerHTML=(bi.dataset.price?fmt(bi.dataset.price):'Free')+'<small>one time</small>';const sel=[...document.querySelectorAll('input[name=p]:checked'),...langItems(),bi];
+function render(){const sel=[...document.querySelectorAll('input[name=p]:checked'),...langItems()];
   document.querySelectorAll('#langs button').forEach(b=>b.classList.toggle('on',langSel.includes(b.dataset.lang)));
   const lt=langItems().reduce((t,i)=>t+i.dataset.price,0);document.getElementById('langPrice').innerHTML=fmt(lt)+'<small>'+(langSel.length?langSel.length+' selected':'one time')+'</small>';
-  document.getElementById('cartList').innerHTML=sel.map(i=>`<li><span>${i.dataset.name}${i===seo?(bill==='m'?' (monthly)':' (yearly)'):''}</span><span>${+i.dataset.price?fmt(+i.dataset.price):'Free'}</span></li>`).join('')||'<li>Nothing selected yet</li>';document.getElementById('cartList').insertAdjacentHTML('beforeend','<li class="incl"><span>✓ 3 months maintenance included</span><span>Free</span></li>');
+  document.getElementById('cartList').innerHTML=sel.map(i=>`<li><span>${i.dataset.name}${i===seo?(bill==='m'?' (monthly)':' (yearly)'):''}</span><span>${+i.dataset.price?fmt(+i.dataset.price):'Free'}</span></li>`).join('')||'<li>Nothing selected yet</li>';document.getElementById('cartList').insertAdjacentHTML('beforeend','<li class="incl"><span>✓ 3 months maintenance included</span><span>Free</span></li><li class="incl"><span>✓ Online briefing (video call)</span><span>Free</span></li>');
   document.getElementById('cartTotal').textContent=fmt(sel.reduce((s,i)=>s+ +i.dataset.price,0));
   const save=sel.reduce((t,i)=>t+(i.dataset.was?+i.dataset.was-+i.dataset.price:0),0);document.getElementById('cartNote').textContent=(save?'You save '+fmt(save)+' with the 40% limited-time discount. ':'')+(seo.checked&&bill==='m'?'Includes the first month of the SEO agent, then 150 AED per month.':'');return sel}
 document.querySelectorAll('input[name=p]').forEach(i=>i.addEventListener('change',render));render();
@@ -1114,14 +1109,14 @@ oFiles.addEventListener('change',()=>{pickedFiles=[...pickedFiles,...oFiles.file
 oFl.addEventListener('click',e=>{const i=e.target.dataset.i;if(i===undefined)return;e.preventDefault();pickedFiles.splice(+i,1);oFiles.dispatchEvent(new Event('change'))});
 const ORDER_EMAIL = "borna@yournewsite.world";
 document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefault();const sel=render(),st=document.getElementById('orderStatus');
-  if(sel.length<2){st.textContent='Please choose at least one package.';return}
+  if(!sel.length){st.textContent='Please choose at least one package.';return}
   if(pickedFiles.reduce((t,f)=>t+f.size,0)>10e6){st.textContent='Attached files are over 10 MB in total. Please remove some.';return}
   const name=document.getElementById('o-name').value.trim(),phone=document.getElementById('o-phone').value.trim(),email=document.getElementById('o-email').value.trim();
   const items=sel.map(i=>'- '+i.dataset.name+(i===seo?(bill==='m'?' (monthly)':' (yearly)'):'')+': '+fmt(+i.dataset.price)).join('\n'),total=document.getElementById('cartTotal').textContent;
-  const msg='New website order for Dr. Juan Carlos\nName: '+name+'\nPhone: '+phone+(email?'\nEmail: '+email:'')+'\n\n'+items+'\nIncluded: 3 months free maintenance\nTotal: '+total+(oNotes.value.trim()?'\n\nRequirements: '+oNotes.value.trim().slice(0,1200):'')+(pickedFiles.length?'\n('+pickedFiles.length+' file(s) sent by email)':'');
+  const msg='New website order for Dr. Juan Carlos\nName: '+name+'\nPhone: '+phone+(email?'\nEmail: '+email:'')+'\n\n'+items+'\nIncluded: 3 months free maintenance, free online briefing (video call)\nTotal: '+total+(oNotes.value.trim()?'\n\nRequirements: '+oNotes.value.trim().slice(0,1200):'')+(pickedFiles.length?'\n('+pickedFiles.length+' file(s) sent by email)':'');
   if(AGENCY_WA)window.open('https://wa.me/'+AGENCY_WA+'?text='+encodeURIComponent(msg),'_blank');
   st.textContent='Sending your order…';
-  const fd=new FormData();Object.entries({_subject:'New website order: Dr. Juan Carlos ('+total+')',_template:'table',_captcha:'false',name,phone,email:email||'not given',packages:items+'\n+ 3 months free maintenance (included)',total,requirements:oNotes.value.trim()||'none',files:pickedFiles.length?pickedFiles.map(f=>f.name).join(', '):'none',page:location.href}).forEach(([k,v])=>fd.append(k,v));
+  const fd=new FormData();Object.entries({_subject:'New website order: Dr. Juan Carlos ('+total+')',_template:'table',_captcha:'false',name,phone,email:email||'not given',packages:items+'\n+ 3 months free maintenance (included)\n+ Free online briefing by video call (included)',total,requirements:oNotes.value.trim()||'none',files:pickedFiles.length?pickedFiles.map(f=>f.name).join(', '):'none',page:location.href}).forEach(([k,v])=>fd.append(k,v));
   pickedFiles.forEach((f,i)=>fd.append(i?'attachment'+(i+1):'attachment',f,f.name));
   fetch('https://formsubmit.co/ajax/'+ORDER_EMAIL,{method:'POST',headers:{Accept:'application/json'},body:fd})
     .then(r=>r.json()).then(d=>{st.textContent=(d.success===true||d.success==='true')?'Thank you, your order was sent. We will contact you shortly.':'Order saved. If WhatsApp did not open, please message us directly.'})
