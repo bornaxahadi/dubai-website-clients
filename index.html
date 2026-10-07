@@ -4,156 +4,249 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Borna · Fast, SEO-ready websites</title>
-<meta name="description" content="We design and develop new websites with amazing performance, speed and SEO. Call or WhatsApp Borna.">
+<meta name="description" content="We design and develop new websites with amazing performance, speed and SEO. Call or WhatsApp Borna on +971 52 866 3749.">
 <style>
-  :root{--ink:#161616;--muted:#8a8a8a;--line:#e9e7e3}
+  :root{--ink:#161616;--muted:#8a8a8a}
   *{box-sizing:border-box}
   html,body{margin:0;background:#fff;color:var(--ink);font-family:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
-  body{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:safe center;padding:24px 16px;overflow-x:hidden}
-  .stage{position:relative;width:min(290px,70vw);margin-top:min(56px,22vw);aspect-ratio:1/1;display:flex;align-items:flex-end;justify-content:center;cursor:pointer}
+  body{min-height:100svh;display:flex;flex-direction:column;align-items:center;padding:0 16px;overflow-x:hidden}
+  header,footer{width:100%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;padding:20px 8px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:650;letter-spacing:-.01em;font-size:17px;color:var(--ink);text-decoration:none}
+  .brand span{display:block;width:16px;height:21px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 30%,#f8e8d2,#c99461 75%,#a9743f)}
+  .brand em{font-style:normal;font-weight:400;color:var(--muted);font-size:14px}
+  .navlink{font-size:14px;color:var(--ink);text-decoration:none;padding:8px 14px;border:1px solid #e6e6e6;border-radius:999px}
+  footer{justify-content:center;color:#b5b5b5;font-size:12px;padding:28px 8px}
+  .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:safe center;width:100%}
+
+  .stage{position:relative;width:min(290px,70vw);aspect-ratio:1/1;margin-top:min(130px,32vw);display:flex;align-items:flex-end;justify-content:center;cursor:pointer}
   .egg{width:56%;overflow:visible}
   .wobble{transform-origin:100px 250px;transform-box:view-box}
-  .top{transform-origin:100px 118px;transform-box:view-box}
-  .crack{stroke:#b9b4ac;stroke-width:1.6;fill:none;stroke-linejoin:round;stroke-dasharray:240;stroke-dashoffset:240}
-  .word{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%) scale(.2);opacity:0;white-space:nowrap;font-size:clamp(12px,3.4vw,15px);letter-spacing:.02em;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;pointer-events:none}
-  .copy{text-align:center;max-width:520px;margin-top:20px;opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform .9s ease}
+  .top{transform-origin:100px 117px;transform-box:view-box}
+  .crack{stroke:#5a3a1e;stroke-width:1.3;fill:none;stroke-linejoin:miter;stroke-linecap:round;stroke-dasharray:130;stroke-dashoffset:130}
+  .branch{stroke:#6b4627;stroke-width:.9;fill:none;stroke-linecap:round;opacity:0}
+  .rim{stroke:#fff8ee;stroke-width:3;fill:none;stroke-linejoin:round;opacity:0}
+
+  .tag{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%) scale(.2);opacity:0;pointer-events:none;
+       display:flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:16px;white-space:nowrap;
+       background:linear-gradient(135deg,#fff 0%,var(--tint) 100%);border:1px solid var(--edge);
+       box-shadow:0 10px 22px -12px var(--edge),0 1px 0 #fff inset}
+  .tag i{font-style:normal;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:17px;
+         background:var(--c);box-shadow:0 4px 10px -4px var(--c)}
+  .tag b{display:block;font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .tag small{display:block;font-size:11px;color:#7a7a7a;margin-top:1px}
+
+  .copy{text-align:center;max-width:540px;margin-top:22px;opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform .9s ease}
   .copy.show{opacity:1;transform:none}
-  h1{font-size:clamp(28px,6vw,44px);font-weight:600;letter-spacing:-.02em;margin:0 0 12px}
+  .eyebrow{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#a9743f;margin-bottom:10px}
+  h1{font-size:clamp(28px,6vw,46px);font-weight:650;letter-spacing:-.025em;line-height:1.08;margin:0 0 14px}
   p{color:#555;line-height:1.55;margin:0 auto 22px;font-size:clamp(15px,3.8vw,17px)}
   .contact{color:var(--muted);font-size:14px;margin-bottom:14px}
   .contact b{color:var(--ink);font-weight:600}
   .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;border:1px solid var(--ink);color:var(--ink);background:#fff}
-  .btn.primary{background:var(--ink);color:#fff}
-  .hint{position:fixed;bottom:16px;left:0;right:0;text-align:center;font-size:12px;color:#c2c2c2}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;border:1px solid var(--ink);color:var(--ink);background:#fff;transition:transform .15s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.wa{background:#1fa855;border-color:#1fa855;color:#fff;box-shadow:0 10px 24px -12px #1fa855}
+  .btn svg{width:18px;height:18px}
+  .hint{margin-top:22px;font-size:12px;color:#c2c2c2}
+  @media (max-width:640px){
+    .brand em{display:none}
+    .tag{gap:8px;padding:6px 10px 6px 6px;border-radius:13px}
+    .tag i{width:28px;height:28px;font-size:14px;border-radius:9px}
+    .tag b{font-size:12.5px}
+    .tag small{font-size:10px}
+  }
 </style>
 </head>
 <body>
-  <div class="stage" id="stage" aria-hidden="true">
-    <svg class="egg" viewBox="0 0 200 260">
-      <defs>
-        <radialGradient id="shell" cx="38%" cy="32%" r="75%">
-          <stop offset="0" stop-color="#ffffff"/>
-          <stop offset=".65" stop-color="#faf9f7"/>
-          <stop offset="1" stop-color="#e8e5e0"/>
-        </radialGradient>
-        <radialGradient id="inside" cx="50%" cy="20%" r="80%">
-          <stop offset="0" stop-color="#f1eee9"/>
-          <stop offset="1" stop-color="#fbfaf8"/>
-        </radialGradient>
-        <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
-        <clipPath id="clipTop"><polygon points="0,0 200,0 200,118 185,118 175,126 155,109 135,127 115,106 95,128 75,108 55,130 35,110 15,125 0,125"/></clipPath>
-        <clipPath id="clipBottom"><polygon points="0,125 15,125 35,110 55,130 75,108 95,128 115,106 135,127 155,109 175,126 185,118 200,118 200,260 0,260"/></clipPath>
-      </defs>
-      <ellipse cx="100" cy="254" rx="70" ry="9" fill="#000" opacity=".08" filter="url(#soft)"/>
-      <g class="wobble" id="wobble">
-        <g clip-path="url(#clipBottom)">
-          <path d="M100 10 C150 10 185 110 185 160 C185 215 147 250 100 250 C53 250 15 215 15 160 C15 110 50 10 100 10Z" fill="url(#shell)" stroke="#ece9e4"/>
-          <ellipse id="hole" cx="100" cy="120" rx="82" ry="12" fill="url(#inside)" opacity="0"/>
-        </g>
-        <g class="top" id="top" clip-path="url(#clipTop)">
-          <path d="M100 10 C150 10 185 110 185 160 C185 215 147 250 100 250 C53 250 15 215 15 160 C15 110 50 10 100 10Z" fill="url(#shell)" stroke="#ece9e4"/>
-        </g>
-        <polyline class="crack" id="crack" points="15,125 35,110 55,130 75,108 95,128 115,106 135,127 155,109 175,126 185,118"/>
-      </g>
-    </svg>
-  </div>
+  <header>
+    <a class="brand" href="/"><span></span>Borna <em>· Web Design &amp; Development</em></a>
+    <a class="navlink" href="https://wa.me/971528663749" target="_blank" rel="noopener">Contact</a>
+  </header>
 
-  <main class="copy" id="copy">
-    <h1>Your new website is hatching.</h1>
-    <p>We design and develop new websites with amazing performance, speed and SEO, built to load instantly and rank on Google.</p>
-    <div class="contact">For inquiries or help, call <b>Borna</b>, or better, WhatsApp him.</div>
-    <div class="btns">
-      <a class="btn primary" id="wa" href="#">WhatsApp Borna</a>
-      <a class="btn" id="call" href="#">Call <span id="num"></span></a>
+  <section class="hero">
+    <div class="stage" id="stage" aria-hidden="true">
+      <svg class="egg" viewBox="0 0 200 260">
+        <defs>
+          <radialGradient id="shell" cx="36%" cy="30%" r="78%">
+            <stop offset="0" stop-color="#f8e8d2"/>
+            <stop offset=".4" stop-color="#e6c198"/>
+            <stop offset=".8" stop-color="#c99461"/>
+            <stop offset="1" stop-color="#a9743f"/>
+          </radialGradient>
+          <radialGradient id="inside" cx="50%" cy="30%" r="70%">
+            <stop offset="0" stop-color="#efe1cb"/>
+            <stop offset="1" stop-color="#fffaf1"/>
+          </radialGradient>
+          <filter id="blur5" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="5"/></filter>
+          <filter id="blur2" x="-50%" y="-200%" width="200%" height="500%"><feGaussianBlur stdDeviation="2"/></filter>
+          <path id="shape" d="M100 10 C150 10 185 110 185 160 C185 215 147 250 100 250 C53 250 15 215 15 160 C15 110 50 10 100 10Z"/>
+          <g id="speckles" fill="#8a5a30">
+            <circle cx="62" cy="70" r="1.3" opacity=".35"/><circle cx="128" cy="52" r="1" opacity=".3"/>
+            <circle cx="150" cy="95" r="1.6" opacity=".25"/><circle cx="88" cy="40" r=".9" opacity=".3"/>
+            <circle cx="45" cy="150" r="1.4" opacity=".3"/><circle cx="140" cy="170" r="1.1" opacity=".3"/>
+            <circle cx="110" cy="205" r="1.5" opacity=".25"/><circle cx="70" cy="190" r="1" opacity=".3"/>
+            <circle cx="160" cy="140" r=".9" opacity=".35"/><circle cx="95" cy="160" r="1.2" opacity=".2"/>
+            <circle cx="118" cy="88" r=".8" opacity=".35"/><circle cx="52" cy="112" r="1" opacity=".25"/>
+          </g>
+          <clipPath id="clipTop"><polygon points="0,0 200,0 200,117 185,117 177,113 168,120 160,105 151,116 143,108 134,123 125,111 117,119 109,104 101,117 92,109 84,124 76,113 67,121 58,106 52,118 44,111 33,123 26,114 15,121 0,121"/></clipPath>
+          <clipPath id="clipBottom"><polygon points="0,121 15,121 26,114 33,123 44,111 52,118 58,106 67,121 76,113 84,124 92,109 101,117 109,104 117,119 125,111 134,123 143,108 151,116 160,105 168,120 177,113 185,117 200,117 200,260 0,260"/></clipPath>
+        </defs>
+
+        <!-- floor shadows -->
+        <ellipse cx="100" cy="252" rx="78" ry="10" fill="#3b2410" opacity=".16" filter="url(#blur5)"/>
+        <ellipse cx="100" cy="250" rx="44" ry="4" fill="#3b2410" opacity=".22" filter="url(#blur2)"/>
+        <ellipse id="capShadow" cx="-84" cy="252" rx="60" ry="8" fill="#3b2410" opacity="0" filter="url(#blur5)"/>
+
+        <g class="wobble" id="wobble">
+          <g clip-path="url(#clipBottom)">
+            <use href="#shape" fill="url(#shell)"/>
+            <use href="#speckles"/>
+            <ellipse id="hole" cx="100" cy="116" rx="84" ry="11" fill="url(#inside)" opacity="0"/>
+            <polyline class="rim" points="15,121 26,114 33,123 44,111 52,118 58,106 67,121 76,113 84,124 92,109 101,117 109,104 117,119 125,111 134,123 143,108 151,116 160,105 168,120 177,113 185,117"/>
+            <polyline class="branch" points="84,124 81,133 85,141"/>
+            <polyline class="branch" points="134,123 138,132"/>
+            <polyline class="branch" points="33,123 30,131"/>
+          </g>
+          <g class="top" id="top">
+            <g clip-path="url(#clipTop)">
+              <use href="#shape" fill="url(#shell)"/>
+              <use href="#speckles"/>
+              <polyline class="rim" points="15,121 26,114 33,123 44,111 52,118 58,106 67,121 76,113 84,124 92,109 101,117 109,104 117,119 125,111 134,123 143,108 151,116 160,105 168,120 177,113 185,117"/>
+              <polyline class="branch" points="109,104 106,96 110,89"/>
+              <polyline class="branch" points="160,105 164,97"/>
+              <polyline class="branch" points="58,106 55,98"/>
+            </g>
+          </g>
+          <polyline class="crack" id="crackL" points="101,117 92,109 84,124 76,113 67,121 58,106 52,118 44,111 33,123 26,114 15,121"/>
+          <polyline class="crack" id="crackR" points="101,117 109,104 117,119 125,111 134,123 143,108 151,116 160,105 168,120 177,113 185,117"/>
+        </g>
+      </svg>
     </div>
-  </main>
-  <div class="hint">tap the egg to hatch again</div>
+
+    <main class="copy" id="copy">
+      <div class="eyebrow">Web design &amp; development · Dubai</div>
+      <h1>Your new website<br>is hatching.</h1>
+      <p>We design and develop new websites with amazing performance, speed and SEO, built to load instantly and rank on Google.</p>
+      <div class="contact">For inquiries or help, call <b>Borna</b>, or better, WhatsApp him.</div>
+      <div class="btns">
+        <a class="btn wa" href="https://wa.me/971528663749" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+          WhatsApp Borna
+        </a>
+        <a class="btn" href="tel:+971528663749">Call +971 52 866 3749</a>
+      </div>
+      <div class="hint">tap the egg to hatch it again</div>
+    </main>
+  </section>
+
+  <footer>© 2026 Borna · Websites built for speed and SEO</footer>
 
 <script>
-  // Borna's phone number, digits only with country code
-  const PHONE = "971000000000";
-  const PHONE_LABEL = "+971 00 000 0000";
-  document.getElementById("wa").href = "https://wa.me/" + PHONE;
-  document.getElementById("call").href = "tel:+" + PHONE;
-  document.getElementById("num").textContent = PHONE_LABEL;
+  const TAGS = [
+    {i:"⚡", b:"Lightning speed", s:"loads in under a second", c:"#ffd54a", t:"#fff6d6", e:"#f3d77a"},
+    {i:"🔎", b:"SEO-ready",       s:"built to rank on Google", c:"#7be0a0", t:"#e6f9ee", e:"#a6e3bd"},
+    {i:"📱", b:"Mobile-first",    s:"perfect on every phone",  c:"#8ec5ff", t:"#e8f3ff", e:"#acd2fb"},
+    {i:"🚀", b:"100 / 100",       s:"Google PageSpeed score",  c:"#c3a6ff", t:"#f2ecff", e:"#cdb8f6"},
+    {i:"🎨", b:"Clean design",    s:"modern and elegant",      c:"#ffa6c9", t:"#ffeef5", e:"#f6bcd3"},
+    {i:"📈", b:"More visibility", s:"get found by customers",  c:"#6fdcd4", t:"#e4f8f6", e:"#9fe1db"},
+    {i:"💬", b:"More customers",  s:"calls and WhatsApp leads",c:"#ffb878", t:"#fff1e4", e:"#f6c99e"}
+  ];
+  // left column, top centre, right column (in units of stage width)
+  const POS = [[-.95,-.06],[-.86,-.42],[-.6,-.76],[0,-.98],[.6,-.76],[.86,-.42],[.95,-.06]];
 
-  const WORDS = ["⚡ Lightning speed","SEO-ready","Mobile-first","Clean design","100 / 100 performance","Ranks on Google","More customers"];
-  const POS = [[-.82,-.14],[-.62,-.42],[-.3,-.62],[.06,-.76],[.44,-.62],[.68,-.42],[.82,-.14]];
   const stage = document.getElementById("stage");
   const wobble = document.getElementById("wobble");
   const cap = document.getElementById("top");
-  const crack = document.getElementById("crack");
+  const crackL = document.getElementById("crackL");
+  const crackR = document.getElementById("crackR");
   const hole = document.getElementById("hole");
+  const capShadow = document.getElementById("capShadow");
+  const rims = document.querySelectorAll(".rim");
+  const branches = document.querySelectorAll(".branch");
   const copy = document.getElementById("copy");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let anims = [], words = [];
+  const CAP_REST = "translate(-140px,48px) rotate(-100deg)";
+  let anims = [], tags = [], timers = [];
 
   function hatch(){
     anims.forEach(a => a.cancel()); anims = [];
-    words.forEach(w => w.remove()); words = [];
+    tags.forEach(t => t.remove()); tags = [];
+    timers.forEach(clearTimeout); timers = [];
+    copy.classList.remove("show");
     const A = (el, kf, opt) => { const a = el.animate(kf, Object.assign({fill:"forwards"}, opt)); anims.push(a); return a; };
+    const show = (el, delay) => A(el, [{opacity:0},{opacity:1}], {duration:200, delay});
 
     if (reduce){
-      A(cap, [{transform:"translate(-140px,47px) rotate(-110deg)"}], {duration:1});
-      A(hole, [{opacity:1}], {duration:1});
-      burst(0); copy.classList.add("show"); return;
+      A(cap, [{transform:CAP_REST}], {duration:1});
+      [hole, capShadow, ...rims].forEach(el => show(el, 0));
+      burst(false); copy.classList.add("show"); return;
     }
-    // wobble
-    A(wobble, [
-      {transform:"rotate(0)"},{transform:"rotate(-5deg)"},{transform:"rotate(5deg)"},
-      {transform:"rotate(-4deg)"},{transform:"rotate(3deg)"},{transform:"rotate(0)"}
-    ], {duration:900, delay:500, easing:"ease-in-out", fill:"none"});
-    A(wobble, [
-      {transform:"rotate(0)"},{transform:"rotate(-7deg)"},{transform:"rotate(7deg)"},{transform:"rotate(0)"}
-    ], {duration:500, delay:1700, easing:"ease-in-out", fill:"none"});
-    // crack draws
-    A(crack, [{strokeDashoffset:240},{strokeDashoffset:0}], {duration:600, delay:1600, easing:"ease-out"});
-    // top pops up, tips over and falls to the ground beside the egg
+    // small wobble, a hairline crack appears in the middle
+    A(wobble, [{transform:"rotate(0)"},{transform:"rotate(-4deg)"},{transform:"rotate(4deg)"},{transform:"rotate(-2deg)"},{transform:"rotate(0)"}],
+      {duration:800, delay:400, easing:"ease-in-out", fill:"none"});
+    [crackL, crackR].forEach(c => A(c, [
+      {strokeDashoffset:130, offset:0},
+      {strokeDashoffset:95, offset:.25},
+      {strokeDashoffset:95, offset:.55},
+      {strokeDashoffset:0, offset:1}
+    ], {duration:1400, delay:900, easing:"ease-out"}));
+    // harder wobble while the crack runs round the shell
+    A(wobble, [{transform:"rotate(0)"},{transform:"rotate(-7deg)"},{transform:"rotate(6deg)"},{transform:"rotate(-3deg)"},{transform:"rotate(0)"}],
+      {duration:650, delay:1650, easing:"ease-in-out", fill:"none"});
+    branches.forEach((b, i) => show(b, 1900 + i * 60));
+
+    // top shell pops off, tips over and drops onto the floor with a small bounce
+    const T = 2450;
     A(cap, [
       {transform:"translate(0,0) rotate(0)", offset:0},
-      {transform:"translate(4px,-26px) rotate(-12deg)", offset:.22, easing:"ease-out"},
-      {transform:"translate(-70px,-20px) rotate(-60deg)", offset:.5, easing:"ease-in"},
-      {transform:"translate(-140px,50px) rotate(-110deg)", offset:.85, easing:"ease-out"},
-      {transform:"translate(-138px,42px) rotate(-104deg)", offset:.93},
-      {transform:"translate(-140px,47px) rotate(-110deg)", offset:1}
-    ], {duration:1300, delay:2300});
-    A(crack, [{opacity:1},{opacity:0}], {duration:150, delay:2350});
-    A(hole, [{opacity:0},{opacity:1}], {duration:200, delay:2400});
-    setTimeout(() => burst(1), 2600);
-    setTimeout(() => copy.classList.add("show"), 3400);
+      {transform:"translate(3px,-30px) rotate(-10deg)", offset:.2, easing:"ease-out"},
+      {transform:"translate(-60px,-24px) rotate(-55deg)", offset:.45, easing:"ease-in"},
+      {transform:"translate(-140px,48px) rotate(-100deg)", offset:.72, easing:"ease-out"},
+      {transform:"translate(-137px,36px) rotate(-96deg)", offset:.83, easing:"ease-in"},
+      {transform:CAP_REST, offset:.92},
+      {transform:"translate(-139px,46px) rotate(-99deg)", offset:.96},
+      {transform:CAP_REST, offset:1}
+    ], {duration:1400, delay:T});
+    [crackL, crackR].forEach(c => A(c, [{opacity:1},{opacity:0}], {duration:120, delay:T + 40}));
+    show(hole, T + 60);
+    rims.forEach(r => show(r, T + 60));
+    A(capShadow, [{opacity:0},{opacity:.18}], {duration:400, delay:T + 820});
+
+    timers.push(setTimeout(() => burst(true), T + 300));
+    timers.push(setTimeout(() => copy.classList.add("show"), T + 1400));
   }
 
   function burst(animated){
-    const w = stage.clientWidth;
-    WORDS.forEach((text, i) => {
-      const el = document.createElement("span");
-      el.className = "word"; el.textContent = text;
-      stage.appendChild(el); words.push(el);
+    const w = stage.clientWidth, narrow = innerWidth < 820;
+    TAGS.forEach((t, i) => {
+      const el = document.createElement("div");
+      el.className = "tag";
+      el.style.cssText = `--c:${t.c};--tint:${t.t};--edge:${t.e}`;
+      el.innerHTML = `<i>${t.i}</i><span><b>${t.b}</b><small>${t.s}</small></span>`;
+      stage.appendChild(el); tags.push(el);
       let x, y;
-      if (innerWidth < 640){
+      if (narrow){
         const row = Math.floor(i / 2), side = i % 2 ? 1 : -1;
-        x = (i === WORDS.length - 1 && WORDS.length % 2) ? 0 : side * Math.min(innerWidth * .23, 110);
-        y = -w * .2 - row * 44;
+        x = (i === TAGS.length - 1) ? 0 : side * Math.min(innerWidth * .24, 120);
+        y = -w * .22 - row * 52;
       } else {
         [x, y] = POS[i].map(v => v * w);
       }
-      const end = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1)`;
-      const a = el.animate([
-        {transform:"translate(-50%,-50%) scale(.2)", opacity:0},
-        {opacity:1, offset:.25},
-        {transform:end, opacity:1}
-      ], {duration: animated ? 900 : 1, delay: animated ? i * 90 : 0, easing:"cubic-bezier(.2,1.4,.4,1)", fill:"forwards"});
-      anims.push(a);
+      const end = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+      anims.push(el.animate([
+        {transform:"translate(-50%,-50%) scale(.2) rotate(-8deg)", opacity:0},
+        {opacity:1, offset:.2},
+        {transform:end + " scale(1) rotate(0)", opacity:1}
+      ], {duration: animated ? 950 : 1, delay: animated ? i * 110 : 0, easing:"cubic-bezier(.2,1.35,.4,1)", fill:"forwards"}));
       if (animated && !reduce){
-        const f = el.animate([{transform:end},{transform:end.replace("scale(1)","scale(1) translateY(-4px)")},{transform:end}],
-          {duration:2600 + i*200, delay:900 + i*90, iterations:Infinity, easing:"ease-in-out"});
-        anims.push(f);
+        anims.push(el.animate(
+          [{transform:end + " translateY(0)"},{transform:end + " translateY(-5px)"},{transform:end + " translateY(0)"}],
+          {duration:2800 + i * 230, delay:950 + i * 110, iterations:Infinity, easing:"ease-in-out"}));
       }
     });
   }
 
-  stage.addEventListener("click", () => { copy.classList.remove("show"); hatch(); });
+  stage.addEventListener("click", hatch);
   hatch();
 </script>
 </body>
