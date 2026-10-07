@@ -1,0 +1,13 @@
+const {chromium,devices}=require('playwright');
+const url=process.argv[2];
+(async()=>{const b=await chromium.launch();const c=await b.newContext({...devices['iPhone 13']});const p=await c.newPage();
+const cdp=await c.newCDPSession(p);await cdp.send('Network.enable');await cdp.send('Network.emulateNetworkConditions',{offline:false,latency:150,downloadThroughput:1.6*1024*1024/8*4,uploadThroughput:750*1024/8});
+const errs=[],bad=[];let bytes=0,n=0;const big=[];
+p.on('pageerror',e=>errs.push(e.message));p.on('console',m=>{if(m.type()==='error')errs.push('console: '+m.text().slice(0,120))});
+p.on('response',async r=>{n++;try{const h=r.headers();const len=+(h['content-length']||0)||(await r.body()).length;bytes+=len;big.push([len,r.url().slice(0,90)]);if(r.status()>=400)bad.push(r.status()+' '+r.url())}catch(e){}});
+await p.addInitScript(()=>{window.__lcp=0;new PerformanceObserver(l=>{for(const e of l.getEntries()){window.__lcp=e.startTime;window.__lcpEl=e.element?(e.element.tagName+' '+(e.element.getAttribute('src')||e.element.textContent||'').slice(0,60)):''}}).observe({type:'largest-contentful-paint',buffered:true})});
+const t0=Date.now();await p.goto(url,{waitUntil:'load',timeout:90000});const tLoad=Date.now()-t0;await p.waitForTimeout(2500);
+const m=await p.evaluate(()=>{const nv=performance.getEntriesByType('navigation')[0];const fcp=performance.getEntriesByName('first-contentful-paint')[0];return{dcl:Math.round(nv.domContentLoadedEventEnd),fcp:Math.round(fcp?.startTime||0),lcp:Math.round(window.__lcp),lcpEl:window.__lcpEl,imgsBroken:[...document.images].filter(i=>i.complete&&i.naturalWidth===0&&i.src&&!i.src.startsWith('data:')).map(i=>i.src.slice(0,80)),imgsNoDim:[...document.images].filter(i=>!i.getAttribute('width')).length,imgs:document.images.length,wide:document.documentElement.scrollWidth>innerWidth+2}});
+console.log(JSON.stringify({tLoad,...m,requests:n,KB:Math.round(bytes/1024),errs,bad},null,0));
+big.sort((a,b)=>b[0]-a[0]);console.log('biggest:',big.slice(0,10).map(x=>Math.round(x[0]/1024)+'KB '+x[1]).join('\n'));
+await b.close()})();
