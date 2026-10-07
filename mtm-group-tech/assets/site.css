@@ -5,12 +5,12 @@
   --bg:#f2f7fa;
   --surface:#ffffff;
   --tint:#e3eef5;
-  --navy:#0b3a5b;
-  --navy-deep:#072a42;
+  --navy:#0a2f4f;
+  --navy-deep:#061e33;
   --ink:#0f2233;
   --muted:#5a6b78;
   --line:#d5e2ea;
-  --amber:#ffb81c;      /* hard-hat accent, used sparingly */
+  --amber:#ffd100;      /* hard-hat accent, used sparingly */
   --wa:#1fa855;
   --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
   --display:"Anton","Impact","Arial Narrow Bold",sans-serif;
@@ -271,3 +271,19 @@ footer{padding-block:56px 40px}
 .logo:hover .logo-mark .gear>g{animation-duration:1.4s}
 @keyframes gear-spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.logo-mark .gear>g{animation:none}}
+
+/* ---- industrial accents: canary + dark blue (v6) ---- */
+.hazard{height:8px;background:repeating-linear-gradient(-45deg,var(--amber) 0 12px,var(--navy) 12px 24px)}
+.top{border-bottom:3px solid var(--amber)}
+.kicker{display:inline-flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:28px;height:4px;background:var(--amber);border-radius:2px}
+.why .kicker::before,.cta .kicker::before{background:#fff}
+h2::after{content:"";display:block;width:64px;height:6px;margin-top:14px;background:repeating-linear-gradient(-45deg,var(--amber) 0 6px,var(--navy) 6px 12px);border-radius:2px}
+.why h2::after,.cta h2::after,.svc-wrap .svc.plain h2::after{background:repeating-linear-gradient(-45deg,var(--amber) 0 6px,transparent 6px 12px)}
+.cta h2::after{margin-inline:auto}
+.strip li{border-top:4px solid var(--amber)}
+.strip li svg{color:var(--navy)}
+.svc{border-bottom:4px solid var(--amber)}
+.steps li{border-top:4px solid var(--amber)}
+
+.btn-navy:hover{background:var(--amber);color:var(--navy)}
