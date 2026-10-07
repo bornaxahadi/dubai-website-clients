@@ -513,16 +513,6 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .gtask{display:flex;gap:8px;align-items:center;margin-top:7px}.gtask i{width:16px;height:16px;border-radius:5px;border:2px solid #B45A69;flex:none;font-style:normal;font-size:9px;display:grid;place-items:center;color:#fff}.gtask i.d{background:#B45A69}
 .gscroll{font-size:10px;color:#6e5a60;text-align:center}
 .ofields{display:grid;gap:8px}.ofields input{width:100%;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--sheet);color:var(--ink);font:inherit;font-size:.9rem}.ofields input:focus{outline:2px solid #B45A69;border-color:transparent}
-.plist{align-items:center}
-.plist .lg{opacity:.85;transition:opacity .3s,transform .3s}.plist .lg:hover{opacity:1;transform:translateY(-2px)}
-.plist .lg img{display:block;width:auto;max-width:180px;filter:brightness(0) saturate(100%) invert(14%) sepia(37%) saturate(3870%) hue-rotate(318deg) brightness(88%)}
-.plist .wm{display:inline-flex;align-items:center;gap:8px;color:#6C1C37;text-align:left}
-.plist .wm svg{width:26px;height:26px;fill:#6C1C37}
-.plist .wm b{font:800 1.35rem var(--head);font-stretch:125%;letter-spacing:.02em}
-.plist .wm small{font:700 .58rem/1.25 var(--body,inherit);letter-spacing:.06em;text-transform:uppercase;opacity:.85}
-[data-theme=dark] .plist .lg img{filter:brightness(0) invert(88%) sepia(12%) saturate(600%) hue-rotate(300deg)}
-[data-theme=dark] .plist .wm{color:#E6C5CA}[data-theme=dark] .plist .wm svg{fill:#E6C5CA}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .plist .lg img{filter:brightness(0) invert(88%) sepia(12%) saturate(600%) hue-rotate(300deg)}:root:not([data-theme=light]) .plist .wm{color:#E6C5CA}:root:not([data-theme=light]) .plist .wm svg{fill:#E6C5CA}}
 .cart .eta{font-size:.82rem;color:var(--ink);background:var(--tint);border-radius:14px;padding:10px 14px}.cart .eta b{color:#B45A69}
 .oreq{display:grid;gap:6px;font-size:.8rem;font-weight:700;color:var(--ink)}.oreq textarea{width:100%;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--sheet);color:var(--ink);font:inherit;font-size:.88rem;font-weight:400;resize:vertical}.oreq small{justify-self:end;color:var(--soft);font-weight:600}.oreq small.over{color:#c0392b}
 .ofile{display:block;cursor:pointer}.ofile input{position:absolute;opacity:0;width:1px;height:1px}.ofile span{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;justify-content:center;border:2px dashed #B45A69;border-radius:14px;padding:12px;font-weight:700;font-size:.85rem;color:#6C1C37;background:var(--tint)}.ofile span small{font-weight:500;color:var(--soft)}.ofile:focus-within span{outline:2px solid #B45A69}
@@ -549,6 +539,17 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .bk-done{text-align:center;justify-items:center}.bk-done .tick{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#6C1C37,#B45A69);color:#fff;display:grid;place-items:center;font-size:1.8rem;animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
 @keyframes pop{from{transform:scale(0)}}
 .bk-done p{color:var(--soft)}.bk-done .demo{color:var(--soft);font-size:.72rem;max-width:44ch}
+.plist{display:flex;flex-wrap:nowrap;justify-content:space-between;align-items:center;gap:clamp(14px,2.5vw,32px);overflow-x:auto;scrollbar-width:none;padding:4px 2px}
+.plist::-webkit-scrollbar{display:none}
+.plist .mb{opacity:1;font:inherit;display:inline-flex;align-items:center;gap:10px;flex:none;text-align:left;color:#6C1C37;transition:transform .3s}
+.plist .mb:hover{transform:translateY(-2px)}
+.plist .mb > span{display:block;opacity:1}
+.plist .mb i{font-size:0;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#E6C5CA,#CDBA7B);box-shadow:inset 0 0 0 2px rgb(255 255 255 / .6)}
+.plist .mb svg{width:22px;height:22px;fill:#B45A69;stroke:#B45A69}
+.plist .mb b{display:block;font:800 1.05rem/1.1 var(--head);font-stretch:118%}
+.plist .mb small{display:block;font-size:.66rem;font-weight:600;color:var(--soft);white-space:nowrap}
+[data-theme=dark] .plist .mb{color:#f6ece8}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .plist .mb{color:#f6ece8}}
 </style>
 </head>
 <body>
@@ -613,13 +614,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 
 <div class="partners rv">
   <span class="kicker">Member of</span>
-  <div class="plist">
-    <span class="lg"><img src="https://www.theaestheticsociety.org/themes/custom/d8comp/logo.svg" alt="The Aesthetic Society (ASAPS)" loading="lazy" style="height:30px"></span>
-    <span class="lg wm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 6.9H22l-6 4.6 2.3 7L12 16.2 5.7 20.5 8 13.5 2 8.9h7.6z"/></svg><b>ISAPS</b><small>International Society of<br>Aesthetic Plastic Surgery</small></span>
-    <span class="lg wm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C7 6 4 9 4 13a8 8 0 0016 0c0-4-3-7-8-11zm0 5c2.6 2.3 4 4.2 4 6a4 4 0 01-8 0c0-1.8 1.4-3.7 4-6z"/></svg><b>EPSS</b><small>Emirates Plastic<br>Surgery Society</small></span>
-    <span class="lg"><img src="https://www.filacp.org/web26/wp-content/uploads/Logo-Solo2026DDB.png" alt="FILACP" loading="lazy" style="height:44px"></span>
-    <span class="lg"><img src="https://trellishospital.com/wp-content/uploads/2026/07/image-60.svg" alt="Trellis Hospital, formerly Gargash Hospital" loading="lazy" style="height:30px"></span>
-  </div>
+  <div class="plist"><span class="mb"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 6.6H21l-5.5 4 2.1 6.6L12 16.2 6.4 20.2l2.1-6.6L3 9.6h6.8z"/></svg></i><span><b>ASAPS</b><small>The Aesthetic Society</small></span></span><span class="mb"><i><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke-width="2"/><path d="M3.5 12h17M12 3.5c2.6 2.3 3.8 5.2 3.8 8.5s-1.2 6.2-3.8 8.5c-2.6-2.3-3.8-5.2-3.8-8.5S9.4 5.8 12 3.5z" fill="none" stroke-width="1.6"/></svg></i><span><b>ISAPS</b><small>Intl. Aesthetic Plastic Surgery</small></span></span><span class="mb"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c4 3.4 6.5 6.6 6.5 10a6.5 6.5 0 01-13 0c0-3.4 2.5-6.6 6.5-10z"/></svg></i><span><b>EPSS</b><small>Emirates Plastic Surgery Society</small></span></span><span class="mb"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm0 3.2l1.6 3.9 4.2.3-3.2 2.7 1 4.1L12 15l-3.6 2.2 1-4.1-3.2-2.7 4.2-.3z"/></svg></i><span><b>FILACP</b><small>Ibero-Latin American Federation</small></span></span><span class="mb"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4h2v6h6v2h-6v8h-2v-8H5v-2h6z"/></svg></i><span><b>Trellis</b><small>Hospital, formerly Gargash</small></span></span></div>
 </div>
 
 <section id="about" class="in">
