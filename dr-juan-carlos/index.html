@@ -343,7 +343,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .xh-ring{position:absolute;left:-5%;right:-5%;top:11%;bottom:-4%;border-radius:999px;border:2px solid #CDBA7B;opacity:.7;transform:translateZ(-30px) translate(calc(var(--px,0)*-10px),calc(var(--py,0)*-10px));transition:transform .6s}
 .xh-ring::after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#CDBA7B;box-shadow:0 0 0 5px rgb(205 186 123 / .25);offset-path:inset(0 round 999px);animation:orbit 12s linear infinite}
 @keyframes orbit{to{offset-distance:100%}}
-.xh-doc{position:absolute;left:-14%;width:128%;bottom:0;height:auto;max-width:none;filter:drop-shadow(0 18px 22px rgb(60 10 30 / .28)) contrast(1.05) saturate(1.05);transform:translateZ(40px) translate(calc(var(--px,0)*12px),calc(var(--py,0)*8px));transition:transform .5s cubic-bezier(.2,.7,.2,1);-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);mask-image:linear-gradient(to bottom,#000 80%,transparent 99%)}
+.xh-doc{position:absolute;left:-14%;width:128%;bottom:0;height:auto;max-width:none;filter:url(#defringe) drop-shadow(0 18px 22px rgb(60 10 30 / .28)) contrast(1.05) saturate(1.05);transform:translateZ(40px) translate(calc(var(--px,0)*12px),calc(var(--py,0)*8px));transition:transform .5s cubic-bezier(.2,.7,.2,1);-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);mask-image:linear-gradient(to bottom,#000 80%,transparent 99%)}
 .xh-oval .xh-doc{transform:translateZ(0) translate(calc(var(--px,0)*12px),calc(var(--py,0)*8px))}
 .xh-port>.xh-tilt>.xh-doc{clip-path:inset(0 0 66% 0)}
 .xh-chip{position:absolute;z-index:3;background:rgb(255 255 255 / .82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#2b1119;border:1.5px solid #fff;border-radius:999px;padding:8px 14px;font:700 .72rem var(--head);letter-spacing:.04em;box-shadow:0 14px 30px -14px rgb(0 0 0 / .35);transform:translateZ(70px) translate(calc(var(--px,0)*-16px),calc(var(--py,0)*-12px));transition:transform .5s;white-space:nowrap}
@@ -371,7 +371,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .vm{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .vm h3{font-size:1.1rem;margin-bottom:6px}.vm p{font-size:.9rem;color:var(--soft)}
 .pills3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:center}
-.pills3 figure{margin:0;border-radius:999px;overflow:hidden;aspect-ratio:1/2.4;border:3px solid #fff;outline:2px solid #B45A69;outline-offset:4px;box-shadow:0 30px 50px -28px rgb(108 28 55 / .6);transition:transform .5s cubic-bezier(.2,.7,.2,1)}.pills3 figure:hover{transform:translateY(-8px) scale(1.02)}.pills3 .pdoc{background:radial-gradient(120% 80% at 30% 15%,#f6e3e6,#E6C5CA 45%,#B45A69 90%)}.pills3 .pdoc img{object-fit:cover;object-position:50% 0;transform:scale(1.6);transform-origin:50% 0}
+.pills3 figure{margin:0;border-radius:999px;overflow:hidden;aspect-ratio:1/2.4;border:3px solid #fff;outline:2px solid #B45A69;outline-offset:4px;box-shadow:0 30px 50px -28px rgb(108 28 55 / .6);transition:transform .5s cubic-bezier(.2,.7,.2,1)}.pills3 figure:hover{transform:translateY(-8px) scale(1.02)}.pills3 .pdoc{background:radial-gradient(120% 80% at 30% 15%,#f6e3e6,#E6C5CA 45%,#B45A69 90%)}.pills3 .pdoc img{filter:url(#defringe);object-fit:cover;object-position:50% 0;transform:scale(1.6);transform-origin:50% 0}
 .pills3 figure:nth-child(2){transform:translateY(24px)}
 .pills3 img{width:100%;height:100%;object-fit:cover}
 @media (max-width:860px){.xabout{grid-template-columns:1fr}}@media (max-width:520px){.vm{grid-template-columns:1fr}}
@@ -553,6 +553,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="defringe" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%"><feComponentTransfer in="SourceAlpha" result="a"><feFuncA type="discrete" tableValues="0 0 0 0 0 0 0 1"/></feComponentTransfer><feMorphology in="a" operator="erode" radius="2" result="e"/><feGaussianBlur in="e" stdDeviation=".8" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter></svg>
 <div id="intro" aria-hidden="true"><div class="wrap">
   <img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Carlos-Logo-1.png" alt="" onerror="this.remove()">
   <svg viewBox="0 0 220 20"><path class="stroke" d="M10 10 C60 0 160 20 210 10"/></svg>
