@@ -243,3 +243,23 @@ footer{padding-block:56px 40px}
 .post h3{font-size:1.15rem;color:var(--navy)}
 .post p{color:var(--muted);font-size:.95rem}
 @media (max-width:860px){.side{position:static}}
+
+/* ---- richer icons (v4) ---- */
+.strip ul{justify-content:center;gap:12px}
+.strip li{flex-direction:column;gap:10px;color:var(--navy);font-size:.92rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 10px;min-width:118px;flex:1 1 118px;text-align:center}
+.strip li svg{width:44px;height:44px;padding:10px;border-radius:50%;background:var(--tint);color:var(--navy);stroke-width:1.8}
+.strip li:hover svg{background:var(--navy);color:var(--amber)}
+.svc .ph{position:relative}
+.svc .badge{position:absolute;left:16px;bottom:-22px;width:52px;height:52px;border-radius:14px;background:var(--navy);display:grid;place-items:center;box-shadow:0 6px 18px rgba(7,30,48,.25)}
+.svc .badge svg{width:26px;height:26px;fill:none;stroke:var(--amber);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.svc .ph+.body{padding-top:34px}
+.svc .ph{overflow:visible}
+.svc .ph img{border-radius:var(--r-md) var(--r-md) 0 0}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.trust .t{display:flex;gap:12px;align-items:center;background:var(--navy);color:#fff;border-radius:var(--r-md);padding:16px}
+.trust .ti{flex:none;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.1);display:grid;place-items:center}
+.trust svg{width:22px;height:22px;fill:none;stroke:var(--amber);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.trust b{display:block;font-size:.98rem}
+.trust span{font-size:.84rem;opacity:.8}
+@media (max-width:900px){.trust{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.trust{grid-template-columns:1fr}}
