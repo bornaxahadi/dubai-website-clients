@@ -341,3 +341,13 @@ h2::after{content:"";display:block;width:64px;height:6px;margin-top:14px;backgro
 /* v10 languages */
 .meet .langs{margin:.35rem 0 0;font-size:.85rem;color:var(--navy)}
 .meet .langs b{color:var(--orange);font-weight:700}
+/* v11 CCTV featured card */
+.svc-feature{grid-column:span 2;grid-template-rows:none;grid-template-columns:1.1fr 1fr;box-shadow:inset 0 0 0 2px var(--amber)}
+.svc-feature .ph{aspect-ratio:auto;min-height:100%;position:relative}
+.svc-feature .tag{position:absolute;left:14px;top:14px;background:var(--amber);color:var(--navy);font:700 .78rem/1 Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:7px 10px;border-radius:6px}
+.svc-feature .body{padding:24px}
+.svc-feature h3{font-size:1.5rem}
+.svc-feature p{margin:0;color:var(--muted)}
+.svc-feature .btn{justify-self:start;margin-top:4px}
+@media (max-width:960px){.svc-feature{grid-column:1/-1}}
+@media (max-width:600px){.svc-feature{grid-template-columns:1fr}.svc-feature .ph{aspect-ratio:16/10}}
