@@ -390,6 +390,48 @@ footer.site{background:#0a0e18;color:#aab1c0;padding-block:48px 28px;font-size:.
 .pc-t small{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#e9c49f}
 .pc-t b{font:650 1.1rem/1.2 var(--head);font-stretch:118%}
 .pc-go{position:absolute;right:16px;bottom:18px;width:32px;height:32px;border-radius:50%;background:#fff;color:#18202f;display:grid;place-items:center;font-weight:700}
+/* main menu like original site */
+.links{display:none}
+.menu{list-style:none;margin:0;padding:0;display:flex;gap:4px;align-items:center}
+.menu > li{position:relative}
+.menu > li > a{display:block;text-decoration:none;font-weight:700;font-size:.92rem;padding:.7em .9em;border-radius:10px;position:relative}
+.menu > li > a::after{content:"";position:absolute;left:.9em;right:.9em;bottom:.35em;height:2px;background:var(--clay);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.menu > li > a:hover::after,.menu > li > a.act::after{transform:scaleX(1)}
+.menu > li > a.act{color:var(--clay)}
+.menu i{font-style:normal;font-size:.7em;margin-left:2px}
+.mega,.drop{position:absolute;top:100%;left:50%;transform:translate(-50%,10px);opacity:0;visibility:hidden;transition:.25s;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 50px -20px rgb(0 0 0 / .3);padding:18px;z-index:60}
+.dd:hover .mega,.dd:hover .drop,.dd:focus-within .mega,.dd:focus-within .drop{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.mega{display:grid;grid-template-columns:repeat(3,minmax(170px,1fr));gap:18px;width:max-content;max-width:min(680px,92vw)}
+.mega h5{margin:0 0 8px;font:700 .7rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay)}
+.mega a,.drop a{display:block;text-decoration:none;font-size:.88rem;padding:.4em .6em;border-radius:8px}
+.mega a:hover,.drop a:hover{background:var(--tint);color:var(--clay)}
+.drop{min-width:190px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+.burger span{display:block;width:20px;height:2px;background:var(--ink);transition:.3s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger[aria-expanded="true"] span:nth-child(2){opacity:0}.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:1060px){
+  .burger{display:flex;order:3}
+  nav.top .in{flex-wrap:wrap}
+  .menu{display:none;order:4;width:100%;flex-direction:column;align-items:stretch;gap:0;padding-block:8px;max-height:70vh;overflow:auto}
+  .menu.open{display:flex}
+  .menu > li > a{padding:.9em .4em;border-bottom:1px solid var(--line);border-radius:0}
+  .mega,.drop{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:0;padding:6px 0 10px 12px;display:none;width:auto;max-width:none;background:transparent}
+  .dd.open .mega,.dd.open .drop{display:grid}
+  .mega{grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){.mega{grid-template-columns:1fr}}
+/* blogs */
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.post{display:grid;grid-template-rows:auto 1fr;border-radius:24px;overflow:hidden;background:var(--card);border:1px solid var(--line);text-decoration:none;transition:transform .3s}
+.post:hover{transform:translateY(-4px)}
+.post .pt{aspect-ratio:16/9;padding:18px;display:flex;align-items:flex-end;background:linear-gradient(140deg,#1b2540,#3a4466);color:#e9c49f;font:700 .72rem var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.post:nth-child(3n+2) .pt{background:linear-gradient(140deg,#9c6f57,#d8b296);color:#fff}
+.post:nth-child(3n) .pt{background:linear-gradient(140deg,#cbb8a8,#efe5dc);color:#1b2540}
+.post .pb{padding:18px 20px;display:grid;gap:8px;align-content:start}
+.post h3{font-size:1.05rem;line-height:1.3}
+.post p{font-size:.86rem;color:var(--soft)}
+.post .more{font-size:.8rem;font-weight:700;color:var(--clay)}
+@media (max-width:860px){.bgrid{grid-template-columns:1fr 1fr}}@media (max-width:520px){.bgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -408,7 +450,16 @@ footer.site{background:#0a0e18;color:#aab1c0;padding-block:48px 28px;font-size:.
     <img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Carlos-Logo-1.png" alt="Dr. Juan Carlos signature logo" onerror="this.remove()">
     <span class="t"><b>Dr. Juan Carlos</b><small>Plastic Surgeon · Dubai</small></span>
   </a>
-  <div class="links"><a href="#top">Home</a><a href="#about">About Doctor</a><a href="#procedures">Available Treatments</a><a href="#media">Media</a><a href="#book">Contact</a></div>
+  <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="menu" id="menu">
+    <li><a href="#top">Home</a></li>
+    <li><a href="#about">About Doctor</a></li>
+    <li class="dd"><a href="#procedures" aria-haspopup="true">Available Treatments <i>▾</i></a>
+      <div class="mega"><div><h5>Face</h5><a href="#procedures" data-proc="Facelift">Face lift</a><a href="#procedures" data-proc="Facial Surgery">Rhinoplasty</a><a href="#procedures" data-proc="Facial Surgery">Eyelid surgery / Blepharoplasty</a></div><div><h5>Breast</h5><a href="#procedures" data-proc="Breast Surgery">Breast augmentation</a><a href="#procedures" data-proc="Breast Surgery">Breast lift surgery</a><a href="#procedures" data-proc="Breast Surgery">Breast reduction</a><a href="#procedures" data-proc="Gynecomastia">Gynecomastia</a></div><div><h5>Body</h5><a href="#procedures" data-proc="VASER Liposuction">Liposuction for fat removal</a><a href="#procedures" data-proc="Tummy Tuck">Tummy tuck</a><a href="#procedures" data-proc="Post-bariatric Body Contouring">Body lift</a><a href="#procedures" data-proc="Post-bariatric Body Contouring">Body contouring</a><a href="#procedures" data-proc="Buttock Augmentation">Buttock lift / enlargement</a><a href="#procedures" data-proc="Post-bariatric Body Contouring">Post bariatric surgery</a><a href="#procedures" data-proc="Post-bariatric Body Contouring">Thigh lift</a><a href="#procedures" data-proc="Not sure yet">Calf lift</a></div></div></li>
+    <li class="dd"><a href="#results" aria-haspopup="true">Media <i>▾</i></a>
+      <div class="drop"><a href="#results">Before – After</a><a href="#blogs">Blogs</a><a href="#media">Photos</a></div></li>
+    <li><a href="#book">Contact</a></li>
+  </ul>
   <div class="navr">
     <button class="theme" id="themeBtn" type="button" aria-label="Switch light or dark mode">☾</button>
     <a class="btn" href="#book">Book consultation</a>
@@ -549,6 +600,11 @@ footer.site{background:#0a0e18;color:#aab1c0;padding-block:48px 28px;font-size:.
     <div class="step"><span class="n">04</span><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span><span class="when">Weeks 1 to 12</span><h3>Aftercare</h3><p>Scheduled check-ups, compression guidance and direct WhatsApp contact while you heal.</p></div>
   </div>
   <div class="progress rv"><i></i></div>
+</section>
+
+<section id="blogs" class="in" style="padding-top:0">
+  <div class="head rv"><div><span class="kicker">Blogs</span><h2>Patient guides from <em>Dr. Juan Carlos</em></h2></div><p>Straight answers on recovery, results and what to expect, from the clinic's blog.</p></div>
+  <div class="bgrid"><a class="post rv" href="https://plasticsurgeonindubai.com/breast-fat-transfer-after-5-years/" target="_blank" rel="noopener"><span class="pt">Breast</span><span class="pb"><h3>Breast Fat Transfer After 5 Years: Results, Longevity & What to Expect</h3><p>Fat transfer breast augmentation uses your own fat to naturally enhance breast shape.</p><span class="more">Read article →</span></span></a><a class="post rv" href="https://plasticsurgeonindubai.com/warning-signs-after-tummy-tuck/" target="_blank" rel="noopener"><span class="pt">Tummy tuck</span><span class="pb"><h3>Understanding Warning Signs After a Tummy Tuck During Recovery</h3><p>Recovering from a tummy tuck can bring a mix of excitement and uncertainty.</p><span class="more">Read article →</span></span></a><a class="post rv" href="https://plasticsurgeonindubai.com/breast-lift-with-implants/" target="_blank" rel="noopener"><span class="pt">Breast</span><span class="pb"><h3>Everything About Breast Lift with Implants</h3><p>A breast lift with implants is one of the most commonly performed cosmetic procedures.</p><span class="more">Read article →</span></span></a><a class="post rv" href="https://plasticsurgeonindubai.com/botched-chin-liposuction/" target="_blank" rel="noopener"><span class="pt">Liposuction</span><span class="pb"><h3>Everything About Botched Chin Liposuction</h3><p>Chin liposuction has become one of the most popular procedures for a sharper profile.</p><span class="more">Read article →</span></span></a><a class="post rv" href="https://plasticsurgeonindubai.com/thigh-lift-scars-after-1-year/" target="_blank" rel="noopener"><span class="pt">Body</span><span class="pb"><h3>Thigh Lift Scars After 1 Year: What to Expect and How They Heal</h3><p>What thigh lift scars look like after a year, and how to help them fade.</p><span class="more">Read article →</span></span></a><a class="post rv" href="https://plasticsurgeonindubai.com/why-is-one-side-of-my-face-fatter/" target="_blank" rel="noopener"><span class="pt">Face</span><span class="pb"><h3>Why Is One Side of My Face Fatter? Causes and How to Fix It</h3><p>The common causes of facial asymmetry and the treatments that help.</p><span class="more">Read article →</span></span></a></div>
 </section>
 
 <section id="faq" class="in" style="padding-top:0">
@@ -734,10 +790,15 @@ document.querySelectorAll('input[name=p]').forEach(i=>i.addEventListener('change
 document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefault();const sel=render();if(!sel.length)return;
   const msg='Hello, I would like to order the new website for Dr. Juan Carlos:\n'+sel.map(i=>'- '+i.dataset.name+(i===seo?(bill==='m'?' (monthly)':' (yearly)'):'')+': '+fmt(+i.dataset.price)).join('\n')+'\nTotal: '+document.getElementById('cartTotal').textContent;
   window.open('https://wa.me/'+AGENCY_WA+'?text='+encodeURIComponent(msg),'_blank')});
+// menu: burger + mobile dropdowns + preselect procedure
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+menu.querySelectorAll('.dd > a').forEach(a=>a.addEventListener('click',e=>{if(matchMedia('(max-width:1060px)').matches){e.preventDefault();a.parentElement.classList.toggle('open')}}));
+menu.querySelectorAll('.mega a,.drop a,li:not(.dd) > a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.setAttribute('aria-expanded',false)}));
 // active menu item
-const navA=[...document.querySelectorAll('.links a')];
+const navA=[...document.querySelectorAll('.menu > li > a')];
 const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)navA.forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
-['top','about','procedures','media','book'].forEach(id=>{const el=document.getElementById(id);if(el)so.observe(el)});
+['top','about','procedures','results','book'].forEach(id=>{const el=document.getElementById(id);if(el)so.observe(el)});
 addEventListener('scroll',()=>document.getElementById('orderPop').classList.toggle('show',scrollY>document.body.scrollHeight*.3),{passive:true});
 </script>
 </body>
