@@ -57,6 +57,19 @@
     .tag b{font-size:12.5px}
     .tag small{font-size:10px}
   }
+  .work{width:100%;max-width:1100px;padding:56px 8px 24px;border-top:1px solid #f0f0f0;margin-top:40px}
+  .work h2{font-size:clamp(22px,4.5vw,30px);font-weight:650;letter-spacing:-.02em;margin:0 0 6px;text-align:center}
+  .work .sub{color:#777;font-size:15px;text-align:center;margin:0 auto 28px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),340px));justify-content:center;gap:22px}
+  .card{display:block;text-decoration:none;color:var(--ink);border:1px solid #ececec;border-radius:18px;overflow:hidden;background:#fff;transition:transform .2s ease,box-shadow .2s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -22px rgba(0,0,0,.35)}
+  .card .shot{aspect-ratio:16/10;overflow:hidden;background:#f4f4f4;border-bottom:1px solid #f0f0f0}
+  .card img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .5s ease}
+  .card:hover img{transform:scale(1.03)}
+  .card .meta{padding:14px 16px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .card b{display:block;font-size:16px;font-weight:600;letter-spacing:-.01em}
+  .card small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+  .card .go{flex:none;font-size:13px;padding:7px 12px;border:1px solid #e6e6e6;border-radius:999px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -139,6 +152,22 @@
       </div>
       <div class="hint">tap the egg to hatch it again</div>
     </main>
+  </section>
+
+  <section class="work" id="work">
+    <h2>Sample websites</h2>
+    <p class="sub">Redesigns we prepared for Dubai businesses. Tap one to see it live.</p>
+    <div class="grid">
+      <!-- To add a client: copy one <a class="card"> block, change the folder name, title and line, and add thumbs/<folder>.jpg (see tools/thumb.js). Newest first. -->
+      <a class="card" href="/gs-polyclinic/">
+        <div class="shot"><img src="/thumbs/gs-polyclinic.jpg" alt="GS Poly Clinic sample website" loading="lazy" width="1280" height="800"></div>
+        <div class="meta"><span><b>GS Poly Clinic</b><small>Aesthetic clinic · Jumeirah 1</small></span><span class="go">View site →</span></div>
+      </a>
+      <a class="card" href="/dr-juan-carlos/">
+        <div class="shot"><img src="/thumbs/dr-juan-carlos.jpg" alt="Dr. Juan Carlos sample website" loading="lazy" width="1280" height="800"></div>
+        <div class="meta"><span><b>Dr. Juan Carlos</b><small>Plastic surgeon · Gargash Hospital</small></span><span class="go">View site →</span></div>
+      </a>
+    </div>
   </section>
 
   <footer>© 2026 Borna · Websites built for speed and SEO</footer>

@@ -19,7 +19,7 @@ Every folder must have an `index.html` file; that is the page the client sees. I
 
 ## Other files
 
-- `index.html` at the top level is the landing page for https://yournewsite.world.
+- `index.html` at the top level is the landing page for https://yournewsite.world. Its "Sample websites" gallery lists every client sample: add a card there (newest first) and a thumbnail at `thumbs/<folder>.jpg` for each new client (`tools/thumb.js` takes the screenshot).
 - `CNAME` tells GitHub Pages which domain this site uses. Do not delete it.
 
 Changes go live about a minute after they are saved to the `main` branch.
