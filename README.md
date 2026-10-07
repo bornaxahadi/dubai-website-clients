@@ -10,6 +10,7 @@ Each client gets one folder at the top level, and the folder name becomes the we
 |---|---|
 | `dr-carson/index.html` | https://yournewsite.world/dr-carson/ |
 | `dr-juan-carlos/index.html` | https://yournewsite.world/dr-juan-carlos/ |
+| `gs-polyclinic/index.html` | https://yournewsite.world/gs-polyclinic/ |
 | `example-client/index.html` | https://yournewsite.world/example-client/ |
 
 Folder names use lowercase letters, numbers and dashes only (for example `dr-carson`, `al-noor-dental`). No spaces or capitals.
