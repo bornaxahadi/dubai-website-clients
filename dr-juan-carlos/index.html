@@ -16,7 +16,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Physician","name":"Dr. Juan Carlos Barrera Rojas","medicalSpecialty":"PlasticSurgery","telephone":"+971561149568","url":"https://plasticsurgeonindubai.com/","image":"https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png","address":{"@type":"PostalAddress","streetAddress":"Gargash Hospital, Umm Suqeim Street, Umm Al Sheif","addressLocality":"Dubai","addressCountry":"AE"},"memberOf":["American Society for Aesthetic Plastic Surgery","Emirates Plastic Surgery Society","ISAPS"]}
 </script>
-<script>try{const t=localStorage.getItem('jc-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}document.documentElement.classList.add('js');if(/[?&]embed/.test(location.search))document.documentElement.classList.add('embed')</script>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('jc-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}document.documentElement.classList.add('js');if(/[?&]embed/.test(location.search))document.documentElement.classList.add('embed')</script>
 <style>
 /* Layout: rounded sheet on warm ground (refs), hero card over portrait, photo bento, then pitch + order. Light/dark via tokens. */
 :root{
@@ -555,6 +555,20 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .deal{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:#d64545;color:#fff;border-radius:999px;padding:6px 14px;font:800 .75rem var(--head);letter-spacing:.06em;text-transform:uppercase;animation:dealp 1.8s ease-in-out infinite}
 @keyframes dealp{50%{box-shadow:0 0 0 8px rgb(214 69 69 / 0)}0%{box-shadow:0 0 0 0 rgb(214 69 69 / .5)}}
 .order-box{align-items:start}.pkgs{align-content:start}
+.thwrap{position:relative;display:inline-flex}
+.thhint{position:absolute;top:calc(100% + 10px);left:50%;translate:-50% 0;white-space:nowrap;background:#6C1C37;color:#fff;font:700 .7rem var(--head);padding:6px 10px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;transform:translateY(-4px)}
+.thhint::before{content:"";position:absolute;top:-5px;left:50%;translate:-50% 0;border:5px solid transparent;border-top:0;border-bottom-color:#6C1C37}
+.th-demo .thhint{opacity:1;transform:none}
+.th-demo #themeBtn{animation:thspin 2.2s cubic-bezier(.5,0,.3,1) infinite;box-shadow:0 0 0 0 rgb(180 90 105 / .5)}
+@keyframes thspin{0%{transform:rotate(0);box-shadow:0 0 0 0 rgb(180 90 105 / .55)}40%{transform:rotate(-25deg) scale(1.12)}60%{transform:rotate(15deg) scale(1.12);box-shadow:0 0 0 12px rgb(180 90 105 / 0)}100%{transform:rotate(0)}}
+.langpkg{cursor:default}
+.langs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 6px}
+.langs button{border:1.5px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:999px;padding:6px 12px;font:600 .78rem inherit;cursor:pointer;transition:.2s}
+.langs button:hover{border-color:#B45A69}
+.langs button.on{background:#6C1C37;border-color:#6C1C37;color:#fff}
+.langs button i{font-style:normal;font-size:.62rem;font-weight:800;color:#2f8a57;margin-left:3px;text-transform:uppercase}
+.langs button.on i{color:#CDBA7B}
+.lang-rule{display:block;font-size:.72rem;color:var(--soft)}
 </style>
 </head>
 <body>
@@ -585,7 +599,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
     <li><a href="#book">Contact</a></li>
   </ul>
   <div class="navr">
-    <button class="theme" id="themeBtn" type="button" aria-label="Switch light or dark mode">☾</button>
+    <span class="thwrap"><button class="theme" id="themeBtn" type="button" aria-label="Switch light or dark mode">☾</button><span class="thhint" aria-hidden="true">Try dark mode</span></span>
     <a class="btn" href="#book">Book consultation</a>
   </div>
 </div></nav>
@@ -868,6 +882,11 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
       <label class="pkg"><input type="checkbox" name="p" data-name="Custom-trained AI agent for blogs and news (1 year)" data-price="900" data-was="1500">
         <span><h4>Custom-trained AI agent for blogs and news <span class="badge">AI</span></h4><p>An AI agent trained on your clinic that publishes regular articles on procedures, recovery and clinic news. Fresh content helps your SEO and keeps you at the top of Google.</p></span>
         <span class="price"><s class="was">1,500 AED</s><em class="now">Now </em>900 AED<small>per year</small></span></label>
+      <div class="pkg langpkg">
+        <span><h4>Extra languages <span class="badge">🌐</span></h4><p>English is included. Add Arabic for free, then any languages your patients speak. Pick as many as you like:</p>
+          <span class="langs" id="langs"><button type="button" data-lang="Arabic">Arabic <i>free</i></button><button type="button" data-lang="Spanish">Spanish</button><button type="button" data-lang="German">German</button><button type="button" data-lang="French">French</button><button type="button" data-lang="Russian">Russian</button><button type="button" data-lang="Turkish">Turkish</button><button type="button" data-lang="Farsi">Farsi</button><button type="button" data-lang="Chinese">Chinese</button><button type="button" data-lang="Hindi">Hindi</button><button type="button" data-lang="Urdu">Urdu</button><button type="button" data-lang="Filipino">Filipino</button><button type="button" data-lang="Bengali">Bengali</button><button type="button" data-lang="Malayalam">Malayalam</button><button type="button" data-lang="Tamil">Tamil</button><button type="button" data-lang="Italian">Italian</button><button type="button" data-lang="Portuguese">Portuguese</button><button type="button" data-lang="Korean">Korean</button><button type="button" data-lang="Japanese">Japanese</button></span>
+          <small class="lang-rule">Arabic free · 1st and 2nd extra language 300 AED each · 3rd 250 AED · every one after that 150 AED</small></span>
+        <span class="price" id="langPrice">0 AED<small>one time</small></span></div>
     </div>
     <div class="cart">
       <span class="kicker">Your order</span>
@@ -945,7 +964,8 @@ const fmt=n=>n.toLocaleString('en-US')+' AED';
 const root=document.documentElement,tb=document.getElementById('themeBtn');
 const isDark=()=>root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
 const syncIcon=()=>tb.textContent=isDark()?'☀':'☾';syncIcon();
-tb.addEventListener('click',()=>{root.dataset.theme=isDark()?'light':'dark';try{localStorage.setItem('jc-theme',root.dataset.theme)}catch(e){}syncIcon()});
+tb.addEventListener('click',()=>{root.dataset.theme=isDark()?'light':'dark';try{localStorage.setItem('jc-theme',root.dataset.theme)}catch(e){}syncIcon();root.classList.remove('th-demo')});
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){setTimeout(()=>root.classList.add('th-demo'),1800);setTimeout(()=>root.classList.remove('th-demo'),10000)}
 
 addEventListener('load',()=>setTimeout(()=>{document.getElementById('intro').classList.add('done');document.body.classList.add('loaded')},1600));
 setTimeout(()=>document.getElementById('intro').classList.add('done'),3500);
@@ -1003,8 +1023,13 @@ document.querySelectorAll('.toggle button').forEach(b=>b.addEventListener('click
   document.querySelectorAll('.toggle button').forEach(x=>x.setAttribute('aria-pressed',x===b));
   seo.dataset.price=bill==='m'?seo.dataset.monthly:seo.dataset.yearly;seo.dataset.was=bill==='m'?seo.dataset.wasm:seo.dataset.wasy;
   document.getElementById('seoPrice').innerHTML=bill==='m'?'<s class="was">250 AED</s><em class="now">Now </em>150 AED<small>per month</small>':'<s class="was">2,500 AED</s><em class="now">Now </em>1,500 AED<small>per year</small>';seo.checked=true;render()}));
-function render(){const sel=[...document.querySelectorAll('input[name=p]:checked')];
-  document.getElementById('cartList').innerHTML=sel.map(i=>`<li><span>${i.dataset.name}${i===seo?(bill==='m'?' (monthly)':' (yearly)'):''}</span><span>${fmt(+i.dataset.price)}</span></li>`).join('')||'<li>Nothing selected yet</li>';
+const langSel=[];const langCost=k=>k<2?300:k===2?250:150;
+document.getElementById('langs').addEventListener('click',e=>{const b=e.target.closest('button[data-lang]');if(!b)return;const l=b.dataset.lang,i=langSel.indexOf(l);if(i>-1)langSel.splice(i,1);else langSel.push(l);render()});
+function langItems(){let k=0;return langSel.map(l=>({dataset:{name:'Language: '+l,price:l==='Arabic'?0:langCost(k++)}}))}
+function render(){const sel=[...document.querySelectorAll('input[name=p]:checked'),...langItems()];
+  document.querySelectorAll('#langs button').forEach(b=>b.classList.toggle('on',langSel.includes(b.dataset.lang)));
+  const lt=langItems().reduce((t,i)=>t+i.dataset.price,0);document.getElementById('langPrice').innerHTML=fmt(lt)+'<small>'+(langSel.length?langSel.length+' selected':'one time')+'</small>';
+  document.getElementById('cartList').innerHTML=sel.map(i=>`<li><span>${i.dataset.name}${i===seo?(bill==='m'?' (monthly)':' (yearly)'):''}</span><span>${+i.dataset.price?fmt(+i.dataset.price):'Free'}</span></li>`).join('')||'<li>Nothing selected yet</li>';
   document.getElementById('cartTotal').textContent=fmt(sel.reduce((s,i)=>s+ +i.dataset.price,0));
   const save=sel.reduce((t,i)=>t+(i.dataset.was?+i.dataset.was-+i.dataset.price:0),0);document.getElementById('cartNote').textContent=(save?'You save '+fmt(save)+' with the 40% limited-time discount. ':'')+(seo.checked&&bill==='m'?'Includes the first month of the SEO agent, then 150 AED per month.':'');return sel}
 document.querySelectorAll('input[name=p]').forEach(i=>i.addEventListener('change',render));render();
