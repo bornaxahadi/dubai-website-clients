@@ -325,7 +325,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}#intro{display:none}}
 /* v3 layout (pill hero, partners, pill about, dark services, why) */
 .xline{display:block;width:56px;height:3px;border-radius:3px;background:var(--clay)}
-.xhero{display:grid;grid-template-columns:1.1fr .9fr .7fr;gap:clamp(20px,3vw,40px);align-items:center;padding-block:clamp(36px,5vw,64px)}
+.xhero{display:grid;grid-template-columns:1fr 1.1fr .65fr;gap:clamp(20px,3vw,40px);align-items:center;padding-block:clamp(36px,5vw,64px)}
 .xhero > *{min-width:0}
 .xh-copy{display:grid;gap:18px}
 .xhero h1{font-size:clamp(2.2rem,4.4vw,3.6rem);font-weight:700}
@@ -334,7 +334,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .xhero::before,.xhero::after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(60px);opacity:.55;pointer-events:none;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
 .xhero::before{width:42vw;max-width:520px;aspect-ratio:1;left:30%;top:-8%;background:radial-gradient(circle,#E6C5CA,transparent 70%);transform:translate(calc(var(--px,0)*-30px),calc(var(--py,0)*-30px))}
 .xhero::after{width:30vw;max-width:380px;aspect-ratio:1;right:-4%;bottom:-6%;background:radial-gradient(circle,#CDBA7B,transparent 70%);opacity:.35;transform:translate(calc(var(--px,0)*24px),calc(var(--py,0)*24px))}
-.xh-port{position:relative;aspect-ratio:3/4.3;max-width:100%;perspective:900px}
+.xh-port{position:relative;aspect-ratio:3/4.3;max-width:100%;perspective:900px;margin-top:48px}
 .xh-tilt{position:absolute;inset:0;transform:rotateY(calc(var(--px,0)*7deg)) rotateX(calc(var(--py,0)*-6deg));transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .xh-oval{position:absolute;left:0;right:0;top:16%;bottom:0;border-radius:999px;overflow:hidden;background:radial-gradient(120% 80% at 30% 15%,#f6e3e6 0%,#E6C5CA 38%,#B45A69 78%,#6C1C37 100%);box-shadow:0 40px 70px -34px rgb(108 28 55 / .6),inset 0 0 0 1px rgb(255 255 255 / .35)}
 .xh-oval::before{content:"";position:absolute;inset:-40%;background:conic-gradient(from var(--a,0deg),transparent 0 70%,rgb(255 255 255 / .35) 80%,transparent 90%);animation:spin 9s linear infinite;mix-blend-mode:soft-light}
@@ -343,9 +343,9 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .xh-ring{position:absolute;left:-5%;right:-5%;top:11%;bottom:-4%;border-radius:999px;border:2px solid #CDBA7B;opacity:.7;transform:translateZ(-30px) translate(calc(var(--px,0)*-10px),calc(var(--py,0)*-10px));transition:transform .6s}
 .xh-ring::after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#CDBA7B;box-shadow:0 0 0 5px rgb(205 186 123 / .25);offset-path:inset(0 round 999px);animation:orbit 12s linear infinite}
 @keyframes orbit{to{offset-distance:100%}}
-.xh-doc{position:absolute;left:-14%;width:128%;bottom:0;height:auto;max-width:none;filter:url(#defringe) drop-shadow(0 18px 22px rgb(60 10 30 / .28)) contrast(1.05) saturate(1.05);transform:translateZ(40px) translate(calc(var(--px,0)*12px),calc(var(--py,0)*8px));transition:transform .5s cubic-bezier(.2,.7,.2,1);-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);mask-image:linear-gradient(to bottom,#000 80%,transparent 99%)}
-.xh-oval .xh-doc{transform:translateZ(0) translate(calc(var(--px,0)*12px),calc(var(--py,0)*8px))}
-.xh-port>.xh-tilt>.xh-doc{clip-path:inset(0 0 66% 0)}
+.xh-doc{position:absolute;left:5%;width:90%;top:-6%;height:auto;max-width:none;filter:drop-shadow(0 18px 24px rgb(60 10 30 / .3));transform:translateZ(40px) translate(calc(var(--px,0)*12px),calc(var(--py,0)*8px));transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.xh-oval .xh-doc{top:calc(-6% / .84 - 16% / .84);width:90%;left:5%;transform:translateZ(0) translate(calc(var(--px,0)*12px),calc(var(--py,0)*8px))}
+.xh-port>.xh-tilt>.xh-doc{clip-path:inset(0 0 68% 0)}
 .xh-chip{position:absolute;z-index:3;background:rgb(255 255 255 / .82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#2b1119;border:1.5px solid #fff;border-radius:999px;padding:8px 14px;font:700 .72rem var(--head);letter-spacing:.04em;box-shadow:0 14px 30px -14px rgb(0 0 0 / .35);transform:translateZ(70px) translate(calc(var(--px,0)*-16px),calc(var(--py,0)*-12px));transition:transform .5s;white-space:nowrap}
 .xh-chip i{font-style:normal;color:#B45A69;margin-right:6px}
 .xh-chip.c1{left:-8%;top:44%}.xh-chip.c2{right:-6%;bottom:12%}
@@ -371,7 +371,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .vm{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .vm h3{font-size:1.1rem;margin-bottom:6px}.vm p{font-size:.9rem;color:var(--soft)}
 .pills3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:center}
-.pills3 figure{margin:0;border-radius:999px;overflow:hidden;aspect-ratio:1/2.4;border:3px solid #fff;outline:2px solid #B45A69;outline-offset:4px;box-shadow:0 30px 50px -28px rgb(108 28 55 / .6);transition:transform .5s cubic-bezier(.2,.7,.2,1)}.pills3 figure:hover{transform:translateY(-8px) scale(1.02)}.pills3 .pdoc{background:radial-gradient(120% 80% at 30% 15%,#f6e3e6,#E6C5CA 45%,#B45A69 90%)}.pills3 .pdoc img{filter:url(#defringe);object-fit:cover;object-position:50% 0;transform:scale(1.6);transform-origin:50% 0}
+.pills3 figure{margin:0;border-radius:999px;overflow:hidden;aspect-ratio:1/2.4;border:3px solid #fff;outline:2px solid #B45A69;outline-offset:4px;box-shadow:0 30px 50px -28px rgb(108 28 55 / .6);transition:transform .5s cubic-bezier(.2,.7,.2,1)}.pills3 figure:hover{transform:translateY(-8px) scale(1.02)}.pills3 .pdoc{background:radial-gradient(120% 80% at 30% 15%,#f6e3e6,#E6C5CA 45%,#B45A69 90%)}.pills3 .pdoc img{object-fit:cover;object-position:50% 0;transform:translateY(8%) scale(1.15);transform-origin:50% 0}
 .pills3 figure:nth-child(2){transform:translateY(24px)}
 .pills3 img{width:100%;height:100%;object-fit:cover}
 @media (max-width:860px){.xabout{grid-template-columns:1fr}}@media (max-width:520px){.vm{grid-template-columns:1fr}}
@@ -598,8 +598,8 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
   <div class="xh-port rv" id="xhPort">
     <div class="xh-tilt">
       <span class="xh-ring" aria-hidden="true"></span>
-      <div class="xh-oval"><img class="xh-doc" src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png" alt="Dr. Juan Carlos Barrera Rojas, plastic surgeon in Dubai" fetchpriority="high"></div>
-      <img class="xh-doc" src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png" alt="" aria-hidden="true">
+      <div class="xh-oval"><img class="xh-doc" src="img/portrait-full.webp" alt="Dr. Juan Carlos Barrera Rojas, plastic surgeon in Dubai" fetchpriority="high"></div>
+      <img class="xh-doc" src="img/portrait-full.webp" alt="" aria-hidden="true">
       <span class="xh-chip c1"><i>●</i>Gargash Hospital</span>
       <span class="xh-chip c2"><i>★</i>ASAPS · ISAPS member</span>
     </div>
@@ -637,7 +637,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
     <div class="pills3 rv">
       <figure><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/21-1-768x752.png" alt="Dr. Juan Carlos at an international aesthetic surgery congress" loading="lazy" style="object-position:30% 50%"></figure>
       <figure><img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=500&q=75" alt="Surgeons in the operating theatre" loading="lazy"></figure>
-      <figure class="pdoc"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png" alt="Dr. Juan Carlos Barrera Rojas" loading="lazy"></figure>
+      <figure class="pdoc"><img src="img/portrait-full.webp" alt="Dr. Juan Carlos Barrera Rojas" loading="lazy"></figure>
     </div>
   </div>
 </section>
