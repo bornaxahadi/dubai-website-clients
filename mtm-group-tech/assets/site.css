@@ -287,3 +287,31 @@ h2::after{content:"";display:block;width:64px;height:6px;margin-top:14px;backgro
 .steps li{border-top:4px solid var(--amber)}
 
 .btn-navy:hover{background:var(--amber);color:var(--navy)}
+
+/* ---- reference-style line icons (v7): dark-blue outline + canary accent ---- */
+.ic-svg .ln{fill:none;stroke:var(--navy);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ic-svg .acc{fill:var(--amber);stroke:none;transform-box:fill-box;transform-origin:center}
+.strip li svg.ic-svg{width:56px;height:56px;padding:0;background:none;border-radius:0}
+.strip li:hover svg.ic-svg{background:none}
+.svc .badge{background:#fff;border:1.5px solid var(--line)}
+.svc .badge svg.ic-svg{width:34px;height:34px;fill:none;stroke:none}
+.trust .ti{background:#fff}
+.trust svg.ic-svg{width:30px;height:30px;fill:none;stroke:none}
+@media (prefers-reduced-motion:no-preference){
+  .ic-svg .blink{animation:ic-blink 2.4s ease-in-out infinite}
+  .ic-svg .pulse{animation:ic-pulse 2.4s ease-in-out infinite}
+  .ic-svg .scan{animation:ic-scan 2.8s ease-in-out infinite}
+  .ic-svg .travel{animation:ic-travel 2.6s ease-in-out infinite}
+  .ic-svg .travel-x{animation:ic-travel-x 2.2s ease-in-out infinite}
+  .ic-svg .orbit{animation:ic-orbit 6s linear infinite;transform-box:view-box;transform-origin:24px 24px}
+  .strip li:nth-child(2n) .acc,.trust .t:nth-child(2n) .acc{animation-delay:-.8s}
+  .strip li:nth-child(3n) .acc{animation-delay:-1.6s}
+}
+@keyframes ic-blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes ic-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.45)}}
+@keyframes ic-scan{0%,100%{transform:translateY(0)}50%{transform:translateY(11px)}}
+@keyframes ic-travel{0%,100%{transform:translateX(-8px)}50%{transform:translateX(8px)}}
+@keyframes ic-travel-x{0%{transform:translateX(0);opacity:1}100%{transform:translateX(10px);opacity:0}}
+@keyframes ic-orbit{to{transform:rotate(360deg)}}
+.trust .ti{background:rgba(255,255,255,.08)}
+.trust .ic-svg .ln{stroke:#fff}
