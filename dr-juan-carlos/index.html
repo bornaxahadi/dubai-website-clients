@@ -550,6 +550,11 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .plist .mb small{display:block;font-size:.66rem;font-weight:600;color:var(--soft);white-space:nowrap}
 [data-theme=dark] .plist .mb{color:#f6ece8}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .plist .mb{color:#f6ece8}}
+.pkg .price .was{display:block;color:#d64545;text-decoration:line-through;text-decoration-color:#d64545;text-decoration-thickness:2px;font-size:.78rem;font-weight:700;opacity:.9}
+.pkg .price .now{font-style:normal;font-size:.72rem;font-weight:800;color:#2f8a57;text-transform:uppercase;letter-spacing:.06em}
+.deal{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:#d64545;color:#fff;border-radius:999px;padding:6px 14px;font:800 .75rem var(--head);letter-spacing:.06em;text-transform:uppercase;animation:dealp 1.8s ease-in-out infinite}
+@keyframes dealp{50%{box-shadow:0 0 0 8px rgb(214 69 69 / 0)}0%{box-shadow:0 0 0 0 rgb(214 69 69 / .5)}}
+.order-box{align-items:start}.pkgs{align-content:start}
 </style>
 </head>
 <body>
@@ -841,28 +846,28 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 </div></section>
 
 <section class="order" id="order"><div class="in">
-  <div class="head rv"><div><span class="kicker" style="color:#CDBA7B">Order now</span><h2 style="color:#fff">Choose your <em style="color:#CDBA7B">package</em></h2></div><p style="color:#dcc3c8">Pick what you need. All prices are in UAE dirhams (AED).</p></div>
+  <div class="head rv"><div><span class="kicker" style="color:#CDBA7B">Order now</span><h2 style="color:#fff">Choose your package with <em style="color:#CDBA7B">40% off</em></h2><span class="deal">⏳ Limited-time discount</span></div><p style="color:#dcc3c8">Pick what you need. Design, landing page and AI agents are 40% off for a limited time. All prices are in UAE dirhams (AED).</p></div>
   <form class="order-box rv" id="orderForm">
     <div class="pkgs">
-      <label class="pkg"><input type="checkbox" name="p" data-name="Website design and development" data-price="2500" checked>
+      <label class="pkg"><input type="checkbox" name="p" data-name="Website design and development" data-price="2500" data-was="4170" checked>
         <span><h4>Website design and development <span class="badge">Core</span></h4><p>This design built out with home, about, procedure pages, results, FAQ and contact. Mobile-first and SEO-ready.</p></span>
-        <span class="price">2,500 AED<small>one time</small></span></label>
-      <label class="pkg"><input type="checkbox" name="p" data-name="Google Ads landing page redesign" data-price="900">
+        <span class="price"><s class="was">4,170 AED</s><em class="now">Now </em>2,500 AED<small>one time</small></span></label>
+      <label class="pkg"><input type="checkbox" name="p" data-name="Google Ads landing page redesign" data-price="900" data-was="1500">
         <span><h4>New Google Ads landing page <span class="badge">Ads</span></h4><p>A fast, focused landing page for your liposuction ads, built to turn clicks into WhatsApp bookings.</p></span>
-        <span class="price">900 AED<small>one time</small></span></label>
+        <span class="price"><s class="was">1,500 AED</s><em class="now">Now </em>900 AED<small>one time</small></span></label>
       <label class="pkg"><input type="checkbox" name="p" data-name="Domain and SSL (1 year)" data-price="150" checked>
         <span><h4>Domain and SSL certificate</h4><p>Your own domain with an SSL certificate (the padlock), set up and renewed for one year.</p></span>
         <span class="price">150 AED<small>per year</small></span></label>
       <label class="pkg"><input type="checkbox" name="p" data-name="Hostinger high-speed hosting (1 year)" data-price="800" checked>
         <span><h4>High-speed hosting by Hostinger</h4><p>Fast, secure hosting with daily backups, managed by us for one year.</p></span>
         <span class="price">800 AED<small>per year</small></span></label>
-      <label class="pkg"><input type="checkbox" name="p" id="seo" data-name="Custom-trained AI agent for daily SEO" data-price="150" data-monthly="150" data-yearly="1500">
+      <label class="pkg"><input type="checkbox" name="p" id="seo" data-name="Custom-trained AI agent for daily SEO" data-price="150" data-monthly="150" data-yearly="1500" data-was="250" data-wasm="250" data-wasy="2500">
         <span><h4>Custom-trained AI agent for daily SEO <span class="badge">AI</span></h4><p>An AI agent trained on your clinic and treatments. Every day it checks your Google rankings, fixes on-page SEO issues and tracks keywords like "liposuction Dubai" to keep you at the top of Google.</p>
           <span class="toggle" role="group" aria-label="Billing"><button type="button" data-bill="m" aria-pressed="true">Monthly</button><button type="button" data-bill="y" aria-pressed="false">Yearly, save 300</button></span></span>
-        <span class="price" id="seoPrice">150 AED<small>per month</small></span></label>
-      <label class="pkg"><input type="checkbox" name="p" data-name="Custom-trained AI agent for blogs and news (1 year)" data-price="900">
+        <span class="price" id="seoPrice"><s class="was">250 AED</s><em class="now">Now </em>150 AED<small>per month</small></span></label>
+      <label class="pkg"><input type="checkbox" name="p" data-name="Custom-trained AI agent for blogs and news (1 year)" data-price="900" data-was="1500">
         <span><h4>Custom-trained AI agent for blogs and news <span class="badge">AI</span></h4><p>An AI agent trained on your clinic that publishes regular articles on procedures, recovery and clinic news. Fresh content helps your SEO and keeps you at the top of Google.</p></span>
-        <span class="price">900 AED<small>per year</small></span></label>
+        <span class="price"><s class="was">1,500 AED</s><em class="now">Now </em>900 AED<small>per year</small></span></label>
     </div>
     <div class="cart">
       <span class="kicker">Your order</span>
@@ -996,12 +1001,12 @@ document.querySelectorAll('[data-proc]').forEach(t=>t.addEventListener('click',(
 let bill='m';const seo=document.getElementById('seo');
 document.querySelectorAll('.toggle button').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();bill=b.dataset.bill;
   document.querySelectorAll('.toggle button').forEach(x=>x.setAttribute('aria-pressed',x===b));
-  seo.dataset.price=bill==='m'?seo.dataset.monthly:seo.dataset.yearly;
-  document.getElementById('seoPrice').innerHTML=bill==='m'?'150 AED<small>per month</small>':'1,500 AED<small>per year</small>';seo.checked=true;render()}));
+  seo.dataset.price=bill==='m'?seo.dataset.monthly:seo.dataset.yearly;seo.dataset.was=bill==='m'?seo.dataset.wasm:seo.dataset.wasy;
+  document.getElementById('seoPrice').innerHTML=bill==='m'?'<s class="was">250 AED</s><em class="now">Now </em>150 AED<small>per month</small>':'<s class="was">2,500 AED</s><em class="now">Now </em>1,500 AED<small>per year</small>';seo.checked=true;render()}));
 function render(){const sel=[...document.querySelectorAll('input[name=p]:checked')];
   document.getElementById('cartList').innerHTML=sel.map(i=>`<li><span>${i.dataset.name}${i===seo?(bill==='m'?' (monthly)':' (yearly)'):''}</span><span>${fmt(+i.dataset.price)}</span></li>`).join('')||'<li>Nothing selected yet</li>';
   document.getElementById('cartTotal').textContent=fmt(sel.reduce((s,i)=>s+ +i.dataset.price,0));
-  document.getElementById('cartNote').textContent=seo.checked&&bill==='m'?'Includes the first month of the SEO agent, then 150 AED per month.':'';return sel}
+  const save=sel.reduce((t,i)=>t+(i.dataset.was?+i.dataset.was-+i.dataset.price:0),0);document.getElementById('cartNote').textContent=(save?'You save '+fmt(save)+' with the 40% limited-time discount. ':'')+(seo.checked&&bill==='m'?'Includes the first month of the SEO agent, then 150 AED per month.':'');return sel}
 document.querySelectorAll('input[name=p]').forEach(i=>i.addEventListener('change',render));render();
 const oNotes=document.getElementById('o-notes'),oWc=document.getElementById('o-wc'),oFiles=document.getElementById('o-files'),oFl=document.getElementById('o-flist');
 const words=t=>(t.trim().match(/\S+/g)||[]).length;
