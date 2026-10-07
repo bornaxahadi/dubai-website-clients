@@ -503,6 +503,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .gsoc em{font-style:normal;color:#2f8a57;font-size:10px}
 .gtask{display:flex;gap:8px;align-items:center;margin-top:7px}.gtask i{width:16px;height:16px;border-radius:5px;border:2px solid #B45A69;flex:none;font-style:normal;font-size:9px;display:grid;place-items:center;color:#fff}.gtask i.d{background:#B45A69}
 .gscroll{font-size:10px;color:#6e5a60;text-align:center}
+.ofields{display:grid;gap:8px}.ofields input{width:100%;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--sheet);color:var(--ink);font:inherit;font-size:.9rem}.ofields input:focus{outline:2px solid #B45A69;border-color:transparent}
 </style>
 </head>
 <body>
@@ -805,7 +806,13 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
       <ul id="cartList"></ul>
       <div class="total"><span>Total</span><b id="cartTotal">0 AED</b></div>
       <p class="note" id="cartNote"></p>
-      <button class="btn gold" type="submit">Order now on WhatsApp</button>
+      <div class="ofields">
+        <input id="o-name" name="name" required placeholder="Your name" autocomplete="name">
+        <input id="o-phone" name="phone" required type="tel" placeholder="Phone / WhatsApp" autocomplete="tel">
+        <input id="o-email" name="email" type="email" placeholder="Email (optional)" autocomplete="email">
+      </div>
+      <button class="btn gold" type="submit">Send my order</button>
+      <p class="note" id="orderStatus" role="status"></p>
       <p class="note">You'll get a confirmation and timeline before any payment.</p>
       <div class="gift">
         <span class="gtag">🎁 Our gift to you</span>
@@ -902,9 +909,17 @@ function render(){const sel=[...document.querySelectorAll('input[name=p]:checked
   document.getElementById('cartTotal').textContent=fmt(sel.reduce((s,i)=>s+ +i.dataset.price,0));
   document.getElementById('cartNote').textContent=seo.checked&&bill==='m'?'Includes the first month of the SEO agent, then 150 AED per month.':'';return sel}
 document.querySelectorAll('input[name=p]').forEach(i=>i.addEventListener('change',render));render();
-document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefault();const sel=render();if(!sel.length)return;
-  const msg='Hello, I would like to order the new website for Dr. Juan Carlos:\n'+sel.map(i=>'- '+i.dataset.name+(i===seo?(bill==='m'?' (monthly)':' (yearly)'):'')+': '+fmt(+i.dataset.price)).join('\n')+'\nTotal: '+document.getElementById('cartTotal').textContent;
-  window.open('https://wa.me/'+AGENCY_WA+'?text='+encodeURIComponent(msg),'_blank')});
+const ORDER_EMAIL = "borna@yournewsite.world";
+document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefault();const sel=render(),st=document.getElementById('orderStatus');
+  if(!sel.length){st.textContent='Please choose at least one package.';return}
+  const name=document.getElementById('o-name').value.trim(),phone=document.getElementById('o-phone').value.trim(),email=document.getElementById('o-email').value.trim();
+  const items=sel.map(i=>'- '+i.dataset.name+(i===seo?(bill==='m'?' (monthly)':' (yearly)'):'')+': '+fmt(+i.dataset.price)).join('\n'),total=document.getElementById('cartTotal').textContent;
+  const msg='New website order for Dr. Juan Carlos\nName: '+name+'\nPhone: '+phone+(email?'\nEmail: '+email:'')+'\n\n'+items+'\nTotal: '+total;
+  if(AGENCY_WA)window.open('https://wa.me/'+AGENCY_WA+'?text='+encodeURIComponent(msg),'_blank');
+  st.textContent='Sending your order…';
+  fetch('https://formsubmit.co/ajax/'+ORDER_EMAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({_subject:'New website order: Dr. Juan Carlos ('+total+')',_template:'table',_captcha:'false',name,phone,email:email||'not given',packages:items,total,page:location.href})})
+    .then(r=>r.json()).then(d=>{st.textContent=(d.success===true||d.success==='true')?'Thank you, your order was sent. We will contact you shortly.':'Order saved. If WhatsApp did not open, please message us directly.'})
+    .catch(()=>{st.textContent='Could not send by email. Please send the order on WhatsApp.'})});
 // menu: burger + mobile dropdowns + preselect procedure
 const burger=document.getElementById('burger'),menu=document.getElementById('menu');
 burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
