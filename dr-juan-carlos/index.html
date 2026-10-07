@@ -569,6 +569,7 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .langs button i{font-style:normal;font-size:.62rem;font-weight:800;color:#2f8a57;margin-left:3px;text-transform:uppercase}
 .langs button.on i{color:#CDBA7B}
 .lang-rule{display:block;font-size:.72rem;color:var(--soft)}
+.cart li.incl{color:#2f8a57;font-weight:700}
 </style>
 </head>
 <body>
@@ -882,6 +883,9 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
       <label class="pkg"><input type="checkbox" name="p" data-name="Custom-trained AI agent for blogs and news (1 year)" data-price="900" data-was="1500">
         <span><h4>Custom-trained AI agent for blogs and news <span class="badge">AI</span></h4><p>An AI agent trained on your clinic that publishes regular articles on procedures, recovery and clinic news. Fresh content helps your SEO and keeps you at the top of Google.</p></span>
         <span class="price"><s class="was">1,500 AED</s><em class="now">Now </em>900 AED<small>per year</small></span></label>
+      <label class="pkg"><input type="checkbox" name="p" data-name="Full website maintenance (1 year)" data-price="1200">
+        <span><h4>Full maintenance for 1 year <span class="badge">Care</span></h4><p>Every order already includes <b>3 months of free maintenance</b>. Extend it to a full year: updates, fixes, content changes, backups and security checks.</p></span>
+        <span class="price">1,200 AED<small>per year</small></span></label>
       <div class="pkg langpkg">
         <span><h4>Extra languages <span class="badge">🌐</span></h4><p>English is included. Add Arabic for free, then any languages your patients speak. Pick as many as you like:</p>
           <span class="langs" id="langs"><button type="button" data-lang="Arabic">Arabic <i>free</i></button><button type="button" data-lang="Spanish">Spanish</button><button type="button" data-lang="German">German</button><button type="button" data-lang="French">French</button><button type="button" data-lang="Russian">Russian</button><button type="button" data-lang="Turkish">Turkish</button><button type="button" data-lang="Farsi">Farsi</button><button type="button" data-lang="Chinese">Chinese</button><button type="button" data-lang="Hindi">Hindi</button><button type="button" data-lang="Urdu">Urdu</button><button type="button" data-lang="Filipino">Filipino</button><button type="button" data-lang="Bengali">Bengali</button><button type="button" data-lang="Malayalam">Malayalam</button><button type="button" data-lang="Tamil">Tamil</button><button type="button" data-lang="Italian">Italian</button><button type="button" data-lang="Portuguese">Portuguese</button><button type="button" data-lang="Korean">Korean</button><button type="button" data-lang="Japanese">Japanese</button></span>
@@ -1029,7 +1033,7 @@ function langItems(){let k=0;return langSel.map(l=>({dataset:{name:'Language: '+
 function render(){const sel=[...document.querySelectorAll('input[name=p]:checked'),...langItems()];
   document.querySelectorAll('#langs button').forEach(b=>b.classList.toggle('on',langSel.includes(b.dataset.lang)));
   const lt=langItems().reduce((t,i)=>t+i.dataset.price,0);document.getElementById('langPrice').innerHTML=fmt(lt)+'<small>'+(langSel.length?langSel.length+' selected':'one time')+'</small>';
-  document.getElementById('cartList').innerHTML=sel.map(i=>`<li><span>${i.dataset.name}${i===seo?(bill==='m'?' (monthly)':' (yearly)'):''}</span><span>${+i.dataset.price?fmt(+i.dataset.price):'Free'}</span></li>`).join('')||'<li>Nothing selected yet</li>';
+  document.getElementById('cartList').innerHTML=sel.map(i=>`<li><span>${i.dataset.name}${i===seo?(bill==='m'?' (monthly)':' (yearly)'):''}</span><span>${+i.dataset.price?fmt(+i.dataset.price):'Free'}</span></li>`).join('')||'<li>Nothing selected yet</li>';document.getElementById('cartList').insertAdjacentHTML('beforeend','<li class="incl"><span>✓ 3 months maintenance included</span><span>Free</span></li>');
   document.getElementById('cartTotal').textContent=fmt(sel.reduce((s,i)=>s+ +i.dataset.price,0));
   const save=sel.reduce((t,i)=>t+(i.dataset.was?+i.dataset.was-+i.dataset.price:0),0);document.getElementById('cartNote').textContent=(save?'You save '+fmt(save)+' with the 40% limited-time discount. ':'')+(seo.checked&&bill==='m'?'Includes the first month of the SEO agent, then 150 AED per month.':'');return sel}
 document.querySelectorAll('input[name=p]').forEach(i=>i.addEventListener('change',render));render();
@@ -1047,10 +1051,10 @@ document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefa
   if(pickedFiles.reduce((t,f)=>t+f.size,0)>10e6){st.textContent='Attached files are over 10 MB in total. Please remove some.';return}
   const name=document.getElementById('o-name').value.trim(),phone=document.getElementById('o-phone').value.trim(),email=document.getElementById('o-email').value.trim();
   const items=sel.map(i=>'- '+i.dataset.name+(i===seo?(bill==='m'?' (monthly)':' (yearly)'):'')+': '+fmt(+i.dataset.price)).join('\n'),total=document.getElementById('cartTotal').textContent;
-  const msg='New website order for Dr. Juan Carlos\nName: '+name+'\nPhone: '+phone+(email?'\nEmail: '+email:'')+'\n\n'+items+'\nTotal: '+total+(oNotes.value.trim()?'\n\nRequirements: '+oNotes.value.trim().slice(0,1200):'')+(pickedFiles.length?'\n('+pickedFiles.length+' file(s) sent by email)':'');
+  const msg='New website order for Dr. Juan Carlos\nName: '+name+'\nPhone: '+phone+(email?'\nEmail: '+email:'')+'\n\n'+items+'\nIncluded: 3 months free maintenance\nTotal: '+total+(oNotes.value.trim()?'\n\nRequirements: '+oNotes.value.trim().slice(0,1200):'')+(pickedFiles.length?'\n('+pickedFiles.length+' file(s) sent by email)':'');
   if(AGENCY_WA)window.open('https://wa.me/'+AGENCY_WA+'?text='+encodeURIComponent(msg),'_blank');
   st.textContent='Sending your order…';
-  const fd=new FormData();Object.entries({_subject:'New website order: Dr. Juan Carlos ('+total+')',_template:'table',_captcha:'false',name,phone,email:email||'not given',packages:items,total,requirements:oNotes.value.trim()||'none',files:pickedFiles.length?pickedFiles.map(f=>f.name).join(', '):'none',page:location.href}).forEach(([k,v])=>fd.append(k,v));
+  const fd=new FormData();Object.entries({_subject:'New website order: Dr. Juan Carlos ('+total+')',_template:'table',_captcha:'false',name,phone,email:email||'not given',packages:items+'\n+ 3 months free maintenance (included)',total,requirements:oNotes.value.trim()||'none',files:pickedFiles.length?pickedFiles.map(f=>f.name).join(', '):'none',page:location.href}).forEach(([k,v])=>fd.append(k,v));
   pickedFiles.forEach((f,i)=>fd.append(i?'attachment'+(i+1):'attachment',f,f.name));
   fetch('https://formsubmit.co/ajax/'+ORDER_EMAIL,{method:'POST',headers:{Accept:'application/json'},body:fd})
     .then(r=>r.json()).then(d=>{st.textContent=(d.success===true||d.success==='true')?'Thank you, your order was sent. We will contact you shortly.':'Order saved. If WhatsApp did not open, please message us directly.'})
