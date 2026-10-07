@@ -70,6 +70,10 @@
   .card b{display:block;font-size:16px;font-weight:600;letter-spacing:-.01em}
   .card small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
   .card .go{flex:none;font-size:13px;padding:7px 12px;border:1px solid #e6e6e6;border-radius:999px;white-space:nowrap}
+  .card.soon{cursor:default}
+  .card.soon:hover{transform:none;box-shadow:none}
+  .card.soon:hover img{transform:none}
+  .card.soon .go{color:var(--muted);background:#f6f6f6}
 </style>
 </head>
 <body>
@@ -159,6 +163,10 @@
     <p class="sub">Redesigns we prepared for Dubai businesses. Tap one to see it live.</p>
     <div class="grid">
       <!-- To add a client: copy one <a class="card"> block, change the folder name, title and line, and add thumbs/<folder>.jpg (see tools/thumb.js). Newest first. -->
+      <div class="card soon">
+        <div class="shot"><img src="/thumbs/tankmates.jpg" alt="TankMates aquarium planner" loading="lazy" width="1280" height="800"></div>
+        <div class="meta"><span><b>TankMates</b><small>Aquarium planner web app</small></span><span class="go">Coming soon</span></div>
+      </div>
       <a class="card" href="https://thirdskin.online/" target="_blank" rel="noopener">
         <div class="shot"><img src="/thumbs/third-skin.jpg" alt="Third Skin Interiors website" loading="lazy" width="1280" height="800"></div>
         <div class="meta"><span><b>Third Skin Interiors</b><small>Interior decorator · Dubai</small></span><span class="go">View site →</span></div>
