@@ -504,6 +504,16 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .gtask{display:flex;gap:8px;align-items:center;margin-top:7px}.gtask i{width:16px;height:16px;border-radius:5px;border:2px solid #B45A69;flex:none;font-style:normal;font-size:9px;display:grid;place-items:center;color:#fff}.gtask i.d{background:#B45A69}
 .gscroll{font-size:10px;color:#6e5a60;text-align:center}
 .ofields{display:grid;gap:8px}.ofields input{width:100%;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--sheet);color:var(--ink);font:inherit;font-size:.9rem}.ofields input:focus{outline:2px solid #B45A69;border-color:transparent}
+.plist{align-items:center}
+.plist .lg{opacity:.85;transition:opacity .3s,transform .3s}.plist .lg:hover{opacity:1;transform:translateY(-2px)}
+.plist .lg img{display:block;width:auto;max-width:180px;filter:brightness(0) saturate(100%) invert(14%) sepia(37%) saturate(3870%) hue-rotate(318deg) brightness(88%)}
+.plist .wm{display:inline-flex;align-items:center;gap:8px;color:#6C1C37;text-align:left}
+.plist .wm svg{width:26px;height:26px;fill:#6C1C37}
+.plist .wm b{font:800 1.35rem var(--head);font-stretch:125%;letter-spacing:.02em}
+.plist .wm small{font:700 .58rem/1.25 var(--body,inherit);letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+[data-theme=dark] .plist .lg img{filter:brightness(0) invert(88%) sepia(12%) saturate(600%) hue-rotate(300deg)}
+[data-theme=dark] .plist .wm{color:#E6C5CA}[data-theme=dark] .plist .wm svg{fill:#E6C5CA}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .plist .lg img{filter:brightness(0) invert(88%) sepia(12%) saturate(600%) hue-rotate(300deg)}:root:not([data-theme=light]) .plist .wm{color:#E6C5CA}:root:not([data-theme=light]) .plist .wm svg{fill:#E6C5CA}}
 </style>
 </head>
 <body>
@@ -568,7 +578,11 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 <div class="partners rv">
   <span class="kicker">Member of</span>
   <div class="plist">
-    <span><i>✚</i>ASAPS</span><span><i>✚</i>ISAPS</span><span><i>✚</i>Emirates Plastic Surgery Society</span><span><i>✚</i>FILACP</span><span><i>✚</i>Gargash Hospital</span>
+    <span class="lg"><img src="https://www.theaestheticsociety.org/themes/custom/d8comp/logo.svg" alt="The Aesthetic Society (ASAPS)" loading="lazy" style="height:30px"></span>
+    <span class="lg wm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 6.9H22l-6 4.6 2.3 7L12 16.2 5.7 20.5 8 13.5 2 8.9h7.6z"/></svg><b>ISAPS</b><small>International Society of<br>Aesthetic Plastic Surgery</small></span>
+    <span class="lg wm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C7 6 4 9 4 13a8 8 0 0016 0c0-4-3-7-8-11zm0 5c2.6 2.3 4 4.2 4 6a4 4 0 01-8 0c0-1.8 1.4-3.7 4-6z"/></svg><b>EPSS</b><small>Emirates Plastic<br>Surgery Society</small></span>
+    <span class="lg"><img src="https://www.filacp.org/web26/wp-content/uploads/Logo-Solo2026DDB.png" alt="FILACP" loading="lazy" style="height:44px"></span>
+    <span class="lg"><img src="https://trellishospital.com/wp-content/uploads/2026/07/image-60.svg" alt="Trellis Hospital, formerly Gargash Hospital" loading="lazy" style="height:30px"></span>
   </div>
 </div>
 
