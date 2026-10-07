@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png">
 <link rel="icon" href="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Fav.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Manrope:wght@400;500;600;700&display=swap">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Physician","name":"Dr. Juan Carlos Barrera Rojas","medicalSpecialty":"PlasticSurgery","telephone":"+971561149568","url":"https://plasticsurgeonindubai.com/","image":"https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png","address":{"@type":"PostalAddress","streetAddress":"Gargash Hospital, Umm Suqeim Street, Umm Al Sheif","addressLocality":"Dubai","addressCountry":"AE"},"memberOf":["American Society for Aesthetic Plastic Surgery","Emirates Plastic Surgery Society","ISAPS"]}
 </script>
@@ -22,7 +22,7 @@
 :root{
   --ground:#e7ded4; --sheet:#fbf8f4; --card:#ffffff; --ink:#18202f; --soft:#5f5b57; --line:#e6ddd3;
   --taupe:#d9c8b9; --clay:#9c6f57; --navy:#1b2540; --tint:#efe5dc; --logo-filter:brightness(.35) contrast(1.4);
-  --head:"Sora","Helvetica Neue",Arial,sans-serif; --sans:"Manrope","Helvetica Neue",Arial,sans-serif; --r:28px;
+  --head:"Archivo","Helvetica Neue",Arial,sans-serif; --sans:"Manrope","Helvetica Neue",Arial,sans-serif; --r:28px;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -38,7 +38,8 @@ img{max-width:100%;display:block}
 a{color:inherit}
 .sheet{max-width:1280px;margin:12px auto;background:var(--sheet);border-radius:var(--r);overflow:hidden;transition:background .4s}
 .in{padding-inline:clamp(16px,4vw,56px)}
-h1,h2,h3,h4{font-family:var(--head);font-weight:600;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.025em}
+h1,h2,h3,h4{font-family:var(--head);font-weight:650;font-stretch:118%;line-height:1.06;margin:0;text-wrap:balance;letter-spacing:-.02em}
+.stat b,.marquee div,.logo .t b,.nametag b,.cart .total b,.pkg .price,.step .n,.about .ph .badge2 b{font-stretch:118%}
 h2{font-size:clamp(2rem,4.4vw,3.2rem)}
 h2 em,h1 em{font-style:normal;color:var(--clay)}
 p{margin:0}
@@ -74,7 +75,7 @@ nav.top .in{display:flex;align-items:center;gap:18px;justify-content:space-betwe
 .logo .t small{font:700 .62rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--clay)}
 .links{display:flex;gap:6px}
 .links a{text-decoration:none;font-size:.85rem;font-weight:600;padding:.45em .9em;border-radius:999px;border:1px solid var(--line);background:var(--card)}
-.links a:hover{border-color:var(--clay)}
+.links a:hover,.links a.act{border-color:var(--clay);color:var(--clay)}
 .navr{display:flex;gap:8px;align-items:center}
 .theme{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font-size:1.05rem;display:grid;place-items:center}
 @media (max-width:980px){.links{display:none}}
@@ -187,6 +188,15 @@ nav.top .in{display:flex;align-items:center;gap:18px;justify-content:space-betwe
 .on .progress i{width:100%}
 @media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}@media (max-width:520px){.steps{grid-template-columns:1fr}}
 
+.mgrid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:220px;gap:14px}
+.mgrid figure{margin:0;border-radius:22px;overflow:hidden}
+.mgrid .m1{grid-row:span 2}
+.mgrid img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .8s}
+.mgrid figure:hover img{transform:scale(1.05)}
+.insta{grid-column:span 2;border-radius:22px;background:linear-gradient(135deg,#f58529,#dd2a7b 50%,#8134af);color:#fff;text-decoration:none;display:flex;flex-direction:column;justify-content:center;padding:24px}
+.insta span{font-size:2rem}.insta b{font:650 1.5rem var(--head);font-stretch:118%}.insta small{opacity:.9}
+@media (max-width:860px){.mgrid{grid-template-columns:1fr 1fr}.mgrid .m1{grid-column:span 2}}
+@media (max-width:520px){.mgrid{grid-template-columns:1fr}.mgrid .m1,.insta{grid-column:auto}}
 /* faq */
 .faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px}
 .faq > *{min-width:0}
@@ -331,7 +341,7 @@ footer.site{background:#0a0e18;color:#aab1c0;padding-block:48px 28px;font-size:.
     <img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Carlos-Logo-1.png" alt="Dr. Juan Carlos signature logo" onerror="this.remove()">
     <span class="t"><b>Dr. Juan Carlos</b><small>Plastic Surgeon · Dubai</small></span>
   </a>
-  <div class="links"><a href="#procedures">Procedures</a><a href="#vaser">VASER</a><a href="#about">About</a><a href="#results">Results</a><a href="#faq">FAQ</a><a href="#book">Contact</a></div>
+  <div class="links"><a href="#top">Home</a><a href="#about">About Doctor</a><a href="#procedures">Available Treatments</a><a href="#media">Media</a><a href="#book">Contact</a></div>
   <div class="navr">
     <button class="theme" id="themeBtn" type="button" aria-label="Switch light or dark mode">☾</button>
     <a class="btn" href="#book">Book consultation</a>
@@ -368,7 +378,7 @@ footer.site{background:#0a0e18;color:#aab1c0;padding-block:48px 28px;font-size:.
 
 <section id="procedures" class="in">
   <div class="head rv">
-    <div><span class="kicker">Procedures</span><h2>What we <em>treat</em></h2></div>
+    <div><span class="kicker">Available treatments</span><h2>What we <em>treat</em></h2></div>
     <p>Body contouring is the core of Dr. Juan Carlos's practice, alongside breast and facial surgery. Every plan starts with an in-person consultation.</p>
   </div>
   <div class="bento">
@@ -441,6 +451,17 @@ footer.site{background:#0a0e18;color:#aab1c0;padding-block:48px 28px;font-size:.
   <div class="ctrl"><button type="button" id="prev" aria-label="Previous">←</button><button type="button" id="next" aria-label="Next">→</button></div>
 </section>
 
+
+<section id="media" class="in" style="padding-top:0">
+  <div class="head rv"><div><span class="kicker">Media</span><h2>Inside the <em>practice</em></h2></div><p>Photos from Dr. Juan Carlos's practice and his work. Follow him on Instagram for patient stories and updates.</p></div>
+  <div class="mgrid">
+    <figure class="rv m1 ph-fallback"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Dr-Juan-Carlos-1024x961.png" alt="Dr. Juan Carlos portrait" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="rv ph-fallback"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/bannertttt-1-1.png" alt="Dr. Juan Carlos at work" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="rv ph-fallback"><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Group-652-1022x1024.png" alt="Precision cosmetic surgery" loading="lazy" onerror="this.remove()"></figure>
+    <figure class="rv ph-fallback"><img src="https://treatments.plasticsurgeonindubai.com/wp-content/uploads/2025/05/Rectangle-181-1.png" alt="Patient care" loading="lazy" onerror="this.remove()"></figure>
+    <a class="rv insta" href="https://www.instagram.com/dr.juancarlos/" target="_blank" rel="noopener"><span>◎</span><b>@dr.juancarlos</b><small>Follow on Instagram ↗</small></a>
+  </div>
+</section>
 <section class="in" style="padding-top:0">
   <div class="head rv"><div><span class="kicker">Your journey</span><h2>From first message <em>to recovery</em></h2></div><p>What happens at each stage, so there are no surprises.</p></div>
   <div class="steps rv">
@@ -576,7 +597,7 @@ footer.site{background:#0a0e18;color:#aab1c0;padding-block:48px 28px;font-size:.
   <div class="fgrid">
     <div><img src="https://plasticsurgeonindubai.com/wp-content/uploads/2022/09/Carlos-Logo-1.png" alt="Dr. Juan Carlos" onerror="this.remove()"><p>Plastic and cosmetic surgery in Dubai by Dr. Juan Carlos Barrera Rojas, with more than 30 years of experience.</p></div>
     <div><h4>Procedures</h4><a href="#procedures">VASER Liposuction</a><a href="#procedures">Tummy Tuck</a><a href="#procedures">Breast Surgery</a><a href="#procedures">Face and Nose</a></div>
-    <div><h4>Clinic</h4><a href="#about">About the surgeon</a><a href="#results">Before and after</a><a href="#faq">FAQ</a><a href="#book">Book a consultation</a></div>
+    <div><h4>Clinic</h4><a href="#top">Home</a><a href="#about">About Doctor</a><a href="#media">Media</a><a href="#results">Before and after</a><a href="#faq">FAQ</a><a href="#book">Book a consultation</a></div>
     <div><h4>Contact</h4><span>+971 56 114 9568</span><a href="https://maps.google.com/?q=Gargash+Hospital+Dubai" target="_blank" rel="noopener">Gargash Hospital, Umm Suqeim St, Dubai</a><a href="https://www.instagram.com/dr.juancarlos/" target="_blank" rel="noopener">Instagram</a></div>
   </div>
   <div class="fbot"><span>Sample website concept for Dr. Juan Carlos. © 2026</span><span>Designed and developed by <b>Borna Ahadi</b></span></div>
@@ -635,6 +656,10 @@ document.querySelectorAll('input[name=p]').forEach(i=>i.addEventListener('change
 document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefault();const sel=render();if(!sel.length)return;
   const msg='Hello, I would like to order the new website for Dr. Juan Carlos:\n'+sel.map(i=>'- '+i.dataset.name+(i===seo?(bill==='m'?' (monthly)':' (yearly)'):'')+': '+fmt(+i.dataset.price)).join('\n')+'\nTotal: '+document.getElementById('cartTotal').textContent;
   window.open('https://wa.me/'+AGENCY_WA+'?text='+encodeURIComponent(msg),'_blank')});
+// active menu item
+const navA=[...document.querySelectorAll('.links a')];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)navA.forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+['top','about','procedures','media','book'].forEach(id=>{const el=document.getElementById(id);if(el)so.observe(el)});
 addEventListener('scroll',()=>document.getElementById('orderPop').classList.toggle('show',scrollY>document.body.scrollHeight*.3),{passive:true});
 </script>
 </body>
