@@ -9,6 +9,7 @@ Each client gets one folder at the top level, and the folder name becomes the we
 | Folder in this repo | Live preview link |
 |---|---|
 | `dr-carson/index.html` | https://yournewsite.world/dr-carson/ |
+| `dr-juan-carlos/index.html` | https://yournewsite.world/dr-juan-carlos/ |
 | `example-client/index.html` | https://yournewsite.world/example-client/ |
 
 Folder names use lowercase letters, numbers and dashes only (for example `dr-carson`, `al-noor-dental`). No spaces or capitals.
