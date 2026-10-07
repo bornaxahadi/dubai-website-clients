@@ -76,7 +76,7 @@ nav.top .in{display:flex;align-items:center;gap:24px;justify-content:space-betwe
 .hero-copy p{color:var(--soft);max-width:44ch}
 .cta{display:flex;flex-wrap:wrap;gap:10px}
 .portrait{position:relative;height:100%;min-height:420px}
-.portrait img{position:absolute;bottom:0;right:0;height:100%;width:100%;object-fit:cover;object-position:top center;transform:scale(1.04);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.portrait img{filter:contrast(1.06) saturate(1.08) brightness(1.02);position:absolute;bottom:0;right:0;height:100%;width:100%;object-fit:cover;object-position:top center;transform:scale(1.04);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
 .loaded .portrait img{transform:scale(1)}
 .nametag{position:absolute;right:20px;bottom:20px;z-index:2;background:rgb(31 42 68 / .88);color:#fff;border-radius:18px;padding:14px 18px;font-size:.8rem;line-height:1.35}
 .nametag b{display:block;font:400 1.3rem var(--serif)}
@@ -115,7 +115,7 @@ nav.top .in{display:flex;align-items:center;gap:24px;justify-content:space-betwe
 .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:center}
 .about > *{min-width:0}
 .about .ph{border-radius:var(--r);overflow:hidden;aspect-ratio:4/4.3;background:linear-gradient(160deg,#d8c4b2,#bea38f)}
-.about .ph img{width:100%;height:100%;object-fit:cover;object-position:top}
+.about .ph img{filter:contrast(1.06) saturate(1.08);width:100%;height:100%;object-fit:cover;object-position:top}
 .about .txt{display:grid;gap:18px}
 .about .txt p{color:var(--soft);max-width:60ch}
 .timeline{display:grid;gap:0;border-left:1px solid var(--taupe);margin-left:6px}
@@ -536,7 +536,11 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 function count(el){const t=+el.dataset.count,s=performance.now();(function f(n){const p=Math.min((n-s)/1400,1);el.textContent=Math.round(t*(1-Math.pow(1-p,3))).toLocaleString('en-US');if(p<1)requestAnimationFrame(f)})(s)}
 
 // before/after
-document.querySelectorAll('.compare').forEach(c=>{const r=c.querySelector('input'),a=c.querySelector('.after'),b=c.querySelector('.bar');r.addEventListener('input',()=>{a.style.clipPath=`inset(0 0 0 ${r.value}%)`;b.style.left=r.value+'%'})});
+const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('.compare').forEach((c,i)=>{const r=c.querySelector('input'),a=c.querySelector('.after'),b=c.querySelector('.bar');let auto=!still;
+  const set=v=>{r.value=v;a.style.clipPath=`inset(0 0 0 ${v}%)`;b.style.left=v+'%'};
+  r.addEventListener('input',()=>{auto=false;set(r.value)});['pointerdown','touchstart'].forEach(ev=>c.addEventListener(ev,()=>auto=false,{passive:true}));
+  (function loop(t){if(!auto)return;set(50+38*Math.sin(t/1100+i*1.3));requestAnimationFrame(loop)})(0)});
 
 // procedure tiles preselect form
 document.querySelectorAll('[data-proc]').forEach(t=>t.addEventListener('click',()=>{document.getElementById('b-proc').value=t.dataset.proc}));
