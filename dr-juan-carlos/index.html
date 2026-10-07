@@ -570,6 +570,12 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .langs button.on i{color:#CDBA7B}
 .lang-rule{display:block;font-size:.72rem;color:var(--soft)}
 .cart li.incl{color:#2f8a57;font-weight:700}
+.briefs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.briefs label{display:grid;gap:2px;padding:12px 14px 12px 36px;border:1.5px solid var(--line);border-radius:14px;background:var(--sheet);cursor:pointer;position:relative;transition:.2s}
+.briefs input{position:absolute;left:12px;top:15px;accent-color:#6C1C37}
+.briefs b{font-size:.88rem}.briefs small{font-size:.74rem;color:var(--soft)}
+.briefs label:has(input:checked){border-color:#6C1C37;background:var(--tint)}
+@media (max-width:560px){.briefs{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -889,6 +895,13 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
       <label class="pkg"><input type="checkbox" name="p" data-name="Custom AI agent maintenance (1 year)" data-price="600">
         <span><h4>Custom AI agent maintenance for 1 year <span class="badge">AI</span></h4><p>We keep your custom AI agents trained, updated and running smoothly all year, and adjust them as your clinic and Google change.</p></span>
         <span class="price">600 AED<small>per year</small></span></label>
+      <div class="pkg briefpkg">
+        <span><h4>Briefing and consultation <span class="badge">Meet</span></h4><p>Choose how we start your project:</p>
+          <span class="briefs">
+            <label><input type="radio" name="brief" value="0" data-label="Briefing at our office, Downtown Dubai" checked><b>Visit us for a briefing</b><small>Our office in Downtown Dubai · Free</small></label>
+            <label><input type="radio" name="brief" value="600" data-label="We visit you for briefing and consultation"><b>We visit you</b><small>Briefing and consultation at your clinic · 600 AED</small></label>
+          </span></span>
+        <span class="price" id="briefPrice">Free<small>one time</small></span></div>
       <div class="pkg langpkg">
         <span><h4>Extra languages <span class="badge">🌐</span></h4><p>English is included. Add Arabic for free, then any languages your patients speak. Pick as many as you like:</p>
           <span class="langs" id="langs"><button type="button" data-lang="Arabic">Arabic <i>free</i></button><button type="button" data-lang="Spanish">Spanish</button><button type="button" data-lang="German">German</button><button type="button" data-lang="French">French</button><button type="button" data-lang="Russian">Russian</button><button type="button" data-lang="Turkish">Turkish</button><button type="button" data-lang="Farsi">Farsi</button><button type="button" data-lang="Chinese">Chinese</button><button type="button" data-lang="Hindi">Hindi</button><button type="button" data-lang="Urdu">Urdu</button><button type="button" data-lang="Filipino">Filipino</button><button type="button" data-lang="Bengali">Bengali</button><button type="button" data-lang="Malayalam">Malayalam</button><button type="button" data-lang="Tamil">Tamil</button><button type="button" data-lang="Italian">Italian</button><button type="button" data-lang="Portuguese">Portuguese</button><button type="button" data-lang="Korean">Korean</button><button type="button" data-lang="Japanese">Japanese</button></span>
@@ -1033,7 +1046,9 @@ document.querySelectorAll('.toggle button').forEach(b=>b.addEventListener('click
 const langSel=[];const langCost=k=>k<2?300:k===2?250:150;
 document.getElementById('langs').addEventListener('click',e=>{const b=e.target.closest('button[data-lang]');if(!b)return;const l=b.dataset.lang,i=langSel.indexOf(l);if(i>-1)langSel.splice(i,1);else langSel.push(l);render()});
 function langItems(){let k=0;return langSel.map(l=>({dataset:{name:'Language: '+l,price:l==='Arabic'?0:langCost(k++)}}))}
-function render(){const sel=[...document.querySelectorAll('input[name=p]:checked'),...langItems()];
+function briefItem(){const r=document.querySelector('input[name=brief]:checked');return{dataset:{name:'Briefing: '+r.dataset.label,price:+r.value}}}
+document.querySelectorAll('input[name=brief]').forEach(r=>r.addEventListener('change',()=>render()));
+function render(){const bi=briefItem();document.getElementById('briefPrice').innerHTML=(bi.dataset.price?fmt(bi.dataset.price):'Free')+'<small>one time</small>';const sel=[...document.querySelectorAll('input[name=p]:checked'),...langItems(),bi];
   document.querySelectorAll('#langs button').forEach(b=>b.classList.toggle('on',langSel.includes(b.dataset.lang)));
   const lt=langItems().reduce((t,i)=>t+i.dataset.price,0);document.getElementById('langPrice').innerHTML=fmt(lt)+'<small>'+(langSel.length?langSel.length+' selected':'one time')+'</small>';
   document.getElementById('cartList').innerHTML=sel.map(i=>`<li><span>${i.dataset.name}${i===seo?(bill==='m'?' (monthly)':' (yearly)'):''}</span><span>${+i.dataset.price?fmt(+i.dataset.price):'Free'}</span></li>`).join('')||'<li>Nothing selected yet</li>';document.getElementById('cartList').insertAdjacentHTML('beforeend','<li class="incl"><span>✓ 3 months maintenance included</span><span>Free</span></li>');
@@ -1050,7 +1065,7 @@ oFiles.addEventListener('change',()=>{pickedFiles=[...pickedFiles,...oFiles.file
 oFl.addEventListener('click',e=>{const i=e.target.dataset.i;if(i===undefined)return;e.preventDefault();pickedFiles.splice(+i,1);oFiles.dispatchEvent(new Event('change'))});
 const ORDER_EMAIL = "borna@yournewsite.world";
 document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefault();const sel=render(),st=document.getElementById('orderStatus');
-  if(!sel.length){st.textContent='Please choose at least one package.';return}
+  if(sel.length<2){st.textContent='Please choose at least one package.';return}
   if(pickedFiles.reduce((t,f)=>t+f.size,0)>10e6){st.textContent='Attached files are over 10 MB in total. Please remove some.';return}
   const name=document.getElementById('o-name').value.trim(),phone=document.getElementById('o-phone').value.trim(),email=document.getElementById('o-email').value.trim();
   const items=sel.map(i=>'- '+i.dataset.name+(i===seo?(bill==='m'?' (monthly)':' (yearly)'):'')+': '+fmt(+i.dataset.price)).join('\n'),total=document.getElementById('cartTotal').textContent;
