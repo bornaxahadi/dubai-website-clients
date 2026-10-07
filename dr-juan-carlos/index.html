@@ -524,6 +524,9 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 [data-theme=dark] .plist .wm{color:#E6C5CA}[data-theme=dark] .plist .wm svg{fill:#E6C5CA}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]) .plist .lg img{filter:brightness(0) invert(88%) sepia(12%) saturate(600%) hue-rotate(300deg)}:root:not([data-theme=light]) .plist .wm{color:#E6C5CA}:root:not([data-theme=light]) .plist .wm svg{fill:#E6C5CA}}
 .cart .eta{font-size:.82rem;color:var(--ink);background:var(--tint);border-radius:14px;padding:10px 14px}.cart .eta b{color:#B45A69}
+.oreq{display:grid;gap:6px;font-size:.8rem;font-weight:700;color:var(--ink)}.oreq textarea{width:100%;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--sheet);color:var(--ink);font:inherit;font-size:.88rem;font-weight:400;resize:vertical}.oreq small{justify-self:end;color:var(--soft);font-weight:600}.oreq small.over{color:#c0392b}
+.ofile{display:block;cursor:pointer}.ofile input{position:absolute;opacity:0;width:1px;height:1px}.ofile span{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;justify-content:center;border:2px dashed #B45A69;border-radius:14px;padding:12px;font-weight:700;font-size:.85rem;color:#6C1C37;background:var(--tint)}.ofile span small{font-weight:500;color:var(--soft)}.ofile:focus-within span{outline:2px solid #B45A69}
+.oflist{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:.78rem;color:var(--soft)}.oflist li{display:flex;justify-content:space-between;gap:8px}
 </style>
 </head>
 <body>
@@ -833,6 +836,12 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
         <input id="o-name" name="name" required placeholder="Your name" autocomplete="name">
         <input id="o-phone" name="phone" required type="tel" placeholder="Phone / WhatsApp" autocomplete="tel">
         <input id="o-email" name="email" type="email" placeholder="Email (optional)" autocomplete="email">
+
+        <label class="oreq"><span>Special requirements or design comments</span>
+          <textarea id="o-notes" rows="5" placeholder="Colours you like, pages you need, websites you admire, anything we should know…"></textarea>
+          <small id="o-wc">0 / 500 words</small></label>
+        <label class="ofile"><input id="o-files" type="file" multiple accept=".pdf,image/*"><span>📎 Attach files <small>PDF or images, up to 5 files</small></span></label>
+        <ul class="oflist" id="o-flist"></ul>
       </div>
       <button class="btn gold" type="submit">Send my order</button>
       <p class="note" id="orderStatus" role="status"></p>
@@ -932,15 +941,26 @@ function render(){const sel=[...document.querySelectorAll('input[name=p]:checked
   document.getElementById('cartTotal').textContent=fmt(sel.reduce((s,i)=>s+ +i.dataset.price,0));
   document.getElementById('cartNote').textContent=seo.checked&&bill==='m'?'Includes the first month of the SEO agent, then 150 AED per month.':'';return sel}
 document.querySelectorAll('input[name=p]').forEach(i=>i.addEventListener('change',render));render();
+const oNotes=document.getElementById('o-notes'),oWc=document.getElementById('o-wc'),oFiles=document.getElementById('o-files'),oFl=document.getElementById('o-flist');
+const words=t=>(t.trim().match(/\S+/g)||[]).length;
+oNotes.addEventListener('input',()=>{let n=words(oNotes.value);if(n>500){oNotes.value=oNotes.value.trim().split(/\s+/).slice(0,500).join(' ');n=500}oWc.textContent=n+' / 500 words';oWc.classList.toggle('over',n>=500)});
+let pickedFiles=[];
+oFiles.addEventListener('change',()=>{pickedFiles=[...pickedFiles,...oFiles.files].filter(f=>/pdf|image/.test(f.type)).slice(0,5);oFiles.value='';
+  const big=pickedFiles.reduce((s,f)=>s+f.size,0)>10e6;
+  oFl.innerHTML=pickedFiles.map((f,i)=>`<li><span>${f.name.replace(/[<>&]/g,'')}</span><a href="#" data-i="${i}">remove</a></li>`).join('')+(big?'<li style="color:#c0392b">Files are over 10 MB in total, please remove some.</li>':'')});
+oFl.addEventListener('click',e=>{const i=e.target.dataset.i;if(i===undefined)return;e.preventDefault();pickedFiles.splice(+i,1);oFiles.dispatchEvent(new Event('change'))});
 const ORDER_EMAIL = "borna@yournewsite.world";
 document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefault();const sel=render(),st=document.getElementById('orderStatus');
   if(!sel.length){st.textContent='Please choose at least one package.';return}
+  if(pickedFiles.reduce((t,f)=>t+f.size,0)>10e6){st.textContent='Attached files are over 10 MB in total. Please remove some.';return}
   const name=document.getElementById('o-name').value.trim(),phone=document.getElementById('o-phone').value.trim(),email=document.getElementById('o-email').value.trim();
   const items=sel.map(i=>'- '+i.dataset.name+(i===seo?(bill==='m'?' (monthly)':' (yearly)'):'')+': '+fmt(+i.dataset.price)).join('\n'),total=document.getElementById('cartTotal').textContent;
-  const msg='New website order for Dr. Juan Carlos\nName: '+name+'\nPhone: '+phone+(email?'\nEmail: '+email:'')+'\n\n'+items+'\nTotal: '+total;
+  const msg='New website order for Dr. Juan Carlos\nName: '+name+'\nPhone: '+phone+(email?'\nEmail: '+email:'')+'\n\n'+items+'\nTotal: '+total+(oNotes.value.trim()?'\n\nRequirements: '+oNotes.value.trim().slice(0,1200):'')+(pickedFiles.length?'\n('+pickedFiles.length+' file(s) sent by email)':'');
   if(AGENCY_WA)window.open('https://wa.me/'+AGENCY_WA+'?text='+encodeURIComponent(msg),'_blank');
   st.textContent='Sending your order…';
-  fetch('https://formsubmit.co/ajax/'+ORDER_EMAIL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({_subject:'New website order: Dr. Juan Carlos ('+total+')',_template:'table',_captcha:'false',name,phone,email:email||'not given',packages:items,total,page:location.href})})
+  const fd=new FormData();Object.entries({_subject:'New website order: Dr. Juan Carlos ('+total+')',_template:'table',_captcha:'false',name,phone,email:email||'not given',packages:items,total,requirements:oNotes.value.trim()||'none',files:pickedFiles.length?pickedFiles.map(f=>f.name).join(', '):'none',page:location.href}).forEach(([k,v])=>fd.append(k,v));
+  pickedFiles.forEach((f,i)=>fd.append(i?'attachment'+(i+1):'attachment',f,f.name));
+  fetch('https://formsubmit.co/ajax/'+ORDER_EMAIL,{method:'POST',headers:{Accept:'application/json'},body:fd})
     .then(r=>r.json()).then(d=>{st.textContent=(d.success===true||d.success==='true')?'Thank you, your order was sent. We will contact you shortly.':'Order saved. If WhatsApp did not open, please message us directly.'})
     .catch(()=>{st.textContent='Could not send by email. Please send the order on WhatsApp.'})});
 // menu: burger + mobile dropdowns + preselect procedure
