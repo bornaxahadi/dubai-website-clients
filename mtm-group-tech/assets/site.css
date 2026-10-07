@@ -12,6 +12,8 @@
   --line:#d5e2ea;
   --amber:#ffd100;      /* hard-hat accent, used sparingly */
   --wa:#1fa855;
+  --orange:#f28c28;
+  --tone:#dceaf6;
   --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
   --display:"Anton","Impact","Arial Narrow Bold",sans-serif;
   --r-lg:28px;--r-md:18px;--r-sm:12px;
@@ -329,3 +331,8 @@ h2::after{content:"";display:block;width:64px;height:6px;margin-top:14px;backgro
 }
 @keyframes ic-jitter{0%,100%{transform:translateX(0)}50%{transform:translateX(1.5px)}}
 @keyframes ic-swing{0%,100%{transform:rotate(-40deg)}50%{transform:rotate(25deg)}}
+
+/* ---- 3-colour icons (v9): navy line, light-blue tone, canary + orange accents ---- */
+.ic-svg .ln.tone{fill:var(--tone)}
+.ic-svg .acc2{fill:var(--orange);stroke:none}
+.trust .ic-svg .ln.tone{fill:rgba(255,255,255,.12)}
