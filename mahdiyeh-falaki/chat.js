@@ -112,7 +112,7 @@
     setTimeout(()=>{ if(e) bot(e.a[l]||e.a.en,e.go,e.id==="contact"||e.id==="viewing",l);
       else bot((window.MF_KB_UI[l]||UI()).nomatch,null,true,l,q); },250);
   }
-  function open(){load().then(()=>{if(!built||panel.lang!==lang())shell();panel.hidden=false;btn.hidden=true;panel.querySelector("input").focus()}).catch(()=>{window.open(wa(t("wa_general")),"_blank","noopener")})}
+  function open(){load().then(()=>{if(!built||panel.lang!==lang())shell();panel.hidden=false;btn.hidden=true;panel.querySelector("input").focus()}).catch(()=>{loading=null;window.open(wa(t("wa_general")),"_blank","noopener")})}
   function close(){panel.hidden=true;btn.hidden=false;btn.focus()}
   btn.addEventListener("click",open);
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!panel.hidden)close()});
