@@ -3,18 +3,158 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Website Previews</title>
-<meta name="robots" content="noindex">
+<title>Borna · Fast, SEO-ready websites</title>
+<meta name="description" content="We design and develop new websites with amazing performance, speed and SEO. Call or WhatsApp Borna.">
 <style>
-  body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#f7f7f5;color:#1a1a1a;display:flex;min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:24px}
-  h1{font-size:2rem;margin:0 0 .5rem}
-  p{color:#555;max-width:32rem;margin:0 auto}
+  :root{--ink:#161616;--muted:#8a8a8a;--line:#e9e7e3}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#fff;color:var(--ink);font-family:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  body{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:safe center;padding:24px 16px;overflow-x:hidden}
+  .stage{position:relative;width:min(290px,70vw);margin-top:min(56px,22vw);aspect-ratio:1/1;display:flex;align-items:flex-end;justify-content:center;cursor:pointer}
+  .egg{width:56%;overflow:visible}
+  .wobble{transform-origin:100px 250px;transform-box:view-box}
+  .top{transform-origin:100px 118px;transform-box:view-box}
+  .crack{stroke:#b9b4ac;stroke-width:1.6;fill:none;stroke-linejoin:round;stroke-dasharray:240;stroke-dashoffset:240}
+  .word{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%) scale(.2);opacity:0;white-space:nowrap;font-size:clamp(12px,3.4vw,15px);letter-spacing:.02em;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;pointer-events:none}
+  .copy{text-align:center;max-width:520px;margin-top:20px;opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform .9s ease}
+  .copy.show{opacity:1;transform:none}
+  h1{font-size:clamp(28px,6vw,44px);font-weight:600;letter-spacing:-.02em;margin:0 0 12px}
+  p{color:#555;line-height:1.55;margin:0 auto 22px;font-size:clamp(15px,3.8vw,17px)}
+  .contact{color:var(--muted);font-size:14px;margin-bottom:14px}
+  .contact b{color:var(--ink);font-weight:600}
+  .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;border:1px solid var(--ink);color:var(--ink);background:#fff}
+  .btn.primary{background:var(--ink);color:#fff}
+  .hint{position:fixed;bottom:16px;left:0;right:0;text-align:center;font-size:12px;color:#c2c2c2}
 </style>
 </head>
 <body>
-  <main>
-    <h1>Website Previews</h1>
-    <p>This site hosts private website previews for our clients. If you were sent a link, open it directly to see your preview.</p>
+  <div class="stage" id="stage" aria-hidden="true">
+    <svg class="egg" viewBox="0 0 200 260">
+      <defs>
+        <radialGradient id="shell" cx="38%" cy="32%" r="75%">
+          <stop offset="0" stop-color="#ffffff"/>
+          <stop offset=".65" stop-color="#faf9f7"/>
+          <stop offset="1" stop-color="#e8e5e0"/>
+        </radialGradient>
+        <radialGradient id="inside" cx="50%" cy="20%" r="80%">
+          <stop offset="0" stop-color="#f1eee9"/>
+          <stop offset="1" stop-color="#fbfaf8"/>
+        </radialGradient>
+        <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+        <clipPath id="clipTop"><polygon points="0,0 200,0 200,118 185,118 175,126 155,109 135,127 115,106 95,128 75,108 55,130 35,110 15,125 0,125"/></clipPath>
+        <clipPath id="clipBottom"><polygon points="0,125 15,125 35,110 55,130 75,108 95,128 115,106 135,127 155,109 175,126 185,118 200,118 200,260 0,260"/></clipPath>
+      </defs>
+      <ellipse cx="100" cy="254" rx="70" ry="9" fill="#000" opacity=".08" filter="url(#soft)"/>
+      <g class="wobble" id="wobble">
+        <g clip-path="url(#clipBottom)">
+          <path d="M100 10 C150 10 185 110 185 160 C185 215 147 250 100 250 C53 250 15 215 15 160 C15 110 50 10 100 10Z" fill="url(#shell)" stroke="#ece9e4"/>
+          <ellipse id="hole" cx="100" cy="120" rx="82" ry="12" fill="url(#inside)" opacity="0"/>
+        </g>
+        <g class="top" id="top" clip-path="url(#clipTop)">
+          <path d="M100 10 C150 10 185 110 185 160 C185 215 147 250 100 250 C53 250 15 215 15 160 C15 110 50 10 100 10Z" fill="url(#shell)" stroke="#ece9e4"/>
+        </g>
+        <polyline class="crack" id="crack" points="15,125 35,110 55,130 75,108 95,128 115,106 135,127 155,109 175,126 185,118"/>
+      </g>
+    </svg>
+  </div>
+
+  <main class="copy" id="copy">
+    <h1>Your new website is hatching.</h1>
+    <p>We design and develop new websites with amazing performance, speed and SEO, built to load instantly and rank on Google.</p>
+    <div class="contact">For inquiries or help, call <b>Borna</b>, or better, WhatsApp him.</div>
+    <div class="btns">
+      <a class="btn primary" id="wa" href="#">WhatsApp Borna</a>
+      <a class="btn" id="call" href="#">Call <span id="num"></span></a>
+    </div>
   </main>
+  <div class="hint">tap the egg to hatch again</div>
+
+<script>
+  // Borna's phone number, digits only with country code
+  const PHONE = "971000000000";
+  const PHONE_LABEL = "+971 00 000 0000";
+  document.getElementById("wa").href = "https://wa.me/" + PHONE;
+  document.getElementById("call").href = "tel:+" + PHONE;
+  document.getElementById("num").textContent = PHONE_LABEL;
+
+  const WORDS = ["⚡ Lightning speed","SEO-ready","Mobile-first","Clean design","100 / 100 performance","Ranks on Google","More customers"];
+  const POS = [[-.82,-.14],[-.62,-.42],[-.3,-.62],[.06,-.76],[.44,-.62],[.68,-.42],[.82,-.14]];
+  const stage = document.getElementById("stage");
+  const wobble = document.getElementById("wobble");
+  const cap = document.getElementById("top");
+  const crack = document.getElementById("crack");
+  const hole = document.getElementById("hole");
+  const copy = document.getElementById("copy");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let anims = [], words = [];
+
+  function hatch(){
+    anims.forEach(a => a.cancel()); anims = [];
+    words.forEach(w => w.remove()); words = [];
+    const A = (el, kf, opt) => { const a = el.animate(kf, Object.assign({fill:"forwards"}, opt)); anims.push(a); return a; };
+
+    if (reduce){
+      A(cap, [{transform:"translate(-140px,47px) rotate(-110deg)"}], {duration:1});
+      A(hole, [{opacity:1}], {duration:1});
+      burst(0); copy.classList.add("show"); return;
+    }
+    // wobble
+    A(wobble, [
+      {transform:"rotate(0)"},{transform:"rotate(-5deg)"},{transform:"rotate(5deg)"},
+      {transform:"rotate(-4deg)"},{transform:"rotate(3deg)"},{transform:"rotate(0)"}
+    ], {duration:900, delay:500, easing:"ease-in-out", fill:"none"});
+    A(wobble, [
+      {transform:"rotate(0)"},{transform:"rotate(-7deg)"},{transform:"rotate(7deg)"},{transform:"rotate(0)"}
+    ], {duration:500, delay:1700, easing:"ease-in-out", fill:"none"});
+    // crack draws
+    A(crack, [{strokeDashoffset:240},{strokeDashoffset:0}], {duration:600, delay:1600, easing:"ease-out"});
+    // top pops up, tips over and falls to the ground beside the egg
+    A(cap, [
+      {transform:"translate(0,0) rotate(0)", offset:0},
+      {transform:"translate(4px,-26px) rotate(-12deg)", offset:.22, easing:"ease-out"},
+      {transform:"translate(-70px,-20px) rotate(-60deg)", offset:.5, easing:"ease-in"},
+      {transform:"translate(-140px,50px) rotate(-110deg)", offset:.85, easing:"ease-out"},
+      {transform:"translate(-138px,42px) rotate(-104deg)", offset:.93},
+      {transform:"translate(-140px,47px) rotate(-110deg)", offset:1}
+    ], {duration:1300, delay:2300});
+    A(crack, [{opacity:1},{opacity:0}], {duration:150, delay:2350});
+    A(hole, [{opacity:0},{opacity:1}], {duration:200, delay:2400});
+    setTimeout(() => burst(1), 2600);
+    setTimeout(() => copy.classList.add("show"), 3400);
+  }
+
+  function burst(animated){
+    const w = stage.clientWidth;
+    WORDS.forEach((text, i) => {
+      const el = document.createElement("span");
+      el.className = "word"; el.textContent = text;
+      stage.appendChild(el); words.push(el);
+      let x, y;
+      if (innerWidth < 640){
+        const row = Math.floor(i / 2), side = i % 2 ? 1 : -1;
+        x = (i === WORDS.length - 1 && WORDS.length % 2) ? 0 : side * Math.min(innerWidth * .23, 110);
+        y = -w * .2 - row * 44;
+      } else {
+        [x, y] = POS[i].map(v => v * w);
+      }
+      const end = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1)`;
+      const a = el.animate([
+        {transform:"translate(-50%,-50%) scale(.2)", opacity:0},
+        {opacity:1, offset:.25},
+        {transform:end, opacity:1}
+      ], {duration: animated ? 900 : 1, delay: animated ? i * 90 : 0, easing:"cubic-bezier(.2,1.4,.4,1)", fill:"forwards"});
+      anims.push(a);
+      if (animated && !reduce){
+        const f = el.animate([{transform:end},{transform:end.replace("scale(1)","scale(1) translateY(-4px)")},{transform:end}],
+          {duration:2600 + i*200, delay:900 + i*90, iterations:Infinity, easing:"ease-in-out"});
+        anims.push(f);
+      }
+    });
+  }
+
+  stage.addEventListener("click", () => { copy.classList.remove("show"); hatch(); });
+  hatch();
+</script>
 </body>
 </html>
