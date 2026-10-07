@@ -126,10 +126,20 @@
         'Location: '+(v('r-loc')||'(I will share my location pin)'),'When: '+(w?w.value:'')];
       if(v('r-msg'))lines.push('Problem: '+v('r-msg'));
       if(v('r-name'))lines.push('Name: '+v('r-name'));
+      if(v('r-phone'))lines.push('Phone: '+v('r-phone'));
       send.href='https://wa.me/971529622078?text='+encodeURIComponent(lines.join('\n'));
     };
     f.addEventListener('input',build);f.addEventListener('change',build);
     f.addEventListener('submit',function(e){e.preventDefault()});build();
+    send.addEventListener('click',function(){
+      var to=f.getAttribute('data-email');if(!to)return;
+      var w=f.querySelector('input[name=when]:checked');
+      try{fetch('https://formsubmit.co/ajax/'+to,{method:'POST',keepalive:true,
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({_subject:'New website request: '+v('r-svc'),_template:'table',_captcha:'false',
+          name:v('r-name'),phone:v('r-phone'),service:v('r-svc'),location:v('r-loc'),
+          problem:v('r-msg'),when:w?w.value:'',page:location.href})});}catch(err){}
+    });
   }
   var y=document.getElementById('yr');if(y)y.textContent=new Date().getFullYear();
 })();
