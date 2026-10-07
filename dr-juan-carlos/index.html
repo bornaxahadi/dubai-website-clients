@@ -576,6 +576,36 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
 .briefs b{font-size:.88rem}.briefs small{font-size:.74rem;color:var(--soft)}
 .briefs label:has(input:checked){border-color:#6C1C37;background:var(--tint)}
 @media (max-width:560px){.briefs{grid-template-columns:1fr}}
+
+/* booking section polish */
+.book{align-items:start;background:linear-gradient(160deg,var(--tint),var(--sheet,var(--tint)))}
+.book .info{gap:18px}
+.cl-list{display:grid;gap:10px;margin-top:4px}
+.cl-card{display:flex;align-items:center;gap:14px;padding:12px 16px 12px 12px;border-radius:16px;background:var(--card);border:1.5px solid var(--line);text-decoration:none;color:inherit;transition:transform .25s,border-color .25s,box-shadow .25s}
+a.cl-card:hover{transform:translateX(4px);border-color:#B45A69;box-shadow:0 10px 26px -14px rgba(108,28,55,.45)}
+.cl-card i{width:44px;height:44px;border-radius:12px;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#6C1C37,#B45A69);color:#fff}
+.cl-card i svg{width:22px;height:22px}
+.cl-card span{display:grid;gap:2px;min-width:0;flex:1}
+.cl-card small{font:700 .66rem var(--head);letter-spacing:.08em;text-transform:uppercase;color:#B45A69}
+.cl-card b{font-weight:600;font-size:.95rem;line-height:1.3}
+.cl-card em{font-style:normal;color:#B45A69;font-weight:700;transition:transform .25s}a.cl-card:hover em{transform:translateX(3px)}
+.cl-card.hours i{background:#EDE6DE;color:#6C1C37}
+.cl-trust{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:2px 0 0}
+.cl-trust li{font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(180,90,105,.12);color:var(--ink,inherit)}
+.cl-trust li::before{content:"✓ ";color:#B45A69}
+form.bk.bkx{box-shadow:0 24px 60px -30px rgba(108,28,55,.35);border:1.5px solid var(--line);padding:clamp(18px,2.4vw,28px)}
+.bk-steps{display:flex;align-items:center;gap:0;margin:0 0 10px;counter-reset:st}
+.bk-steps span{flex:1 1 0;display:flex;align-items:center;justify-content:center;gap:8px;height:auto;min-height:0;padding:0;margin:0;background:none;border:0;border-radius:0;color:var(--soft);font:600 .8rem var(--head);letter-spacing:.01em;white-space:nowrap;position:relative;font-size:0}
+.bk-steps span::before{counter-increment:st;content:counter(st);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;border:2px solid var(--line);background:var(--card);color:var(--soft);font:700 .8rem var(--head);transition:.3s}
+.bk-steps span::after{content:attr(data-l);font:600 .8rem var(--head)}
+.bk-steps span + span{padding-left:0}
+.bk-steps span:not(:last-child){}
+.bk-steps i{flex:1;height:2px;background:var(--line);margin:0 8px;border-radius:2px;min-width:12px}
+.bk-steps i.on{background:#B45A69}
+.bk-steps span.on{background:none;border:0;color:#6C1C37}
+.bk-steps span.on::before{background:linear-gradient(135deg,#6C1C37,#B45A69);border-color:transparent;color:#fff;box-shadow:0 4px 12px -4px rgba(108,28,55,.6)}
+[data-theme=dark] .bk-steps span.on{color:#E6C5CA}
+@media (max-width:520px){.bk-steps span::after{display:none}.bk-steps span{flex:none}}
 </style>
 </head>
 <body>
@@ -766,12 +796,16 @@ footer.site{background:#1f0710;color:#dcc3c8;padding-block:48px 28px;font-size:.
     <span class="kicker">Book a consultation</span>
     <h2>Talk to <em>Dr. Juan Carlos</em></h2>
     <p>Pick a treatment, a day and a free time. You get a booking reference instantly and can send it to the clinic on WhatsApp.</p>
-    <div class="contact-line"><i>✆</i><span>+971 56 114 9568 · phone and WhatsApp</span></div>
-    <div class="contact-line"><i>⌖</i><a href="https://maps.google.com/?q=Gargash+Hospital+Dubai" target="_blank" rel="noopener">Gargash Hospital, Umm Suqeim St, Dubai</a></div>
-    <div class="contact-line"><i>◎</i><a href="https://www.instagram.com/dr.juancarlos/" target="_blank" rel="noopener">@dr.juancarlos on Instagram</a></div>
+    <div class="cl-list">
+      <a class="cl-card" href="https://wa.me/971561149568" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 01-13.3 7.9L3 21l1.2-4.5A9 9 0 1121 12z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.4-2-1-1 .8c-1-.5-1.6-1.1-2.1-2.1l.8-1-1-2z"/></svg></i><span><small>Phone and WhatsApp</small><b>+971 56 114 9568</b></span><em>→</em></a>
+      <a class="cl-card" href="https://maps.google.com/?q=Trellis+Hospital+Dubai" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></i><span><small>Clinic</small><b>Trellis Hospital (formerly Gargash), Umm Suqeim</b></span><em>→</em></a>
+      <a class="cl-card" href="https://www.instagram.com/dr.juancarlos/" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".8" fill="currentColor"/></svg></i><span><small>Instagram</small><b>@dr.juancarlos</b></span><em>→</em></a>
+      <div class="cl-card hours"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><span><small>Consultations</small><b>In clinic or by video call</b></span></div>
+    </div>
+    <ul class="cl-trust"><li>Free first consultation</li><li>Instant booking reference</li><li>Add to your calendar</li></ul>
   </div>
   <form class="bk bkx" id="bookForm" novalidate>
-    <div class="bk-steps" aria-hidden="true"><span class="on">1 Treatment</span><span>2 Date and time</span><span>3 Your details</span></div>
+    <div class="bk-steps" aria-hidden="true"><span class="on" data-l="Treatment"></span><i></i><span data-l="Date and time"></span><i></i><span data-l="Your details"></span></div>
     <div class="bk-pane on" data-step="1">
       <label for="b-proc">Which treatment are you interested in?<select id="b-proc"><option>VASER Liposuction</option><option>Tummy Tuck</option><option>Breast Surgery</option><option>Post-bariatric Body Contouring</option><option>Facial Surgery</option><option>Rhinoplasty</option><option>Buttock Augmentation</option><option>Double Chin Liposuction</option><option>Botox and Fillers</option><option>Not sure yet</option></select></label>
       <div class="pills bk-type"><label><input type="radio" name="bt" value="In clinic" checked> In clinic</label><label><input type="radio" name="bt" value="Video call"> Video call</label></div>
@@ -1012,7 +1046,7 @@ document.querySelectorAll('[data-proc]').forEach(t=>t.addEventListener('click',(
 /* demo booking system */
 (()=>{const f=document.getElementById('bookForm'),$=id=>document.getElementById(id);let step=1,day=null,slot=null,view=new Date();view.setDate(1);
   const today=new Date();today.setHours(0,0,0,0);const maxD=new Date(today);maxD.setDate(maxD.getDate()+60);
-  const go=n=>{step=n;f.querySelectorAll('.bk-pane').forEach(p=>p.classList.toggle('on',+p.dataset.step===n));f.querySelectorAll('.bk-steps span').forEach((s,i)=>s.classList.toggle('on',i<Math.min(n,3)));
+  const go=n=>{step=n;f.querySelectorAll('.bk-pane').forEach(p=>p.classList.toggle('on',+p.dataset.step===n));f.querySelectorAll('.bk-steps span').forEach((s,i)=>s.classList.toggle('on',i<Math.min(n,3)));f.querySelectorAll('.bk-steps i').forEach((s,i)=>s.classList.toggle('on',i<Math.min(n,3)-1));
     if(n===3)$('bkSum').textContent=`${$('b-proc').value} · ${f.querySelector('input[name=bt]:checked').value} · ${day.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})} at ${slot}`};
   f.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)go(+g.dataset.go)});
   const seed=d=>{let x=d.getFullYear()*372+d.getMonth()*31+d.getDate();return()=>((x=(x*9301+49297)%233280)/233280)};
@@ -1034,7 +1068,7 @@ document.querySelectorAll('[data-proc]').forEach(t=>t.addEventListener('click',(
     const msg=`Hello Dr. Juan Carlos, I booked a consultation on your website.\nRef: ${ref}\nName: ${name}\nPhone: ${phone}\nTreatment: ${$('b-proc').value}\nType: ${type}\nWhen: ${when}${note?'\nNote: '+note:''}`;
     $('bkWa').href='https://wa.me/971561149568?text='+encodeURIComponent(msg);
     const [hh,mm]=slot.split(':'),st=new Date(day);st.setHours(+hh,+mm);const en=new Date(st.getTime()+45*6e4),z=d=>d.toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
-    $('bkIcs').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//JC//Booking//EN\r\nBEGIN:VEVENT\r\nUID:${ref}@drjuancarlos\r\nDTSTAMP:${z(new Date())}\r\nDTSTART:${z(st)}\r\nDTEND:${z(en)}\r\nSUMMARY:Consultation with Dr. Juan Carlos (${$('b-proc').value})\r\nLOCATION:Gargash Hospital, Umm Suqeim St, Dubai\r\nEND:VEVENT\r\nEND:VCALENDAR`);
+    $('bkIcs').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//JC//Booking//EN\r\nBEGIN:VEVENT\r\nUID:${ref}@drjuancarlos\r\nDTSTAMP:${z(new Date())}\r\nDTSTART:${z(st)}\r\nDTEND:${z(en)}\r\nSUMMARY:Consultation with Dr. Juan Carlos (${$('b-proc').value})\r\nLOCATION:Trellis Hospital (formerly Gargash), Umm Suqeim St, Dubai\r\nEND:VEVENT\r\nEND:VCALENDAR`);
     go(4)});
 })();
 
