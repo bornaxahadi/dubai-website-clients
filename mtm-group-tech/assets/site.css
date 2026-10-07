@@ -367,3 +367,5 @@ h2::after{content:"";display:block;width:64px;height:6px;margin-top:14px;backgro
 .work-grid{grid-auto-rows:200px}
 .work-grid figure.tall{grid-row:span 3}
 @media (max-width:760px){.work-grid figure.tall{grid-row:span 2}.work-grid figure:last-child{grid-column:auto}}
+/* v13 portrait ring */
+.meet .avatar{background:#fff;box-shadow:0 0 0 3px var(--amber),0 8px 20px rgba(10,47,79,.18)}
