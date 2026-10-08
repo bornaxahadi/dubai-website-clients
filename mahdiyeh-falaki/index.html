@@ -104,7 +104,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-b
 @media (max-width:350px){.brand .wm{display:none}}
 .flogo{display:inline-flex;align-items:center;gap:10px}.flogo .mk{width:40px;height:40px}
 .menu{display:none;gap:26px;list-style:none;margin:0;padding:0}
-.menu a{text-decoration:none;font-size:14px;font-weight:600;color:var(--muted)}
+.menu a{text-decoration:none;font-size:14px;font-weight:600;color:var(--muted);white-space:nowrap}
 .menu a:hover,.menu a[aria-current="page"]{color:var(--ink)}
 .langs{display:flex;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:3px;transition:border-color .2s,box-shadow .2s}
 .langs:hover{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
@@ -123,7 +123,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-b
 .tabsnav{display:flex;gap:4px;overflow-x:auto;margin-top:8px}
 .tabsnav a{text-decoration:none;font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:99px;color:var(--muted);white-space:nowrap}
 .tabsnav a[aria-current="page"]{background:var(--ink);color:var(--bg)}
-@media (min-width:960px){.menu{display:flex}.bar .btn-gold{display:inline-flex}.tabsnav{display:none}}
+@media (min-width:960px){.menu{display:flex}}@media (min-width:960px) and (max-width:1120px){.menu{gap:16px}.bar{gap:12px}.brand .tg{display:none}}@media (min-width:960px){.bar .btn-gold{display:inline-flex}.tabsnav{display:none}}
 .actionbar{position:fixed;inset-inline:0;bottom:0;z-index:30;background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:1.4fr 1fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px))}
 @media (min-width:900px){.actionbar{display:none}}
 
@@ -206,21 +206,21 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-b
 .hero .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
 .who{position:relative;background:var(--bg);margin-top:-1px;padding:20px 0 0}
 .who .card{background:var(--surface);border-radius:var(--r);padding:22px 24px;border:1px solid var(--line)}
+.hside{display:contents}
 @media (min-width:900px){
-  .who .card{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px 36px;align-items:center;padding:26px 32px}
-  .who .card>h2,.who .card>p{grid-column:1}.who .card>p{margin-top:0}
-  .who .card>.facts{grid-column:2;grid-row:1/span 2;margin-top:0}
-  .who .card>.me{grid-column:3;grid-row:1;margin-top:0;padding-top:0;border-top:0}
-  .who .card>.socials{grid-column:3;grid-row:2;margin-top:0}
+  .hside{display:flex;flex-direction:column;align-items:center;position:absolute;inset-inline-end:0;bottom:0;width:430px}
+  .who{width:100%;padding:18px 0 0 18px;border-radius:var(--r-lg) 0 0 0;margin:0}
+  [dir="rtl"] .who{padding:18px 18px 0 0;border-radius:0 var(--r-lg) 0 0}
+  .who .card{border:0;padding:6px 6px 4px}
 }
 .pop{position:relative;width:min(340px,80%);aspect-ratio:1/1.28;margin:0 auto;z-index:1}
 .pop .ring{position:absolute;inset-inline:0;bottom:5%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 30%,#E9CC98 0%,#C9A46A 45%,#8F672F 100%);box-shadow:0 0 0 10px rgba(201,164,106,.18),0 0 0 22px rgba(201,164,106,.08),0 30px 60px rgba(0,0,0,.35)}
 .pop .clip{position:absolute;inset-inline:0;top:0;bottom:5%;overflow:hidden;border-radius:0 0 50% 50% / 0 0 40.65% 40.65%}
 .pop img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:100%;width:auto;max-width:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.35))}
 @media (min-width:900px){
-  .hero{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end}
-  .hero .copy{align-self:center;padding-bottom:clamp(36px,5vw,64px)}
-  .pop{width:min(460px,92%);margin:30px auto 0;align-self:end}
+  .hero{min-height:780px}
+  .hero .copy{max-width:calc(100% - 450px);padding-bottom:64px}
+  .pop{width:330px;margin:0 auto -6px}
 }
 .who h2{font-size:28px}
 .who p{color:var(--muted);font-size:14px;margin-top:8px}
@@ -528,12 +528,11 @@ home:()=>`<div class="wrap">
  <div class="hero"><div class="img">${heroArt()}${IMG(U("1623725259601-b8c41ad6a532",1800),"Dubai skyline at sunset",1)}</div><div class="img shade"></div>
   <div class="copy"><span class="kicker">${t("hero_eye")}</span><h1>${t("hero_a")} <em>${t("hero_b")}</em></h1><p>${t("hero_p")}</p>
    <div class="ctas"><a class="btn btn-white" href="#properties">${t("explore")}</a><a class="btn btn-ghost" href="${wa(t("wa_general"))}" target="_blank" rel="noopener">${t("talk")}</a></div></div>
-  <div class="pop"><div class="ring"></div><div class="clip"><img src="img/mahdiyeh-cutout.webp" alt="Mahdiyeh Falaki, Dubai real estate advisor" fetchpriority="high" decoding="async"></div></div>
- </div>
+  <div class="hside"><div class="pop"><div class="ring"></div><div class="clip"><img src="img/mahdiyeh-cutout.webp" alt="Mahdiyeh Falaki, Dubai real estate advisor" fetchpriority="high" decoding="async"></div></div>
   <div class="who"><div class="card"><h2>${t("who_t")}</h2><p>${t("who_d")}</p>
    <div class="facts"><div><b>RERA</b><span>${t("fa1")}</span></div><div><b class="num">${BROKER.brn}</b><span>${t("fa2")}</span></div><div><b class="num">EN·FA</b><span>${t("fa3")}</span></div></div>
    <div class="me"><img src="${AVATAR}" alt="Mahdiyeh Falaki"><span><b>Mahdiyeh Falaki</b><br>${t("role")}</span></div>${socials()}</div></div>
- </div>
+ </div></div></div>
  <section class="s"><div class="wrap">
   <div class="split-head"><h2>${t("mo_a")} <em>${t("mo_b")}</em></h2><p>${t("fp_d")}</p></div>
   <div class="mosaic">
