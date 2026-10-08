@@ -196,7 +196,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-b
 .hero .shade{position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,13,11,.78) 0%,rgba(15,13,11,.45) 45%,rgba(15,13,11,.05) 75%)}
 [dir="rtl"] .hero .shade{background:linear-gradient(260deg,rgba(15,13,11,.78) 0%,rgba(15,13,11,.45) 45%,rgba(15,13,11,.05) 75%)}
 .hero .copy{position:relative;padding:clamp(40px,7vw,96px) clamp(22px,5vw,64px) clamp(36px,5vw,64px);max-width:680px;color:#fff;border-radius:var(--r-lg)}
-@media (min-width:900px){.hero{min-height:620px}.hero .copy{padding-bottom:150px}}
+@media (min-width:900px){.hero{min-height:620px}}
 .hero .kicker{display:inline-flex;gap:8px;align-items:center;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-2)}
 :lang(fa) .hero .kicker,:lang(ar) .hero .kicker{letter-spacing:0;font-size:13.5px}
 .hero h1{font-size:clamp(38px,5.6vw,74px);margin-top:14px;color:#fff}
@@ -207,9 +207,20 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-b
 .who{position:relative;background:var(--bg);margin-top:-1px;padding:20px 0 0}
 .who .card{background:var(--surface);border-radius:var(--r);padding:22px 24px;border:1px solid var(--line)}
 @media (min-width:900px){
-  .who{position:absolute;inset-inline-end:0;bottom:0;width:430px;padding:18px 0 0 18px;border-radius:var(--r-lg) 0 0 0;margin:0}
-  [dir="rtl"] .who{padding:18px 18px 0 0;border-radius:0 var(--r-lg) 0 0}
-  .who .card{border:0;padding:6px 6px 4px}
+  .who .card{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px 36px;align-items:center;padding:26px 32px}
+  .who .card>h2,.who .card>p{grid-column:1}.who .card>p{margin-top:0}
+  .who .card>.facts{grid-column:2;grid-row:1/span 2;margin-top:0}
+  .who .card>.me{grid-column:3;grid-row:1;margin-top:0;padding-top:0;border-top:0}
+  .who .card>.socials{grid-column:3;grid-row:2;margin-top:0}
+}
+.pop{position:relative;width:min(340px,80%);aspect-ratio:1/1.28;margin:0 auto;z-index:1}
+.pop .ring{position:absolute;inset-inline:0;bottom:5%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 30%,#E9CC98 0%,#C9A46A 45%,#8F672F 100%);box-shadow:0 0 0 10px rgba(201,164,106,.18),0 0 0 22px rgba(201,164,106,.08),0 30px 60px rgba(0,0,0,.35)}
+.pop .clip{position:absolute;inset-inline:0;top:0;bottom:5%;overflow:hidden;border-radius:0 0 50% 50% / 0 0 40.65% 40.65%}
+.pop img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:100%;width:auto;max-width:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.35))}
+@media (min-width:900px){
+  .hero{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end}
+  .hero .copy{align-self:center;padding-bottom:clamp(36px,5vw,64px)}
+  .pop{width:min(460px,92%);margin:30px auto 0;align-self:end}
 }
 .who h2{font-size:28px}
 .who p{color:var(--muted);font-size:14px;margin-top:8px}
@@ -509,10 +520,12 @@ home:()=>`<div class="wrap">
  <div class="hero"><div class="img">${heroArt()}${IMG(U("1623725259601-b8c41ad6a532",1800),"Dubai skyline at sunset",1)}</div><div class="img shade"></div>
   <div class="copy"><span class="kicker">${t("hero_eye")}</span><h1>${t("hero_a")} <em>${t("hero_b")}</em></h1><p>${t("hero_p")}</p>
    <div class="ctas"><a class="btn btn-white" href="#properties">${t("explore")}</a><a class="btn btn-ghost" href="${wa(t("wa_general"))}" target="_blank" rel="noopener">${t("talk")}</a></div></div>
+  <div class="pop"><div class="ring"></div><div class="clip"><img src="img/mahdiyeh-cutout.webp" alt="Mahdiyeh Falaki, Dubai real estate advisor" fetchpriority="high" decoding="async"></div></div>
+ </div>
   <div class="who"><div class="card"><h2>${t("who_t")}</h2><p>${t("who_d")}</p>
    <div class="facts"><div><b>RERA</b><span>${t("fa1")}</span></div><div><b class="num">${BROKER.brn}</b><span>${t("fa2")}</span></div><div><b class="num">EN·FA</b><span>${t("fa3")}</span></div></div>
    <div class="me"><img src="${AVATAR}" alt="Mahdiyeh Falaki"><span><b>Mahdiyeh Falaki</b><br>${t("role")}</span></div>${socials()}</div></div>
- </div></div>
+ </div>
  <section class="s"><div class="wrap">
   <div class="split-head"><h2>${t("mo_a")} <em>${t("mo_b")}</em></h2><p>${t("fp_d")}</p></div>
   <div class="mosaic">
