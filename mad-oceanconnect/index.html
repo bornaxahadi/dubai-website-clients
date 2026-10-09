@@ -450,25 +450,31 @@ footer.site>.wrap{position:relative;z-index:4}
 footer.site>.wrap{position:relative;z-index:4}
 /* footer ends on a thin strip of real soil; the root runs along it and each plant grows as the root reaches it */
 .bed{margin-top:26px;overflow-x:clip}
-.garden.armed img{clip-path:inset(100% 0 0 0);transform:scale(.55);opacity:0}
-.garden.armed img.up{animation:plantGrow 1.4s cubic-bezier(.25,.8,.25,1) var(--dl,0s) both,plantSway 5s ease-in-out calc(var(--dl,0s) + 1.4s) infinite}
-@keyframes plantGrow{0%{clip-path:inset(100% -20% 0 -20%);transform:scale(.55);opacity:0}15%{opacity:1}99%{clip-path:inset(0 -20% 0 -20%)}100%{clip-path:none;transform:scale(1);opacity:1}}
-@keyframes plantSway{0%,100%{transform:rotate(0)}50%{transform:rotate(1.2deg)}}
-.garden img:hover{animation:plantSway 1.2s ease-in-out infinite}
 .bed{position:relative}
 /* layered garden: back row grows from behind the soil edge, big plants stand in front, a few harvested crops lie on the soil; depth from size and layering, no blur */
 .bed{--H:clamp(112px,11vw,150px);--S:58px;position:relative;height:calc(var(--H) * 1.08 + var(--S))}
 .soil{position:absolute;left:0;right:0;bottom:0;height:var(--S);z-index:2;background:url(assets/v4/soil2.webp) repeat-x 0 0/auto 100%}
 .garden{position:absolute;inset:0}
-.garden img{position:absolute;left:var(--x);bottom:calc(var(--S) - 14px);height:calc(var(--h) * var(--H));width:auto;translate:-50% 0;transform-origin:50% 100%;z-index:3}
-.garden img.b{z-index:1;bottom:calc(var(--S) - 5px - var(--bury,0) * var(--h) * var(--H));filter:saturate(.9) brightness(.92)}
-.gfront{position:absolute;inset:0;z-index:5;pointer-events:none}
-.gfront img{position:absolute;left:var(--x);bottom:calc(var(--S) * .2);height:calc(var(--h) * var(--H));width:auto;translate:-50% 0;rotate:var(--r,0deg);opacity:0;transform:translateY(8px) scale(.8);transform-origin:50% 100%;filter:drop-shadow(0 4px 4px rgba(0,0,0,.35));transition:opacity .8s ease var(--bd),transform 1s cubic-bezier(.25,.8,.25,1) var(--bd)}
-.bed:has(#garden img.up) .gfront img{opacity:1;transform:none}
-@media (max-width:760px){.bed{--H:84px;--S:44px}.garden img{bottom:calc(var(--S) - 10px)}.bed .nm{display:none}}
+/* each plant: leaves layer + fruit layers. It grows out of the soil (stem rises, leaves open), then green fruit sets, swells and ripens */
+.garden .pl{position:absolute;left:var(--x);bottom:calc(var(--S) - 12px);height:calc(var(--h) * var(--H));aspect-ratio:var(--ar);translate:-50% 0;transform-origin:50% 100%;z-index:3}
+.garden .pl.b{z-index:1;bottom:calc(var(--S) - 4px);filter:brightness(.86) saturate(.92)}
+.garden .pl img{position:absolute;display:block}
+.garden .pl .lf{inset:0;width:100%;height:100%;transform-origin:50% 100%}
+.garden .pl .fr{height:auto;transform-origin:50% 0}
+.garden.armed .pl .lf{clip-path:inset(100% -10% 0 -10%);transform:scale(.18,.08)}
+.garden.armed .pl .fr{opacity:0;scale:.3;transform:scale(.82);filter:hue-rotate(80deg) saturate(.75) brightness(.95)}
+.garden.armed .pl.up .lf{animation:pRise 2.1s cubic-bezier(.3,.7,.25,1) var(--dl,0s) both}
+.garden.armed .pl.up .fr{animation:fSet .9s cubic-bezier(.3,.7,.3,1) calc(var(--dl,0s) + 1.35s + var(--fd,0s)) both,fRipe 1.6s ease-in-out calc(var(--dl,0s) + 2.1s + var(--fd,0s)) both}
+.garden.armed .pl.up{animation:pSway 6s ease-in-out calc(var(--dl,0s) + 2.2s) infinite}
+@keyframes pRise{0%{clip-path:inset(92% -10% 0 -10%);transform:scale(.18,.08)}35%{clip-path:inset(45% -10% 0 -10%);transform:scale(.45,.55)}70%{clip-path:inset(0 -10% 0 -10%);transform:scale(.9,.95)}100%{clip-path:inset(-10% -10% 0 -10%);transform:none}}
+@keyframes fSet{0%{opacity:0;scale:.3}100%{opacity:1;scale:1}}
+@keyframes fRipe{0%{transform:scale(.82);filter:hue-rotate(80deg) saturate(.75) brightness(.95)}100%{transform:none;filter:none}}
+@keyframes pSway{0%,100%{rotate:0deg}50%{rotate:.8deg}}
+.garden .pl:hover{animation:pSway 1.4s ease-in-out infinite}
+@media (max-width:760px){.bed{--H:96px;--S:44px}.garden .pl{left:var(--xm);bottom:calc(var(--S) - 10px)}.garden .pl.b{bottom:calc(var(--S) - 4px)}.bed .nm{display:none}}
 .credit{margin:14px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.12);text-align:center;font-size:.85rem;letter-spacing:.02em;opacity:.85}
 .credit b{color:#fff;font-weight:700}
-@media (prefers-reduced-motion:reduce){.garden.armed img{clip-path:none;transform:none;opacity:1}.garden.armed img.up{animation:none}.gfront img{opacity:1;transform:none;transition:none}}
+@media (prefers-reduced-motion:reduce){.garden.armed .pl img{clip-path:none;transform:none;opacity:1;filter:none}.garden.armed .pl.up,.garden.armed .pl.up img{animation:none}}
 @media (max-width:819px){footer.site.rch-r>.wrap{padding-right:38px}footer.site.rch-l>.wrap{padding-left:38px}}
 footer.site a{color:var(--foot-text);text-decoration:none;display:block;padding:4px 0}
 footer.site a:hover{color:#fff}
@@ -1214,7 +1220,7 @@ html[lang=ar] .countries small,html[lang=fa] .countries small{display:none}
     </div>
   </div>
   <div class="wrap"><p class="credit">Website designed and developed by <b data-notr dir="ltr">Borna Ahadi</b></p></div>
-  <div class="bed" aria-hidden="true"><div class="garden" id="garden"><img src="assets/v5/plants/tomato.webp" alt="" loading="lazy" style="--x:6%;--h:0.95"><img class="b" src="assets/v5/plants/carrot.webp" alt="" loading="lazy" style="--x:13%;--h:0.72;--bury:0.36"><img src="assets/v5/plants/broccoli.webp" alt="" loading="lazy" style="--x:20%;--h:0.8"><img src="assets/v5/plants/pepper.webp" alt="" loading="lazy" style="--x:33%;--h:1.05"><img class="b" src="assets/v5/plants/cauliflower.webp" alt="" loading="lazy" style="--x:27%;--h:0.5;--bury:0.22"><img class="b" src="assets/v5/plants/squash.webp" alt="" loading="lazy" style="--x:39%;--h:0.5;--bury:0.04"><img src="assets/v5/plants/lettuce.webp" alt="" loading="lazy" style="--x:45.5%;--h:0.64"><img src="assets/v5/plants/eggplant.webp" alt="" loading="lazy" style="--x:58%;--h:0.96"><img class="b" src="assets/v5/plants/melon.webp" alt="" loading="lazy" style="--x:65%;--h:0.4;--bury:0.06"><img src="assets/v5/plants/cucumber.webp" alt="" loading="lazy" style="--x:72%;--h:1.08"><img src="assets/v5/plants/celery.webp" alt="" loading="lazy" style="--x:88%;--h:0.8"></div><div class="gfront"><img src="assets/v5/plants/onion.webp" alt="" loading="lazy" style="--x:16%;--h:0.3;--r:-6deg;--bd:0.4s"><img src="assets/v5/plants/chilies.webp" alt="" loading="lazy" style="--x:41%;--h:0.25;--r:6deg;--bd:0.8500000000000001s"><img class="nm" src="assets/v5/plants/garlic.webp" alt="" loading="lazy" style="--x:63%;--h:0.28;--r:0deg;--bd:1.3s"><img src="assets/v5/plants/habanero.webp" alt="" loading="lazy" style="--x:83%;--h:0.27;--r:4deg;--bd:1.75s"></div><div class="soil" id="soil"></div></div>
+  <div class="bed" aria-hidden="true"><div class="garden" id="garden"><div class="pl" style="--x:5%;--xm:8%;--h:1.0;--ar:1.2201"><img class="lf" src="assets/v6/garden/tomato.webp" alt="" loading="lazy"><img class="fr" src="assets/v6/garden/tomato-f0.webp" alt="" loading="lazy" style="left:47.97%;top:33.96%;width:29.09%;--fd:0.00s"></div><div class="pl b nm" style="--x:16.5%;--xm:16.5%;--h:0.78;--ar:0.9288"><img class="lf" src="assets/v6/garden/pepper-yellow.webp" alt="" loading="lazy"><img class="fr" src="assets/v6/garden/pepper-yellow-f0.webp" alt="" loading="lazy" style="left:23.62%;top:41.88%;width:45.25%;--fd:0.00s"></div><div class="pl" style="--x:28%;--xm:25%;--h:1.06;--ar:1.0075"><img class="lf" src="assets/v6/garden/plum.webp" alt="" loading="lazy"><img class="fr" src="assets/v6/garden/plum-f0.webp" alt="" loading="lazy" style="left:48.52%;top:40.24%;width:34.91%;--fd:0.00s"></div><div class="pl b" style="--x:39.5%;--xm:41%;--h:0.8;--ar:1.2201"><img class="lf" src="assets/v6/garden/tomato-yellow.webp" alt="" loading="lazy"><img class="fr" src="assets/v6/garden/tomato-yellow-f0.webp" alt="" loading="lazy" style="left:22.94%;top:33.96%;width:29.09%;--fd:0.00s"></div><div class="pl" style="--x:51%;--xm:57%;--h:1.02;--ar:0.9353"><img class="lf" src="assets/v6/garden/eggplant.webp" alt="" loading="lazy"><img class="fr" src="assets/v6/garden/eggplant-f0.webp" alt="" loading="lazy" style="left:29.1%;top:47.13%;width:15.05%;--fd:0.00s"><img class="fr" src="assets/v6/garden/eggplant-f1.webp" alt="" loading="lazy" style="left:49.28%;top:52.14%;width:15.38%;--fd:0.25s"></div><div class="pl b nm" style="--x:61%;--xm:61%;--h:0.8;--ar:1.0075"><img class="lf" src="assets/v6/garden/datterino-orange.webp" alt="" loading="lazy"><img class="fr" src="assets/v6/garden/datterino-orange-f0.webp" alt="" loading="lazy" style="left:16.57%;top:40.24%;width:34.91%;--fd:0.00s"></div><div class="pl" style="--x:77%;--xm:74%;--h:0.98;--ar:0.9288"><img class="lf" src="assets/v6/garden/pepper.webp" alt="" loading="lazy"><img class="fr" src="assets/v6/garden/pepper-f0.webp" alt="" loading="lazy" style="left:31.13%;top:41.88%;width:45.25%;--fd:0.00s"></div><div class="pl nm" style="--x:90%;--xm:90%;--h:1.04;--ar:0.9105"><img class="lf" src="assets/v6/garden/cucumber.webp" alt="" loading="lazy"><img class="fr" src="assets/v6/garden/cucumber-f0.webp" alt="" loading="lazy" style="left:35.33%;top:26.72%;width:18.8%;--fd:0.00s"></div></div><div class="soil" id="soil"></div></div>
 </footer>
 <div id="toastHost"></div>
 
